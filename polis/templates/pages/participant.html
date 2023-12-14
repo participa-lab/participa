@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Participant Form</title>
+    {{ participant.id }}
+    <ul id="post-messages"></ul>
+</head>
+
+<body>
+    {% if participant %}
+    <div id="polis-container"></div>
+    {% else %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+    <script type="text/javascript">
+        function buildEmbedDiv(xid) {
+            return "<div class='polis' data-conversation_id='{{conversation.polis_id}}' data-xid='" + xid + "'></div>"
+        }
+
+        if (localStorage.participaPolisUserXID) {
+            console.log("Existing participaPolisUserXID found:", localStorage.participaPolisUserXID)
+        } else {
+            var userXID = '{{ participant.id }}'
+            console.log("Assigning new participaPolisUserXID:", userXID)
+            localStorage.participaPolisUserXID = userXID
+        }
+
+        var embedScript = document.createElement("script");
+        embedScript.setAttribute("src", "{{participant.instance.url}}/embed.js")
+
+        var polisContainer = document.getElementById('polis-container')
+        polisContainer.innerHTML = buildEmbedDiv(localStorage.participaPolisUserXID)
+        polisContainer.appendChild(embedScript)
+
+    </script>
+    <script type="text/javascript">
+        window.addEventListener('message', function (event) {
+          var data = event.data || {};
+          if (event.origin !== "{{participant.instance.url}}") {
+            return;
+          }
+          var listEl = document.getElementById('post-messages');
+          var listItemEl = document.createElement('li')
+          listItemEl.innerHTML = JSON.stringify(data, null, 2);
+          listEl.appendChild(listItemEl);
+        })
+      </script>
+</body>
+
+</html>

@@ -6,57 +6,63 @@
     {{ participant.id }}
     <button id="capture-btn">Capture Screenshot</button>
     {% if participant %}
-    <div id="polis-container"></div>
-    {% else %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-    {% endif %}
-    <script type="text/javascript">
-        function buildEmbedDiv(xid) {
-            return "<div class='polis' data-conversation_id='{{conversation.polis_id}}' data-xid='" + xid + "'></div>"
-        }
+    <!-- Responsive Iframe Container -->
+    <div class="flex justify-center items-center">
+        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9 my-8">
+            <div id="polis-container">
+            </div>
+        </div>
+        {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+        {% endif %}
+        <script type="text/javascript">
+            function buildEmbedDiv(xid) {
+                return "<div class='polis' data-conversation_id='{{conversation.polis_id}}' data-xid='" + xid +
+                    "'></div>"
+            }
 
-        if (localStorage.participaPolisUserXID) {
-            console.log("Existing participaPolisUserXID found:", localStorage.participaPolisUserXID)
-        } else {
-            var userXID = '{{ participant.id }}'
-            console.log("Assigning new participaPolisUserXID:", userXID)
-            localStorage.participaPolisUserXID = userXID
-        }
+            if (localStorage.participaPolisUserXID) {
+                console.log("Existing participaPolisUserXID found:", localStorage.participaPolisUserXID)
+            } else {
+                var userXID = '{{ participant.id }}'
+                console.log("Assigning new participaPolisUserXID:", userXID)
+                localStorage.participaPolisUserXID = userXID
+            }
 
-        var embedScript = document.createElement("script");
-        embedScript.setAttribute("src", "{{participant.instance.url}}/embed.js")
+            var embedScript = document.createElement("script");
+            embedScript.setAttribute("src", "{{participant.instance.url}}/embed.js")
 
-        var polisContainer = document.getElementById('polis-container')
-        polisContainer.innerHTML = buildEmbedDiv(localStorage.participaPolisUserXID)
-        polisContainer.appendChild(embedScript)
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script type="text/javascript">
-        document.getElementById('capture-btn').addEventListener('click', function () {
-            /*var iframe = document.getElementById('polis_{{conversation.polis_id}}');
-            var iframeContent = iframe.contentDocument || iframe.contentWindow.document;
-            var targetDiv = iframeContent.getElementById('vis2_root');*/
-            var targetDiv = document.getElementById('polis-container')
+            var polisContainer = document.getElementById('polis-container')
+            polisContainer.innerHTML = buildEmbedDiv(localStorage.participaPolisUserXID)
+            polisContainer.appendChild(embedScript)
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script type="text/javascript">
+            document.getElementById('capture-btn').addEventListener('click', function () {
+                /*var iframe = document.getElementById('polis_{{conversation.polis_id}}');
+                var iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+                var targetDiv = iframeContent.getElementById('vis2_root');*/
+                var targetDiv = document.getElementById('polis-container')
 
-            html2canvas(targetDiv).then(canvas => {
-                var image = canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
-                downloadImage(image, 'screenshot.png');
+                html2canvas(targetDiv).then(canvas => {
+                    var image = canvas.toDataURL('image/png').replace("image/png",
+                    "image/octet-stream");
+                    downloadImage(image, 'screenshot.png');
+                });
             });
-        });
 
-        function downloadImage(data, filename = 'untitled.jpeg') {
-            var a = document.createElement('a');
-            a.href = data;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-    </script>
+            function downloadImage(data, filename = 'untitled.jpeg') {
+                var a = document.createElement('a');
+                a.href = data;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        </script>
 </section>
 {% endblock %}
-

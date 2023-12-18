@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 from polis import views
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path('participant/', views.participant_view, name='participant'),
+    path('', views.participant_view, name='participant'),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
 

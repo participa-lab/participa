@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
+{% block content %}
+<section>
     <title>Participant Form</title>
     {{ participant.id }}
-    <ul id="post-messages"></ul>
-</head>
-
-<body>
+    <button id="capture-btn">Capture Screenshot</button>
     {% if participant %}
     <div id="polis-container"></div>
     {% else %}
@@ -36,20 +33,30 @@
         var polisContainer = document.getElementById('polis-container')
         polisContainer.innerHTML = buildEmbedDiv(localStorage.participaPolisUserXID)
         polisContainer.appendChild(embedScript)
-
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script type="text/javascript">
-        window.addEventListener('message', function (event) {
-          var data = event.data || {};
-          if (event.origin !== "{{participant.instance.url}}") {
-            return;
-          }
-          var listEl = document.getElementById('post-messages');
-          var listItemEl = document.createElement('li')
-          listItemEl.innerHTML = JSON.stringify(data, null, 2);
-          listEl.appendChild(listItemEl);
-        })
-      </script>
-</body>
+        document.getElementById('capture-btn').addEventListener('click', function () {
+            /*var iframe = document.getElementById('polis_{{conversation.polis_id}}');
+            var iframeContent = iframe.contentDocument || iframe.contentWindow.document;
+            var targetDiv = iframeContent.getElementById('vis2_root');*/
+            var targetDiv = document.getElementById('polis-container')
 
-</html>
+            html2canvas(targetDiv).then(canvas => {
+                var image = canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
+                downloadImage(image, 'screenshot.png');
+            });
+        });
+
+        function downloadImage(data, filename = 'untitled.jpeg') {
+            var a = document.createElement('a');
+            a.href = data;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</section>
+{% endblock %}
+

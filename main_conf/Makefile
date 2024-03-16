@@ -32,6 +32,9 @@ pull: echo_vars ## Pull most recent Docker container builds (nightlies)
 start: echo_vars ## Start all Docker containers
 	docker compose ${COMPOSE_FILE_ARGS} --env-file ${ENV_FILE} up
 
+start-sm: echo_vars ## Start all Docker containers
+	docker compose ${COMPOSE_FILE_ARGS} --env-file ${ENV_FILE} up server nginx-proxy participa
+
 stop: echo_vars ## Stop all Docker containers
 	docker compose ${COMPOSE_FILE_ARGS} --env-file ${ENV_FILE} down
 

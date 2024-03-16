@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+
+  participa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - static_volume:/participa/staticfiles
+      - media_volume:/participa/mediafiles
+    
+volumes:
+  media_volume:
+  static_volume:
+  redis_volume:

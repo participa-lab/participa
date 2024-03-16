@@ -1,0 +1,36 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="fieldWrapper">
+        {{ form.instance.errors }}
+        {{ form.instance.label_tag }}
+        {{ form.instance }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ form.gender.errors }}
+        {{ form.gender.label_tag }}
+        {{ form.gender }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ form.year_of_birth.errors }}
+        {{ form.year_of_birth.label_tag }}
+        {{ form.year_of_birth }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ form.territory.errors }}
+        {{ form.territory.label_tag }}
+        {{ form.territory }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ form.affinity.errors }}
+        {{ form.affinity.label_tag }}
+        {{ form.affinity }}
+    </div>
+
+    <input type="submit" value="Submit" />
+</form>

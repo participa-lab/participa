@@ -1,14 +1,22 @@
-from django.db import models
-from polis import choices
 import uuid
+
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+
+from polis import choices
 
 
 class Instance(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
+
+    def __meta__(self):
+        verbose_name = _("Instance")
+        verbose_name_plural = _("Instances")
 
 
 class Conversation(models.Model):
@@ -22,6 +30,10 @@ class Conversation(models.Model):
     def __str__(self):
         return self.title
 
+    def __meta__(self):
+        verbose_name = _("Conversation")
+        verbose_name_plural = _("Conversations")
+
 
 class Territory(models.Model):
     name = models.CharField(max_length=200)
@@ -29,12 +41,20 @@ class Territory(models.Model):
     def __str__(self):
         return self.name
 
+    def __meta__(self):
+        verbose_name = _("Territory")
+        verbose_name_plural = _("Territories")
+
 
 class Affinity(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
+
+    def __meta__(self):
+        verbose_name = _("Affinity")
+        verbose_name_plural = _("Affinities")
 
 
 class Participant(models.Model):
@@ -47,3 +67,8 @@ class Participant(models.Model):
 
     def __str__(self):
         return self.instance.name + " - " + self.affinity.name
+
+    def __meta__(self):
+        ordering = ["instance", "affinity"]
+        verbose_name = _("Participant")
+        verbose_name_plural = _("Participants")

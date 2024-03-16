@@ -10,6 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+# Initialise environment variables
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
 import os
 from pathlib import Path
 
@@ -26,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-^03ui)u)q#2eeo2l3_d!7e+oei7935+ihtjfjkv@$ieg+rij(f"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default="True") == "True"
 
 ALLOWED_HOSTS = ["localhost", "app.raul", "participalab.uy"]
 
@@ -83,10 +89,15 @@ WSGI_APPLICATION = "participa.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "HOST": env("DB_HOST"),
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PORT": env("DB_PORT"),
+        "PASSWORD": env("DB_PASSWORD"),
     }
 }
 

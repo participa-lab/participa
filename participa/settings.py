@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-^03ui)u)q#2eeo2l3_d!7e+oei7935+ihtjfjkv@$ieg+rij(f"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG", default="True") == "True"
+DEBUG = env("DEBUG", default="False") == "True"
 
 ALLOWED_HOSTS = ["localhost", "app.raul", "participalab.uy"]
 

@@ -1,25 +1,28 @@
 from django.contrib import admin
-from .models import Instance, Conversation, Territory, Affinity, Participant
+
+from .models import (
+    Affinity,
+    Conversation,
+    Instance,
+    Participant,
+    PolisConversation,
+    PolisParticipant,
+    PolisUser,
+    PolisXid,
+    Territory,
+)
 
 
-class InstanceAdmin(admin.ModelAdmin):
+class GenericAdmin(admin.ModelAdmin):
     pass
 
-class ConversationAdmin(admin.ModelAdmin):
-    pass
 
-class TerritoryAdmin(admin.ModelAdmin):
-    pass
-
-class AffinityAdmin(admin.ModelAdmin):
-    pass
-
-class ParticipantAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Instance, InstanceAdmin)
-admin.site.register(Conversation, ConversationAdmin)
-admin.site.register(Territory, TerritoryAdmin)
-admin.site.register(Affinity, AffinityAdmin)
-admin.site.register(Participant, ParticipantAdmin)
+admin.site.register(Instance, GenericAdmin)
+admin.site.register(Conversation, GenericAdmin)
+admin.site.register(Territory, GenericAdmin)
+admin.site.register(Affinity, GenericAdmin)
+admin.site.register(Participant, GenericAdmin)
+admin.site.register(PolisConversation, GenericAdmin)
+admin.site.register(PolisUser, GenericAdmin)
+admin.site.register(PolisParticipant, GenericAdmin)
+admin.site.register(PolisXid, GenericAdmin)

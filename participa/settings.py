@@ -32,9 +32,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-^03ui)u)q#2eeo2l3_d!7e+oei7935+ihtjfjkv@$ieg+rij(f"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG", default="False") == "True"
+DEBUG = env("DEBUG", default="True") == "True"
 
 ALLOWED_HOSTS = ["localhost", "app.raul", "participalab.uy"]
+CSRF_TRUSTED_ORIGINS = ["https://*.participalab.uy"]
 
 
 # Application definition
@@ -133,7 +134,7 @@ LANGUAGES = [("en", "English"), ("es", "Spanish")]
 
 LANGUAGE_CODE = "es"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Montevideo"
 
 USE_I18N = True
 

@@ -75,102 +75,102 @@ class Participant(models.Model):
         verbose_name_plural = _("Participants")
 
 
-# class PolisConversation(models.Model):
-#     # Define your fields here
-#     zid = models.BigIntegerField(primary_key=True)
-#     topic = models.TextField()
-#     description = models.TextField()
-#     upvotes = models.IntegerField()
-#     participant_count = models.IntegerField()
-#     is_anon = models.BooleanField()
-#     is_active = models.BooleanField()
-#     is_public = models.BooleanField()
+class PolisConversation(models.Model):
+    # Define your fields here
+    zid = models.BigIntegerField(primary_key=True)
+    topic = models.TextField()
+    description = models.TextField()
+    upvotes = models.IntegerField()
+    participant_count = models.IntegerField()
+    is_anon = models.BooleanField()
+    is_active = models.BooleanField()
+    is_public = models.BooleanField()
 
-#     class Meta:
-#         db_table = "conversations"
-#         managed = False
+    class Meta:
+        db_table = "conversations"
+        managed = False
 
-#     def save(self, *args, **kwargs):
-#         # Prevent any changes by overriding the save method
-#         pass
+    def save(self, *args, **kwargs):
+        # Prevent any changes by overriding the save method
+        pass
 
-#     def delete(self, *args, **kwargs):
-#         # Prevent deletion by overriding the delete method
-#         pass
+    def delete(self, *args, **kwargs):
+        # Prevent deletion by overriding the delete method
+        pass
 
-#     def __str__(self):
-#         return self.topic
-
-
-# class PolisUser(models.Model):
-#     # Define your fields here
-#     uid = models.BigIntegerField(primary_key=True)
-#     hname = models.TextField()
-#     email = models.TextField()
-#     site_id = models.TextField()
-#     site_owner = models.BooleanField()
-
-#     class Meta:
-#         db_table = "users"
-#         managed = False
-
-#     def save(self, *args, **kwargs):
-#         # Prevent any changes by overriding the save method
-#         pass
-
-#     def delete(self, *args, **kwargs):
-#         # Prevent deletion by overriding the delete method
-#         pass
-
-#     def __str__(self):
-#         return f"{self.uid} {self.email}"
+    def __str__(self):
+        return self.topic
 
 
-# class PolisParticipant(models.Model):
-#     # Define your fields here
-#     pid = models.BigIntegerField(primary_key=True)
-#     zid = models.ForeignKey(
-#         PolisConversation, on_delete=models.CASCADE, db_column="zid"
-#     )
-#     uid = models.ForeignKey(PolisUser, on_delete=models.CASCADE, db_column="uid")
-#     vote_count = models.IntegerField()
-#     created = models.DateTimeField()
-#     last_interaction = models.DateTimeField()
+class PolisUser(models.Model):
+    # Define your fields here
+    uid = models.BigIntegerField(primary_key=True)
+    hname = models.TextField()
+    email = models.TextField()
+    site_id = models.TextField()
+    site_owner = models.BooleanField()
 
-#     class Meta:
-#         db_table = "participants"
-#         managed = False
+    class Meta:
+        db_table = "users"
+        managed = False
 
-#     def save(self, *args, **kwargs):
-#         # Prevent any changes by overriding the save method
-#         pass
+    def save(self, *args, **kwargs):
+        # Prevent any changes by overriding the save method
+        pass
 
-#     def delete(self, *args, **kwargs):
-#         # Prevent deletion by overriding the delete method
-#         pass
+    def delete(self, *args, **kwargs):
+        # Prevent deletion by overriding the delete method
+        pass
 
-#     def __str__(self):
-#         return f"{self.pid} {self.zid} {self.uid}"
+    def __str__(self):
+        return f"{self.uid} {self.email}"
 
 
-# class PolisXid(models.Model):
-#     # Define your fields here
-#     uid = models.BigIntegerField(primary_key=True, db_column="uid")
+class PolisParticipant(models.Model):
+    # Define your fields here
+    pid = models.BigIntegerField(primary_key=True)
+    zid = models.ForeignKey(
+        PolisConversation, on_delete=models.CASCADE, db_column="zid"
+    )
+    uid = models.ForeignKey(PolisUser, on_delete=models.CASCADE, db_column="uid")
+    vote_count = models.IntegerField()
+    created = models.DateTimeField()
+    last_interaction = models.DateTimeField()
 
-#     xid = models.ForeignKey(Participant, on_delete=models.CASCADE, db_column="xid")
-#     x_profile_image_url = models.TextField()
-#     x_name = models.TextField()
-#     x_email = models.TextField()
-#     created = models.DateTimeField()
-#     modified = models.DateTimeField()
+    class Meta:
+        db_table = "participants"
+        managed = False
 
-#     def save(self, *args, **kwargs):
-#         # Prevent any changes by overriding the save method
-#         pass
+    def save(self, *args, **kwargs):
+        # Prevent any changes by overriding the save method
+        pass
 
-#     def delete(self, *args, **kwargs):
-#         # Prevent deletion by overriding the delete method
-#         pass
+    def delete(self, *args, **kwargs):
+        # Prevent deletion by overriding the delete method
+        pass
 
-#     def __str__(self):
-#         return f"{self.uid} {self.xid}"
+    def __str__(self):
+        return f"{self.pid} {self.zid} {self.uid}"
+
+
+class PolisXid(models.Model):
+    # Define your fields here
+    uid = models.BigIntegerField(primary_key=True, db_column="uid")
+
+    xid = models.ForeignKey(Participant, on_delete=models.CASCADE, db_column="xid")
+    x_profile_image_url = models.TextField()
+    x_name = models.TextField()
+    x_email = models.TextField()
+    created = models.DateTimeField()
+    modified = models.DateTimeField()
+
+    def save(self, *args, **kwargs):
+        # Prevent any changes by overriding the save method
+        pass
+
+    def delete(self, *args, **kwargs):
+        # Prevent deletion by overriding the delete method
+        pass
+
+    def __str__(self):
+        return f"{self.uid} {self.xid}"

@@ -10,6 +10,7 @@ class Instance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
+    site_id = models.CharField(max_length=200)
 
     def __str__(self):
         return f"{self.id} {self.name}"
@@ -21,15 +22,34 @@ class Instance(models.Model):
 
 class Conversation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=200)
+    topic = models.CharField(max_length=200)
+    slug = models.SlugField(default="", null=False)
     description = models.TextField()
+
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    polis_id = models.CharField(max_length=200)
     instance = models.ForeignKey(Instance, on_delete=models.CASCADE)
 
+    border = models.CharField(max_length=200, blank=True, null=True)
+    border_radius = models.CharField(max_length=200, blank=True, null=True)
+    padding = models.CharField(max_length=200, blank=True, null=True)
+    height = models.CharField(max_length=200, blank=True, null=True)
+    ui_language = models.CharField(max_length=200, blank=True, null=True)
+    dwok = models.CharField(max_length=200, blank=True, null=True)
+
+    show_visualization = models.BooleanField(default=True)
+    show_share = models.BooleanField(default=True)
+    bg_white = models.BooleanField(default=False)
+
+    auth_needed_to_vote = models.BooleanField(default=False)
+    auth_needed_to_write = models.BooleanField(default=True)
+
+    auth_opt_fb = models.BooleanField(default=True)
+    auth_opt_tw = models.BooleanField(default=True)
+    auth_opt_allow_3rdparty = models.BooleanField(default=True)
+
     def __str__(self):
-        return self.title
+        return self.topic
 
     class Meta:
         verbose_name = _("Conversation")
@@ -60,17 +80,24 @@ class Affinity(models.Model):
 
 class Participant(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    instance = models.ForeignKey(Instance, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=2, choices=choices.GENDER_CHOICES)
-    year_of_birth = models.IntegerField()
-    territory = models.ForeignKey(Territory, on_delete=models.CASCADE)
-    affinity = models.ForeignKey(Affinity, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    gender = models.CharField(
+        max_length=2, choices=choices.GENDER_CHOICES, blank=True, null=True
+    )
+    year_of_birth = models.IntegerField(blank=True, null=True)
+    territory = models.ForeignKey(
+        Territory, on_delete=models.CASCADE, blank=True, null=True
+    )
+    affinity = models.ForeignKey(
+        Affinity, on_delete=models.CASCADE, blank=True, null=True
+    )
 
     def __str__(self):
-        return f"{self.id} {self.instance}"
+        return f"{self.id} {self.name}"
 
     class Meta:
-        ordering = ["instance", "affinity"]
+        ordering = ["id", "affinity"]
         verbose_name = _("Participant")
         verbose_name_plural = _("Participants")
 

@@ -1,11 +1,11 @@
-<form method="post">
+<form method="post" action="{% url "participant" %}">
     {% csrf_token %}
     {{ form.non_field_errors }}
 
     <div class="fieldWrapper">
-        {{ form.instance.errors }}
-        {{ form.instance.label_tag }}
-        {{ form.instance }}
+        {{ form.name.errors }}
+        {{ form.name.label_tag }}
+        {{ form.name }}
     </div>
 
     <div class="fieldWrapper">

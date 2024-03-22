@@ -1,9 +1,22 @@
+import datetime
 import uuid
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from polis import choices
+
+
+class MillisField(models.BigIntegerField):
+    def to_python(self, value):
+        if value is None:
+            return value
+        return datetime.datetime.fromtimestamp(value / 1000.0)
+
+    def get_prep_value(self, value):
+        if value is None or isinstance(value, int):
+            return value
+        return int(value.timestamp() * 1000)
 
 
 class Instance(models.Model):
@@ -126,7 +139,7 @@ class PolisConversation(models.Model):
         pass
 
     def __str__(self):
-        return self.topic
+        return f"{self.zid} {self.topic}"
 
 
 class PolisUser(models.Model):
@@ -161,8 +174,8 @@ class PolisParticipant(models.Model):
     )
     uid = models.ForeignKey(PolisUser, on_delete=models.CASCADE, db_column="uid")
     vote_count = models.IntegerField()
-    created = models.DateTimeField()
-    last_interaction = models.DateTimeField()
+    created = MillisField()
+    last_interaction = MillisField()
 
     class Meta:
         db_table = "participants"
@@ -188,8 +201,8 @@ class PolisXid(models.Model):
     x_profile_image_url = models.TextField()
     x_name = models.TextField()
     x_email = models.TextField()
-    created = models.DateTimeField()
-    modified = models.DateTimeField()
+    created = MillisField()
+    modified = MillisField()
 
     def save(self, *args, **kwargs):
         # Prevent any changes by overriding the save method
@@ -201,3 +214,7 @@ class PolisXid(models.Model):
 
     def __str__(self):
         return f"{self.uid} {self.xid}"
+
+    class Meta:
+        db_table = "xids"
+        managed = False

@@ -43,16 +43,20 @@ class Conversation(models.Model):
     end_date = models.DateTimeField()
     instance = models.ForeignKey(Instance, on_delete=models.CASCADE)
 
-    border = models.CharField(max_length=200, blank=True, null=True)
-    border_radius = models.CharField(max_length=200, blank=True, null=True)
-    padding = models.CharField(max_length=200, blank=True, null=True)
-    height = models.CharField(max_length=200, blank=True, null=True)
+    border = models.CharField(
+        max_length=200, blank=True, null=True, default="1px solid #ccc"
+    )
+    border_radius = models.CharField(
+        max_length=200, blank=True, null=True, default="4px"
+    )
+    padding = models.CharField(max_length=200, blank=True, null=True, default="4px")
+    height = models.CharField(max_length=200, blank=True, null=True, default="930")
     ui_language = models.CharField(max_length=200, blank=True, null=True)
     dwok = models.CharField(max_length=200, blank=True, null=True)
 
     show_visualization = models.BooleanField(default=True)
     show_share = models.BooleanField(default=True)
-    bg_white = models.BooleanField(default=False)
+    bg_white = models.BooleanField(default=True)
 
     auth_needed_to_vote = models.BooleanField(default=False)
     auth_needed_to_write = models.BooleanField(default=True)
@@ -60,6 +64,14 @@ class Conversation(models.Model):
     auth_opt_fb = models.BooleanField(default=True)
     auth_opt_tw = models.BooleanField(default=True)
     auth_opt_allow_3rdparty = models.BooleanField(default=True)
+
+    show_footer = models.BooleanField(default=False)
+    show_help = models.BooleanField(default=False)
+    show_description = models.BooleanField(default=True)
+    show_topic = models.BooleanField(default=True)
+    subscribe_type = models.CharField(
+        max_length=1, blank=True, null=True, choices=choices.SUSCRIBE_CHOICES
+    )
 
     def __str__(self):
         return self.topic

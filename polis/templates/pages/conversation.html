@@ -28,9 +28,20 @@
             var dataAttributes = {
                 "site_id": "{{object.instance.site_id}}",
                 "page_id": "{{object.slug}}",
+                "topic": "{{object.topic}}",
                 "parent_url": "{{ request.path }}",
                 "xid": "{{participant.id}}",
                 "x_name": "{{participant.name|default_if_none:''}}",
+                "border": "{{object.border}}",
+                "border_radius": "{{object.border_radius}}",
+                "padding": "{{object.padding}}",
+                "height": "{{object.height|default_if_none:'930'}}",
+                "ucsf": "{{object.show_footer|yesno:'true,false'}}",
+                "ucsh": "{{object.show_help|yesno:'true,false'}}",
+                "ucsd": "{{object.show_description|yesno:'true,false'}}",
+                "ucst": "{{object.show_topic|yesno:'true,false'}}",
+                "bg_white": "{{object.bg_white|yesno:'true,false'}}",
+                "ui_lang": "{{object.ui_language|default_if_none:'es'}}",
                 // Add other data attributes here as needed
             };
             polisContainer.innerHTML = buildEmbedDiv(dataAttributes);

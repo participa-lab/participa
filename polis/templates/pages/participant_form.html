@@ -1,36 +1,31 @@
-<form method="post" action="{% url "participant" %}">
+<section class="flex p-10 flex-col items-center">
+  <h2 class="text-2xl font-bold">¿Primera vez acá? contános un poco de vos...</h2>
+  <form method="post" action="{% url 'participant' %}">
     {% csrf_token %}
-    {{ form.non_field_errors }}
+    <div class="flex flex-col my-5 w-full">
+      {{ form.non_field_errors }}
 
-    <div class="fieldWrapper">
-        {{ form.name.errors }}
+      <div class="fieldWrapper">{{ form.name.errors }}
         {{ form.name.label_tag }}
-        {{ form.name }}
-    </div>
+        {{ form.name }}</div>
 
-    <div class="fieldWrapper">
-        {{ form.gender.errors }}
+      <div class="fieldWrapper">{{ form.gender.errors }}
         {{ form.gender.label_tag }}
-        {{ form.gender }}
-    </div>
+        {{ form.gender }}</div>
 
-    <div class="fieldWrapper">
-        {{ form.year_of_birth.errors }}
+      <div class="fieldWrapper">{{ form.year_of_birth.errors }}
         {{ form.year_of_birth.label_tag }}
-        {{ form.year_of_birth }}
-    </div>
+        {{ form.year_of_birth }}</div>
 
-    <div class="fieldWrapper">
-        {{ form.territory.errors }}
+      <div class="fieldWrapper">{{ form.territory.errors }}
         {{ form.territory.label_tag }}
-        {{ form.territory }}
-    </div>
+        {{ form.territory }}</div>
 
-    <div class="fieldWrapper">
-        {{ form.affinity.errors }}
+      <div class="fieldWrapper">{{ form.affinity.errors }}
         {{ form.affinity.label_tag }}
-        {{ form.affinity }}
+        {{ form.affinity }}</div>
     </div>
 
-    <input type="submit" value="Submit" />
-</form>
+    <input type="submit" value="Comenzar" class="p-2 bg-green-700 rounded-md m-3 text-gray-100 w-full" />
+  </form>
+</section>

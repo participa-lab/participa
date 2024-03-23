@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <title>Participant Form</title>
+    {{ participant.nombre }}
+    <div class="flex justify-center items-center">
+     
+        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9 my-8">
+            <div id="polis-container">
+            </div>
+        </div>
+        <script type="text/javascript">
+            function buildEmbedDiv(dataAttributes) {
+                var dataAttributesString = '';
+                for (var key in dataAttributes) {
+                    if (dataAttributes.hasOwnProperty(key)) {
+                        dataAttributesString += "data-" + key + "='" + dataAttributes[key] + "' ";
+                    }
+                }
+                return "<div class='polis' " + dataAttributesString + "></div>";
+            }
+        
+            var embedScript = document.createElement("script");
+            embedScript.setAttribute("src", "{{object.instance.url}}/embed.js");
+        
+            var polisContainer = document.getElementById('polis-container');
+            var dataAttributes = {
+                "site_id": "{{object.instance.site_id}}",
+                "page_id": "{{object.slug}}",
+                "topic": "{{object.topic}}",
+                "parent_url": "{{ request.path }}",
+                "xid": "{{participant.id}}",
+                "x_name": "{{participant.name|default_if_none:''}}",
+                "border": "{{object.border}}",
+                "border_radius": "{{object.border_radius}}",
+                "padding": "{{object.padding}}",
+                "height": "{{object.height|default_if_none:'930'}}",
+                "ucsf": "{{object.show_footer|yesno:'true,false'}}",
+                "ucsh": "{{object.show_help|yesno:'true,false'}}",
+                "ucsd": "{{object.show_description|yesno:'true,false'}}",
+                "ucst": "{{object.show_topic|yesno:'true,false'}}",
+                "bg_white": "{{object.bg_white|yesno:'true,false'}}",
+                "ui_lang": "{{object.ui_language|default_if_none:'es'}}",
+                // Add other data attributes here as needed
+            };
+            polisContainer.innerHTML = buildEmbedDiv(dataAttributes);
+            polisContainer.appendChild(embedScript);
+        </script>
+        
+      
+    </div>
+    
+</section>
+{% endblock content%}

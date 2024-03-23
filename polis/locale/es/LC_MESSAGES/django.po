@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-19 08:14-0300\n"
+"POT-Creation-Date: 2024-03-23 09:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,42 +18,78 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: choices.py:5
+#: polis/choices.py:4
 msgid "Female"
 msgstr "Mujer"
 
-#: choices.py:6
+#: polis/choices.py:5
 msgid "Male"
 msgstr "Varón"
 
-#: choices.py:7
+#: polis/choices.py:6
 msgid "Non-Binary"
 msgstr "No binario"
 
-#: choices.py:8
+#: polis/choices.py:7
 msgid "Transgender"
 msgstr "Trans"
 
-#: choices.py:9
+#: polis/choices.py:8
 msgid "Intersex"
 msgstr "Intersex"
 
-#: choices.py:10
+#: polis/choices.py:9
 msgid "Queer"
 msgstr "Queer"
 
-#: choices.py:11
+#: polis/choices.py:10
 msgid "Prefer Not to Say"
 msgstr "Prefiero no decirlo"
 
-#: choices.py:12
+#: polis/choices.py:11
 msgid "Other"
 msgstr "Otro"
 
-#: models.py:53
-msgid "Participant"
-msgstr ""
+#: polis/choices.py:15
+msgid "Email"
+msgstr "Correo electrónico"
 
-#: models.py:54
+#: polis/models.py:32
+msgid "Instance"
+msgstr "Instancia"
+
+#: polis/models.py:33
+msgid "Instances"
+msgstr "Instancias"
+
+#: polis/models.py:80
+msgid "Conversation"
+msgstr "Conversación"
+
+#: polis/models.py:81
+msgid "Conversations"
+msgstr "Conversaciones"
+
+#: polis/models.py:91
+msgid "Territory"
+msgstr "Territorio"
+
+#: polis/models.py:92
+msgid "Territories"
+msgstr "Territorios"
+
+#: polis/models.py:102
+msgid "Affinity"
+msgstr "Afiliación"
+
+#: polis/models.py:103
+msgid "Affinities"
+msgstr "Afiliaciones"
+
+#: polis/models.py:126
+msgid "Participant"
+msgstr "Paritcipante"
+
+#: polis/models.py:127
 msgid "Participants"
-msgstr ""
+msgstr "Participantes"

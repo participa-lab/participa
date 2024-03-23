@@ -1,12 +1,21 @@
-{% load static %}
-<html>
+{% extends "base.html" %}
 
-<body>
-    <h1>Public forum</h1>
-    <p>Please share your thoughts below.</p>
-    {{ request.session.session_key }}
-    <div id="polis-container"></div>
-    
-</body>
+{% block content %}
 
-</html>
+{% if participant %}
+<section class="grid grid-cols-3 gap-3 p-10">
+{% for conversation in object_list  %}
+<div class="card p-5 bg-green-700 border border-1 rounded-md flex flex-col shadow-md text-gray-100">
+    <h2 class="text-xl font-bold">{{ conversation.topic }}</h2>
+    <p class="h-full">{{ conversation.description }}</p>
+    <a class="border border-1 rounded-md m-3 text-center p-2 bg-gray-100 text-black" href="{% url "conversation" conversation.slug %}">Ir a la Conversación</a>
+</div>
+{% endfor %}
+</section>
+
+{% else %}
+{% include "pages/participant_form.html" %}
+{% endif %}
+
+
+{% endblock content%}

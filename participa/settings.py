@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "theme",
     "polis",
     "django_browser_reload",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [

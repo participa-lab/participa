@@ -20,9 +20,13 @@
 						<!-- Logo and title -->
 						<span><a href="{% url "home" %}">PARTICIPA</a></span>
 					</div>
-					<div class="flex">
+					<div class="flex items-center">
 						<!-- Navigation links -->
 						<span>QUIÉNES SOMOS</span>
+					</div>
+					<div class="flex items-center">
+						<!-- Navigation links -->
+						{% include "components/locale_switcher_form.html" %}
 					</div>
 				</div>
 			</div>

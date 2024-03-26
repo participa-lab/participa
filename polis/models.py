@@ -21,9 +21,9 @@ class MillisField(models.BigIntegerField):
 
 class Instance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=200)
+    name = models.CharField(_("Name"), max_length=200)
     url = models.CharField(max_length=200)
-    site_id = models.CharField(max_length=200)
+    site_id = models.CharField(_("Polis Site Id"), max_length=200)
 
     def __str__(self):
         return f"{self.id} {self.name}"
@@ -35,42 +35,60 @@ class Instance(models.Model):
 
 class Conversation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    topic = models.CharField(max_length=200)
-    slug = models.SlugField(default="", null=False)
-    description = models.TextField()
+    topic = models.CharField(_("Topic"), max_length=200)
+    slug = models.SlugField(_("Slug"), default="", null=False)
+    description = models.TextField(_("Description"))
 
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
-    instance = models.ForeignKey(Instance, on_delete=models.CASCADE)
+    start_date = models.DateTimeField(_("Start date"))
+    end_date = models.DateTimeField(_("Start date"))
+    instance = models.ForeignKey(
+        Instance, on_delete=models.CASCADE, verbose_name=_("Instance")
+    )
 
     border = models.CharField(
-        max_length=200, blank=True, null=True, default="1px solid #ccc"
+        _("Border"), max_length=200, blank=True, null=True, default="1px solid #ccc"
     )
     border_radius = models.CharField(
         max_length=200, blank=True, null=True, default="4px"
     )
-    padding = models.CharField(max_length=200, blank=True, null=True, default="4px")
-    height = models.CharField(max_length=200, blank=True, null=True, default="930")
-    ui_language = models.CharField(max_length=200, blank=True, null=True)
-    dwok = models.CharField(max_length=200, blank=True, null=True)
+    padding = models.CharField(
+        _("Iframe Padding"), max_length=200, blank=True, null=True, default="4px"
+    )
+    height = models.CharField(
+        _("Iframe Height"), max_length=200, blank=True, null=True, default="930"
+    )
+    ui_language = models.CharField(
+        _("Iframe UI Languaje"), max_length=200, blank=True, null=True
+    )
+    dwok = models.CharField(_("Iframe Border"), max_length=200, blank=True, null=True)
 
-    show_visualization = models.BooleanField(default=True)
-    show_share = models.BooleanField(default=True)
-    bg_white = models.BooleanField(default=True)
+    show_visualization = models.BooleanField(_("Show Visualization"), default=True)
+    show_share = models.BooleanField(_("Show Share"), default=True)
+    bg_white = models.BooleanField(_("Background White"), default=True)
 
-    auth_needed_to_vote = models.BooleanField(default=False)
-    auth_needed_to_write = models.BooleanField(default=True)
+    auth_needed_to_vote = models.BooleanField(
+        _("Authentication needed to vote"), default=False
+    )
+    auth_needed_to_write = models.BooleanField(
+        _("Authentication needed to write"), default=True
+    )
 
-    auth_opt_fb = models.BooleanField(default=True)
-    auth_opt_tw = models.BooleanField(default=True)
-    auth_opt_allow_3rdparty = models.BooleanField(default=True)
+    auth_opt_fb = models.BooleanField(_("Show Facebook Authentication"), default=True)
+    auth_opt_tw = models.BooleanField(_("Show Twitter Authentication"), default=True)
+    auth_opt_allow_3rdparty = models.BooleanField(
+        _("Show 3rd Party Authentication"), default=True
+    )
 
-    show_footer = models.BooleanField(default=False)
-    show_help = models.BooleanField(default=False)
-    show_description = models.BooleanField(default=True)
-    show_topic = models.BooleanField(default=True)
+    show_footer = models.BooleanField(_("Show footer"), default=False)
+    show_help = models.BooleanField(_("Show help text"), default=False)
+    show_description = models.BooleanField(_("Show description"), default=True)
+    show_topic = models.BooleanField(_("Show topic"), default=True)
     subscribe_type = models.CharField(
-        max_length=1, blank=True, null=True, choices=choices.SUSCRIBE_CHOICES
+        _("Show subscribe type"),
+        max_length=1,
+        blank=True,
+        null=True,
+        choices=choices.SUSCRIBE_CHOICES,
     )
 
     def __str__(self):
@@ -82,7 +100,7 @@ class Conversation(models.Model):
 
 
 class Territory(models.Model):
-    name = models.CharField(max_length=200, primary_key=True)
+    name = models.CharField(_("Name"), max_length=200, primary_key=True)
 
     def __str__(self):
         return self.name
@@ -93,7 +111,7 @@ class Territory(models.Model):
 
 
 class Affinity(models.Model):
-    name = models.CharField(max_length=200, primary_key=True)
+    name = models.CharField(_("Name"), max_length=200, primary_key=True)
 
     def __str__(self):
         return self.name
@@ -105,17 +123,25 @@ class Affinity(models.Model):
 
 class Participant(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=200, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    name = models.CharField(_("Name"), max_length=200, blank=True, null=True)
+    email = models.EmailField(_("Email"), blank=True, null=True)
     gender = models.CharField(
-        max_length=2, choices=choices.GENDER_CHOICES, blank=True, null=True
+        _("Gender"), max_length=2, choices=choices.GENDER_CHOICES, blank=True, null=True
     )
-    year_of_birth = models.IntegerField(blank=True, null=True)
+    year_of_birth = models.IntegerField(_("Year of Birth"), blank=True, null=True)
     territory = models.ForeignKey(
-        Territory, on_delete=models.CASCADE, blank=True, null=True
+        Territory,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name=_("Territory"),
     )
     affinity = models.ForeignKey(
-        Affinity, on_delete=models.CASCADE, blank=True, null=True
+        Affinity,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        verbose_name=_("Affinity"),
     )
 
     def __str__(self):

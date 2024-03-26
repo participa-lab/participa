@@ -2,11 +2,16 @@
 
 {% block content %}
 <section>
-    <title>Participant Form</title>
-    {{ participant.nombre }}
+    <title>{{object.topic}}</title>
+    <div class="max-w-4xl  flex justify-end items-center">
+    {% if report_url %}
+    <a class="p-2" href="{{report_url}}" target="_blank" class="text-blue-500">{{_("Go to Report")}}</a>
+    {% endif %}
+    </div>
     <div class="flex justify-center items-center">
-     
+        
         <div class="max-w-4xl w-full aspect-w-16 aspect-h-9 my-8">
+            
             <div id="polis-container">
             </div>
         </div>

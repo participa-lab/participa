@@ -94,6 +94,17 @@ class Conversation(models.Model):
     def __str__(self):
         return self.topic
 
+    def get_report_url(self):
+        url = None
+        try:
+            polis_page_id = PolisPageId.objects.get(page_id=self.slug)
+            polis_report = PolisReport.objects.get(zid=polis_page_id.zid)
+            url = self.instance.url + "/report/" + polis_report.report_id
+        except Exception:
+            pass
+
+        return url
+
     class Meta:
         verbose_name = _("Conversation")
         verbose_name_plural = _("Conversations")
@@ -151,6 +162,27 @@ class Participant(models.Model):
         ordering = ["id", "affinity"]
         verbose_name = _("Participant")
         verbose_name_plural = _("Participants")
+
+
+class PolisPageId(models.Model):
+    zid = models.BigIntegerField(primary_key=True)
+    page_id = models.TextField()
+    site_id = models.TextField()
+
+    class Meta:
+        db_table = "page_ids"
+        managed = False
+
+    def save(self, *args, **kwargs):
+        # Prevent any changes by overriding the save method
+        pass
+
+    def delete(self, *args, **kwargs):
+        # Prevent deletion by overriding the delete method
+        pass
+
+    def __str__(self):
+        return f"{self.zid}"
 
 
 class PolisConversation(models.Model):
@@ -256,3 +288,27 @@ class PolisXid(models.Model):
     class Meta:
         db_table = "xids"
         managed = False
+
+
+class PolisReport(models.Model):
+    rid = models.BigIntegerField(primary_key=True)
+    report_id = models.TextField()
+    zid = models.ForeignKey(
+        PolisConversation, on_delete=models.CASCADE, db_column="zid"
+    )
+    report_id = models.TextField()
+
+    class Meta:
+        db_table = "reports"
+        managed = False
+
+    def save(self, *args, **kwargs):
+        # Prevent any changes by overriding the save method
+        pass
+
+    def delete(self, *args, **kwargs):
+        # Prevent deletion by overriding the delete method
+        pass
+
+    def __str__(self):
+        return f"{self.zid}"

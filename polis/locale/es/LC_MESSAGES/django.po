@@ -190,8 +190,6 @@ msgid "Gender"
 msgstr "Género"
 
 #: polis/models.py:131
-#, fuzzy
-#| msgid "Year of birth"
 msgid "Year of Birth"
 msgstr "Año de nacimiento"
 
@@ -204,10 +202,8 @@ msgid "Participants"
 msgstr "Participantes"
 
 #: polis/templates/pages/home.html:13
-#, fuzzy
-#| msgid "Conversation"
 msgid "Go to the conversation"
-msgstr "Conversación"
+msgstr "Ir a la conversación"
 
 #: polis/templates/pages/participant_form.html:3
 msgid "First time? tell us more about you..."

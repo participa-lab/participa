@@ -142,7 +142,7 @@ SOCIALACCOUNT_PROVIDERS = {
     "telegram": {
         "APP": {
             "client_id": env("TELEGRAM_CLIENT_ID"),
-            "secret": env("TELEGRAM_SECRET"),
+            "secret": env("TELEGRAM_CLIENT_SECRET"),
         },
         "AUTH_PARAMS": {"auth_date_validity": 30},
     },

@@ -141,8 +141,8 @@ AUTHENTICATION_BACKENDS = [
 SOCIALACCOUNT_PROVIDERS = {
     "telegram": {
         "APP": {
-            "client_id": "7146777114",
-            "secret": "7146777114:AAEqDZ9ohfdw3RnGCFuDRxL6GDdAx84_x4A",
+            "client_id": env("TELEGRAM_CLIENT_ID"),
+            "secret": env("TELEGRAM_SECRET"),
         },
         "AUTH_PARAMS": {"auth_date_validity": 30},
     },
@@ -158,6 +158,10 @@ SOCIALACCOUNT_PROVIDERS = {
         "FETCH_USERINFO": True,
     },
 }
+
+# SOCIALACCOUNT_ADAPTER = "polis.adapters.CustomSocialAccountAdapter"
+
+LOGIN_REDIRECT_URL = "/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

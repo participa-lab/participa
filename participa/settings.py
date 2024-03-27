@@ -34,7 +34,7 @@ SECRET_KEY = "django-insecure-^03ui)u)q#2eeo2l3_d!7e+oei7935+ihtjfjkv@$ieg+rij(f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default="True") == "True"
 
-ALLOWED_HOSTS = ["localhost", "app.raul", "participalab.uy"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "app.raul", "participalab.uy"]
 CSRF_TRUSTED_ORIGINS = ["https://*.participalab.uy"]
 
 
@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.telegram",
-    "allauth.socialaccount.providers.twitter",
     "allauth.socialaccount.providers.twitter_oauth2",
 ]
 
@@ -139,11 +138,12 @@ AUTHENTICATION_BACKENDS = [
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        "APP": {"client_id": "123", "secret": "456", "key": ""}
+    "telegram": {
+        "APP": {
+            "client_id": "7146777114",
+            "secret": "7146777114:AAEqDZ9ohfdw3RnGCFuDRxL6GDdAx84_x4A",
+        },
+        "AUTH_PARAMS": {"auth_date_validity": 30},
     }
 }
 

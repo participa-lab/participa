@@ -50,6 +50,7 @@
   {% endif %}
 
   {% if participant %}
+  <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" />
     <section class="grid grid-cols-1 gap-3 p-10 md:grid-cols-3">
       {% for conversation in object_list %}
         <div class="card p-5 bg-green-700 border border-1 rounded-md flex flex-col shadow-md text-gray-100">

@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.telegram",
     "allauth.socialaccount.providers.twitter_oauth2",
+    "allauth.socialaccount.providers.google",
 ]
 
 MIDDLEWARE = [
@@ -144,7 +145,18 @@ SOCIALACCOUNT_PROVIDERS = {
             "secret": "7146777114:AAEqDZ9ohfdw3RnGCFuDRxL6GDdAx84_x4A",
         },
         "AUTH_PARAMS": {"auth_date_validity": 30},
-    }
+    },
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "OAUTH_PKCE_ENABLED": True,
+        "FETCH_USERINFO": True,
+    },
 }
 
 # Internationalization

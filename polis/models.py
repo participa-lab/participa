@@ -1,6 +1,7 @@
 import datetime
 import uuid
 
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -134,6 +135,15 @@ class Affinity(models.Model):
 
 class Participant(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(
+        User,
+        verbose_name=_("user"),
+        related_name="participant",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    avatar_url = models.CharField(max_length=256, blank=True, null=True)
     name = models.CharField(_("Name"), max_length=200, blank=True, null=True)
     email = models.EmailField(_("Email"), blank=True, null=True)
     gender = models.CharField(

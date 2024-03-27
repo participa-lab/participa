@@ -45,6 +45,8 @@
                 "parent_url": "{{ request.path }}",
                 "xid": "{{participant.id}}",
                 "x_name": "{{participant.name|default_if_none:''}}",
+                "x_email": "{{participant.email|default_if_none:''}}",
+                "x_profile_image_url": "{{participant.avatar_url|default_if_none:''}}",
                 "border": "{{object.border}}",
                 "border_radius": "{{object.border_radius}}",
                 "padding": "{{object.padding}}",

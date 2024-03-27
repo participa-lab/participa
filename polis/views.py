@@ -20,7 +20,13 @@ class HomeView(ListView):
                 self.participant = Participant.objects.get(id=participant_id)
                 self.form = ParticipantForm(instance=self.participant)
             except Participant.DoesNotExist:
-                self.form = ParticipantForm()
+                current_user = self.request.user
+                if current_user.is_authenticated:
+                    self.form = ParticipantForm(
+                        initial={"name": current_user.get_full_name()}
+                    )
+                else:
+                    self.form = ParticipantForm()
         else:
             self.form = ParticipantForm()
 
@@ -39,6 +45,10 @@ class ParticipantView(CreateView):
 
     def form_valid(self, form):
         participant = form.save()
+        current_user = self.request.user
+        if current_user.is_authenticated:
+            participant.user = current_user
+            participant.save()
         response = HttpResponseRedirect(reverse("home"))  # Change to your success URL
         response.set_cookie(
             "participant_id", participant.id, max_age=31536000

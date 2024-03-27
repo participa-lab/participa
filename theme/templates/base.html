@@ -27,11 +27,7 @@
 						<span>QUIÉNES SOMOS</span>
 					</div>
 					
-					<div class="flex items-center">
-						<a href="{% provider_login_url "Twitter" %}">Twitter</a>
-						<a href="{% provider_login_url "telegram" %}">Telegram</a>
-						<a href="{% provider_login_url "Google" %}">Google</a>
-					</div>
+					{% include "components/user_profile.html" %}
 				</div>
 			</div>
 		</nav>

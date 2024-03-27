@@ -1,0 +1,29 @@
+{% load account %}
+{% load socialaccount %}
+<div class="flex items-center justify-between">
+
+
+  {% user_display user %}
+
+  {% if participant %}
+    <img class="mx-4 w-12 h-12 p-0 rounded-full ring-2 ring-blue-500 dark:ring-blue-400" src="{{ participant.avatar_url }}" alt="Avatar" />
+  {% else %}
+    <span class="mx-4 w-12 h-12 p-0 rounded-full ring-2 ring-blue-500 dark:ring-blue-400" alt="Avatar"></span>
+  {% endif %}
+
+  <div>
+    <ul>
+      {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'account_logout' %}">{{ _('Sign Out') }}</a>
+        </li>
+      {% else %}
+        <li>
+            <a href="{% provider_login_url 'Twitter' %}">Twitter</a>
+            <a href="{% provider_login_url 'telegram' %}">Telegram</a>
+            <a href="{% provider_login_url 'Google' %}">Google</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

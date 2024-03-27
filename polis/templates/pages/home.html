@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
-{% load account %}
-{% load socialaccount %}
-{% get_providers as socialaccount_providers %}
-{% get_social_accounts user as accounts %}
+
 {% block content %}
   {% if messages %}
     <div>
@@ -13,44 +10,8 @@
       </ul>
     </div>
   {% endif %}
-  <div>
-    <ul>
-      {% if user.is_authenticated %}
-        <li>
-          <a href="{% url 'account_email' %}">{{_("Change Email")}}</a>
-        </li>
-        <li>
-          <a href="{% url 'account_logout' %}">{{_("Sign Out")}}</a>
-        </li>
-      {% else %}
-        <li>
-          <a href="{% url 'account_login' %}">{{_("Sign In")}}</a>
-        </li>
-        <li>
-          <a href="{% url 'account_signup' %}">{{_("Sign Up")}}</a>
-        </li>
-      {% endif %}
-    </ul>
-  </div>
-  {% if not user.is_authenticated %}
-    <a href="{% provider_login_url 'Twitter' %}">Twitter</a>
-    <a href="{% provider_login_url 'telegram' %}">Telegram</a>
-    <a href="{% provider_login_url 'Google' %}">Google</a>
-  {% else %}
-    {% user_display user %}
-    {{ socialaccount_providers }}
-    {{ accounts }}
-    {% if accounts %}
-      {% for account in accounts %}
-        {{ account }}
-      {% endfor %}
-    {% endif %}
-
-    <a href="{% url 'account_logout' %}">Logout</a>
-  {% endif %}
 
   {% if participant %}
-  <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" />
     <section class="grid grid-cols-1 gap-3 p-10 md:grid-cols-3">
       {% for conversation in object_list %}
         <div class="card p-5 bg-green-700 border border-1 rounded-md flex flex-col shadow-md text-gray-100">

@@ -1,5 +1,6 @@
 import datetime
 import hashlib
+import logging
 import uuid
 
 from allauth.socialaccount.models import SocialAccount
@@ -8,6 +9,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from polis import choices
+
+logger = logging.getLogger(__name__)
 
 
 class MillisField(models.BigIntegerField):
@@ -183,43 +186,47 @@ class Participant(models.Model):
 
         social_account = SocialAccount.objects.filter(user=user).first()
 
-        # Extract first / last names from social nets and store on User record
-        if social_account.provider == "twitter":
-            name = social_account.extra_data["name"]
-            user.first_name = name.split()[0]
-            user.last_name = name.split()[1]
+        try:
+            # Extract first / last names from social nets and store on User record
+            if social_account.provider == "twitter":
+                name = social_account.extra_data["name"]
+                user.first_name = name.split()[0]
+                user.last_name = name.split()[1]
 
-        if social_account.provider == "facebook":
-            f_name = social_account.extra_data["first_name"]
-            l_name = social_account.extra_data["last_name"]
-            if f_name:
-                user.first_name = f_name
-            if l_name:
-                user.last_name = l_name
+            if social_account.provider == "facebook":
+                f_name = social_account.extra_data["first_name"]
+                l_name = social_account.extra_data["last_name"]
+                if f_name:
+                    user.first_name = f_name
+                if l_name:
+                    user.last_name = l_name
 
-            picture_url = (
-                "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
-                    social_account.uid, preferred_avatar_size_pixels
+                picture_url = (
+                    "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
+                        social_account.uid, preferred_avatar_size_pixels
+                    )
                 )
-            )
 
-        if social_account.provider == "google":
-            f_name = social_account.extra_data["given_name"]
-            l_name = social_account.extra_data["family_name"]
-            if f_name:
-                user.first_name = f_name
-            if l_name:
-                user.last_name = l_name
-            picture_url = social_account.extra_data["picture"]
+            if social_account.provider == "google":
+                f_name = social_account.extra_data["given_name"]
+                l_name = social_account.extra_data["family_name"]
+                if f_name:
+                    user.first_name = f_name
+                if l_name:
+                    user.last_name = l_name
+                picture_url = social_account.extra_data["picture"]
 
-        if social_account.provider == "telegram":
-            f_name = social_account.extra_data["first_name"]
-            l_name = social_account.extra_data["last_name"]
-            if f_name:
-                user.first_name = f_name
-            if l_name:
-                user.last_name = l_name
-            picture_url = social_account.extra_data["photo_url"]
+            if social_account.provider == "telegram":
+                f_name = social_account.extra_data["first_name"]
+                l_name = social_account.extra_data.get("last_name", "")
+                if f_name:
+                    user.first_name = f_name
+                if l_name:
+                    user.last_name = l_name
+                picture_url = social_account.extra_data["photo_url"]
+
+        except Exception as e:
+            logger.error(f"Error assigning user: {e}")
 
         self.user = user
         self.avatar_url = picture_url

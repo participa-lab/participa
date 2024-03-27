@@ -9,6 +9,11 @@ urlpatterns = [
         name="conversation",
     ),
     path(
+        "polis/report/<str:slug>",
+        views.PolisConversationReportView.as_view(),
+        name="conversation_report",
+    ),
+    path(
         "participant",
         views.ParticipantView.as_view(),
         name="participant",

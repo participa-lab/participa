@@ -3,15 +3,21 @@
 {% block content %}
 <section>
     <title>{{object.topic}}</title>
-    <div class="max-w-4xl  flex justify-end items-center">
-    {% if report_url %}
-    <a class="p-2" href="{{report_url}}" target="_blank" class="text-blue-500">{{_("Go to Report")}}</a>
-    {% endif %}
-    </div>
-    <div class="flex justify-center items-center">
-        
-        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9 my-8">
+   
+    <div class="flex flex-col justify-center items-center">
+        <div class="max-w-4xl flex flex-col items-center justify-center w-full mt-3">
+            {% if not object.show_topic %}
+            <h1 class="text-3xl font-bold text-center">{{object.topic}}</h1>
+            {% endif %}
             
+            {% if not object.show_description %}
+            <p class="text-center">{{object.description}}</p>
+            {% endif %}
+            {% if show_report %}
+            <a class="p-1 m-1 rounded-md bg-green-700 text-white text-sm text-center" href="{% url "conversation_report" object.slug %}" target="_blank" class="text-blue-500">{{_("See results")}}</a>
+            {% endif %}
+        </div>
+        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9">
             <div id="polis-container">
             </div>
         </div>
@@ -30,6 +36,8 @@
             embedScript.setAttribute("src", "{{object.instance.url}}/embed.js");
         
             var polisContainer = document.getElementById('polis-container');
+            {% load i18n %}
+            {% get_current_language as LANGUAGE_CODE %}
             var dataAttributes = {
                 "site_id": "{{object.instance.site_id}}",
                 "page_id": "{{object.slug}}",
@@ -46,14 +54,12 @@
                 "ucsd": "{{object.show_description|yesno:'true,false'}}",
                 "ucst": "{{object.show_topic|yesno:'true,false'}}",
                 "bg_white": "{{object.bg_white|yesno:'true,false'}}",
-                "ui_lang": "{{object.ui_language|default_if_none:'es'}}",
+                "ui_lang": "{{LANGUAGE_CODE}}",
                 // Add other data attributes here as needed
             };
             polisContainer.innerHTML = buildEmbedDiv(dataAttributes);
             polisContainer.appendChild(embedScript);
-        </script>
-        
-      
+        </script>   
     </div>
     
 </section>

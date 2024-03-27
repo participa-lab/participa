@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-26 16:11-0300\n"
+"POT-Creation-Date: 2024-03-27 10:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,12 +50,12 @@ msgstr "Prefiero no decirlo"
 msgid "Other"
 msgstr "Otro"
 
-#: polis/choices.py:15 polis/models.py:127
+#: polis/choices.py:15 polis/models.py:138
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: polis/models.py:24 polis/models.py:103 polis/models.py:114
-#: polis/models.py:126
+#: polis/models.py:24 polis/models.py:114 polis/models.py:125
+#: polis/models.py:137
 msgid "Name"
 msgstr "Nombre"
 
@@ -161,45 +161,49 @@ msgstr "Mostrar tema"
 msgid "Show subscribe type"
 msgstr "Mostrar tipo de suscripción"
 
-#: polis/models.py:98
+#: polis/models.py:109
 msgid "Conversation"
 msgstr "Conversación"
 
-#: polis/models.py:99
+#: polis/models.py:110
 msgid "Conversations"
 msgstr "Conversaciones"
 
-#: polis/models.py:109 polis/models.py:137
+#: polis/models.py:120 polis/models.py:148
 msgid "Territory"
 msgstr "Territorio"
 
-#: polis/models.py:110
+#: polis/models.py:121
 msgid "Territories"
 msgstr "Territorios"
 
-#: polis/models.py:120 polis/models.py:144
+#: polis/models.py:131 polis/models.py:155
 msgid "Affinity"
 msgstr "Afiliación"
 
-#: polis/models.py:121
+#: polis/models.py:132
 msgid "Affinities"
 msgstr "Afiliaciones"
 
-#: polis/models.py:129
+#: polis/models.py:140
 msgid "Gender"
 msgstr "Género"
 
-#: polis/models.py:131
+#: polis/models.py:142
 msgid "Year of Birth"
 msgstr "Año de nacimiento"
 
-#: polis/models.py:152
+#: polis/models.py:163
 msgid "Participant"
 msgstr "Paritcipante"
 
-#: polis/models.py:153
+#: polis/models.py:164
 msgid "Participants"
 msgstr "Participantes"
+
+#: polis/templates/pages/conversation.html:18
+msgid "See results"
+msgstr "Ver resultados"
 
 #: polis/templates/pages/home.html:13
 msgid "Go to the conversation"

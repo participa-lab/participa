@@ -24,10 +24,7 @@
 						<!-- Navigation links -->
 						<span>QUIÉNES SOMOS</span>
 					</div>
-					<div class="flex items-center">
-						<!-- Navigation links -->
-						{% include "components/locale_switcher_form.html" %}
-					</div>
+					
 				</div>
 			</div>
 		</nav>
@@ -39,11 +36,15 @@
 
 
 	<!-- Footer -->
-	<footer id="footer" class="fixed bottom-0 w-full bg-green-700 z-10 transition-all duration-300">
+	<footer id="footer" class="fixed bottom-0 w-full bg-green-700 text-white z-10 transition-all duration-300">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="py-4">
+			<div class="py-4 flex items-center justify-between">
 				<!-- Footer content -->
 				FOOTER
+				<div class="flex items-center text-black">
+					<!-- Navigation links -->
+					{% include "components/locale_switcher_form.html" %}
+				</div>
 			</div>
 		</div>
 	</footer>

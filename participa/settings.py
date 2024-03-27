@@ -160,6 +160,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 # SOCIALACCOUNT_ADAPTER = "polis.adapters.CustomSocialAccountAdapter"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
 
 LOGIN_REDIRECT_URL = "/"
 

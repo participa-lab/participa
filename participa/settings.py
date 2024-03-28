@@ -140,10 +140,6 @@ AUTHENTICATION_BACKENDS = [
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
     "telegram": {
-        "APP": {
-            "client_id": env("TELEGRAM_CLIENT_ID"),
-            "secret": env("TELEGRAM_CLIENT_SECRET"),
-        },
         "AUTH_PARAMS": {"auth_date_validity": 30},
     },
     "google": {
@@ -156,6 +152,24 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         "OAUTH_PKCE_ENABLED": True,
         "FETCH_USERINFO": True,
+    },
+    "facebook": {
+        "METHOD": "oauth2",
+        "SDK_URL": "//connect.facebook.net/{locale}/sdk.js",
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "reauthenticate"},
+        "INIT_PARAMS": {"cookie": True},
+        "FIELDS": [
+            "id",
+            "email",
+            "name",
+            "first_name",
+            "last_name",
+            "gender",
+        ],
+        "EXCHANGE_TOKEN": True,
+        "VERIFIED_EMAIL": False,
+        "VERSION": "v7.0",
     },
 }
 

@@ -5,7 +5,7 @@ import uuid
 
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import User
-from django.db import models
+from django.db import models, transaction
 from django.utils.translation import gettext_lazy as _
 
 from polis import choices
@@ -177,64 +177,72 @@ class Participant(models.Model):
         if not user or not user.is_authenticated:
             return None
 
-        preferred_avatar_size_pixels = 256
+        with transaction.atomic():
+            preferred_avatar_size_pixels = 256
 
-        picture_url = "http://www.gravatar.com/avatar/{0}?s={1}".format(
-            hashlib.md5(user.email.encode("UTF-8")).hexdigest(),
-            preferred_avatar_size_pixels,
-        )
+            picture_url = "http://www.gravatar.com/avatar/{0}?s={1}".format(
+                hashlib.md5(user.email.encode("UTF-8")).hexdigest(),
+                preferred_avatar_size_pixels,
+            )
 
-        social_account = SocialAccount.objects.filter(user=user).first()
+            social_account = SocialAccount.objects.filter(user=user).first()
 
-        try:
-            # Extract first / last names from social nets and store on User record
-            if social_account.provider == "twitter":
-                name = social_account.extra_data["name"]
-                user.first_name = name.split()[0]
-                user.last_name = name.split()[1]
+            try:
+                # Extract first / last names from social nets and store on User record
+                if social_account.provider == "twitter":
+                    name = social_account.extra_data["name"]
+                    user.first_name = name.split()[0]
+                    user.last_name = name.split()[1]
 
-            if social_account.provider == "facebook":
-                f_name = social_account.extra_data["first_name"]
-                l_name = social_account.extra_data["last_name"]
-                if f_name:
-                    user.first_name = f_name
-                if l_name:
-                    user.last_name = l_name
+                if social_account.provider == "facebook":
+                    f_name = social_account.extra_data["first_name"]
+                    l_name = social_account.extra_data["last_name"]
+                    if f_name:
+                        user.first_name = f_name
+                    if l_name:
+                        user.last_name = l_name
 
-                picture_url = (
-                    "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
+                    picture_url = "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
                         social_account.uid, preferred_avatar_size_pixels
                     )
-                )
 
-            if social_account.provider == "google":
-                f_name = social_account.extra_data["given_name"]
-                l_name = social_account.extra_data["family_name"]
-                if f_name:
-                    user.first_name = f_name
-                if l_name:
-                    user.last_name = l_name
-                picture_url = social_account.extra_data["picture"]
+                if social_account.provider == "google":
+                    f_name = social_account.extra_data["given_name"]
+                    l_name = social_account.extra_data["family_name"]
+                    if f_name:
+                        user.first_name = f_name
+                    if l_name:
+                        user.last_name = l_name
+                    picture_url = social_account.extra_data["picture"]
 
-            if social_account.provider == "telegram":
-                f_name = social_account.extra_data["first_name"]
-                l_name = social_account.extra_data.get("last_name", "")
-                if f_name:
-                    user.first_name = f_name
-                if l_name:
-                    user.last_name = l_name
-                picture_url = social_account.extra_data["photo_url"]
+                if social_account.provider == "telegram":
+                    f_name = social_account.extra_data["first_name"]
+                    l_name = social_account.extra_data.get("last_name", "")
+                    if f_name:
+                        user.first_name = f_name
+                    if l_name:
+                        user.last_name = l_name
+                    picture_url = social_account.extra_data["photo_url"]
 
-        except Exception as e:
-            logger.error(f"Error assigning user: {e}")
+            except Exception as e:
+                logger.error(f"Error assigning user: {e}")
 
-        self.user = user
-        self.avatar_url = picture_url
-        self.name = user.get_full_name()
-        self.email = user.email
-        self.save()
+            self.user = user
+            self.avatar_url = picture_url
+            self.name = user.get_full_name()
+            self.email = user.email
+            self.save()
 
-        user.save()
+            user.save()
+
+            id_str = "{}".format(self.id)
+            logger.info(f"Assigning user {user} to participant {id_str}")
+            polis_xid = PolisXid.objects.filter(xid=id_str).first()
+            logger.info(f"PolisXid: {polis_xid}")
+            if polis_xid:
+                polis_xid.update_with_participant(self)
+            else:
+                logger.error(f"PolisXid not found for participant {self.id}")
 
         return self
 
@@ -347,16 +355,18 @@ class PolisXid(models.Model):
     # Define your fields here
     uid = models.BigIntegerField(primary_key=True, db_column="uid")
 
-    xid = models.ForeignKey(Participant, on_delete=models.CASCADE, db_column="xid")
+    xid = models.TextField()
     x_profile_image_url = models.TextField()
     x_name = models.TextField()
     x_email = models.TextField()
     created = MillisField()
     modified = MillisField()
 
-    def save(self, *args, **kwargs):
-        # Prevent any changes by overriding the save method
-        pass
+    def update_with_participant(self, participant):
+        self.x_name = participant.name
+        self.x_email = participant.email
+        self.x_profile_image_url = participant.avatar_url
+        self.save()
 
     def delete(self, *args, **kwargs):
         # Prevent deletion by overriding the delete method

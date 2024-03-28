@@ -30,8 +30,7 @@ class HomeView(ListView):
                 participant_id = request.COOKIES["participant_id"]
                 self.participant = Participant.objects.get(id=participant_id)
                 if current_user and current_user.is_authenticated:
-                    self.participant.user = current_user
-                    self.participant.save()
+                    self.participant.assign_user(current_user)
             except Participant.DoesNotExist:
                 pass
 

@@ -1,15 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% if messages %}
-    <div>
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
+  
 
   {% if participant %}
     <section class="grid grid-cols-1 gap-3 p-10 md:grid-cols-3">

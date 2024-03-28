@@ -9,3 +9,4 @@ django-environ
 psycopg2-binary
 postgis
 django-widget-tweaks
+django-allauth

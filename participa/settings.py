@@ -34,7 +34,7 @@ SECRET_KEY = "django-insecure-^03ui)u)q#2eeo2l3_d!7e+oei7935+ihtjfjkv@$ieg+rij(f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default="True") == "True"
 
-ALLOWED_HOSTS = ["localhost", "app.raul", "participalab.uy"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "app.raul", "participalab.uy"]
 CSRF_TRUSTED_ORIGINS = ["https://*.participalab.uy"]
 
 
@@ -53,6 +53,13 @@ INSTALLED_APPS = [
     "polis",
     "django_browser_reload",
     "widget_tweaks",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.facebook",
+    "allauth.socialaccount.providers.telegram",
+    "allauth.socialaccount.providers.twitter_oauth2",
+    "allauth.socialaccount.providers.google",
 ]
 
 MIDDLEWARE = [
@@ -65,6 +72,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "participa.urls"
@@ -122,6 +130,54 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    "telegram": {
+        "AUTH_PARAMS": {"auth_date_validity": 30},
+    },
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "OAUTH_PKCE_ENABLED": True,
+        "FETCH_USERINFO": True,
+    },
+    "facebook": {
+        "METHOD": "oauth2",
+        "SDK_URL": "//connect.facebook.net/{locale}/sdk.js",
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "reauthenticate"},
+        "INIT_PARAMS": {"cookie": True},
+        "FIELDS": [
+            "id",
+            "email",
+            "name",
+            "first_name",
+            "last_name",
+            "gender",
+        ],
+        "EXCHANGE_TOKEN": True,
+        "VERIFIED_EMAIL": False,
+        "VERSION": "v7.0",
+    },
+}
+
+# SOCIALACCOUNT_ADAPTER = "polis.adapters.CustomSocialAccountAdapter"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+
+
+LOGIN_REDIRECT_URL = "/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

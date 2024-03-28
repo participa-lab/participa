@@ -14,16 +14,27 @@ class HomeView(ListView):
     form = None
 
     def get(self, request, *args, **kwargs):
-        if "participant_id" in request.COOKIES:
-            participant_id = request.COOKIES["participant_id"]
+        current_user = self.request.user
+        initial = {}
+        if current_user.is_authenticated:
             try:
-                self.participant = Participant.objects.get(id=participant_id)
-                self.form = ParticipantForm(instance=self.participant)
+                self.participant = Participant.objects.get(user=current_user)
             except Participant.DoesNotExist:
-                self.form = ParticipantForm()
-        else:
-            self.form = ParticipantForm()
+                pass
 
+            initial["name"] = current_user.get_full_name()
+            initial["email"] = current_user.email
+
+        if not self.participant and "participant_id" in request.COOKIES:
+            try:
+                participant_id = request.COOKIES["participant_id"]
+                self.participant = Participant.objects.get(id=participant_id)
+                if current_user and current_user.is_authenticated:
+                    self.participant.assign_user(current_user)
+            except Participant.DoesNotExist:
+                pass
+
+        self.form = ParticipantForm(instance=self.participant, initial=initial)
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -39,6 +50,9 @@ class ParticipantView(CreateView):
 
     def form_valid(self, form):
         participant = form.save()
+        current_user = self.request.user
+        if current_user.is_authenticated:
+            participant.assign_user(current_user)
         response = HttpResponseRedirect(reverse("home"))  # Change to your success URL
         response.set_cookie(
             "participant_id", participant.id, max_age=31536000

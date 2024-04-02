@@ -8,18 +8,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
     {% tailwind_css %}
   </head>
 
   <body class="bg-white text-gray-600">
     <!-- Navigation -->
     <header id="header" class="fixed w-full bg-white border-b border-gray-100 z-10 transition-all duration-300">
-      <nav class="bg-white border-b border-gray-100">
+      <nav class="bg-naranja text-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-16 items-center">
+          <div class="flex justify-between h-20 items-center">
             <div class="flex">
               <!-- Logo and title -->
-              <span><a href="{% url 'home' %}">PARTICIPA</a></span>
+              <span><a href="{% url 'home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
             </div>
             <div class="flex items-center">
               <!-- Navigation links -->
@@ -39,7 +40,7 @@
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="py-4">
               {% for message in messages %}
-                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+                <div class="bg-naranja border-l-4  text-white p-4" role="alert">
                   <p class="font-bold">{{ message.tags }}</p>
                   <p>{{ message }}</p>
                 </div>
@@ -53,7 +54,7 @@
     </main>
 
     <!-- Footer -->
-    <footer id="footer" class="fixed bottom-0 w-full bg-green-700 text-white z-10 transition-all duration-300">
+    <footer id="footer" class="fixed bottom-0 w-full bg-naranja text-white z-10 transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="py-4 flex items-center justify-between">
           <!-- Footer content -->

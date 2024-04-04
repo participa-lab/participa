@@ -177,6 +177,8 @@ class Participant(models.Model):
         if not user or not user.is_authenticated:
             return None
 
+        user = User.objects.get(pk=user.pk)
+
         with transaction.atomic():
             preferred_avatar_size_pixels = 256
 

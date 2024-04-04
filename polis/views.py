@@ -25,7 +25,7 @@ class ParticipantMixin(object):
         return None
 
     def get_from_user(self, user):
-        if user.is_authenticated:
+        if user and user.is_authenticated:
             try:
                 return Participant.objects.get(user=user)
             except Participant.DoesNotExist:

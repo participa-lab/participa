@@ -14,14 +14,17 @@
         {{ form.name.label_tag }}
         {% render_field form.name class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
 
-      <div class="fieldWrapper">{{ form.gender.errors }}
-        {{ form.gender.label_tag }}
-        {% render_field form.gender class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
-
-      <div class="fieldWrapper">{{ form.year_of_birth.errors }}
-        {{ form.year_of_birth.label_tag }}
-        {% render_field form.year_of_birth class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
-
+      <div class="flex justify-between">
+        <div class="fieldWrapper">{{ form.gender.errors }}
+          {{ form.gender.label_tag }}
+          {% render_field form.gender class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
+  
+        <div class="fieldWrapper">{{ form.year_of_birth.errors }}
+          {{ form.year_of_birth.label_tag }}
+          {% render_field form.year_of_birth class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
+  
+      </div>
+     
       <div class="fieldWrapper">{{ form.territory.errors }}
         {{ form.territory.label_tag }}
         {% render_field form.territory class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>

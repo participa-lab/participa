@@ -24,21 +24,7 @@
           {% csrf_token %}
           <button type="submit">{{ _('Sign Out') }}</button>
         </form>
-      {% else %}
-        <div class="flex">
-          {% get_providers as socialaccount_providers %}
-          {% if socialaccount_providers %}
-            <ul>
-              {% for provider in socialaccount_providers %}
-              <form action="{% provider_login_url provider.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit">{{provider.name}}</button>
-              </form>
-              
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </div>
+      
       {% endif %}
     </ul>
   </div>

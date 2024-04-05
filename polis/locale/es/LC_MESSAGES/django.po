@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-27 10:06-0300\n"
+"POT-Creation-Date: 2024-04-05 15:45-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,170 +50,190 @@ msgstr "Prefiero no decirlo"
 msgid "Other"
 msgstr "Otro"
 
-#: polis/choices.py:15 polis/models.py:138
+#: polis/choices.py:15 polis/models.py:153
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: polis/models.py:24 polis/models.py:114 polis/models.py:125
-#: polis/models.py:137
+#: polis/models.py:30 polis/models.py:120 polis/models.py:131
+#: polis/models.py:152
 msgid "Name"
 msgstr "Nombre"
 
-#: polis/models.py:26
+#: polis/models.py:32
 msgid "Polis Site Id"
-msgstr ""
+msgstr "Site Id de Polis"
 
-#: polis/models.py:32 polis/models.py:45
+#: polis/models.py:38 polis/models.py:51
 msgid "Instance"
 msgstr "Instancia"
 
-#: polis/models.py:33
+#: polis/models.py:39
 msgid "Instances"
 msgstr "Instancias"
 
-#: polis/models.py:38
+#: polis/models.py:44
 msgid "Topic"
 msgstr "Tema"
 
-#: polis/models.py:39
+#: polis/models.py:45
 msgid "Slug"
 msgstr "Slug"
 
-#: polis/models.py:40
+#: polis/models.py:46
 msgid "Description"
 msgstr "Descripción"
 
-#: polis/models.py:42 polis/models.py:43
+#: polis/models.py:48 polis/models.py:49
 msgid "Start date"
 msgstr "Fecha de Inicio"
 
-#: polis/models.py:49
+#: polis/models.py:55
 msgid "Border"
 msgstr "Borde"
 
-#: polis/models.py:55
+#: polis/models.py:61
 msgid "Iframe Padding"
 msgstr "Padding del Iframe"
 
-#: polis/models.py:58
+#: polis/models.py:64
 msgid "Iframe Height"
 msgstr "Altura del Iframe"
 
-#: polis/models.py:61
+#: polis/models.py:67
 msgid "Iframe UI Languaje"
 msgstr "Idioma de la UI del Iframe"
 
-#: polis/models.py:63
+#: polis/models.py:69
 msgid "Iframe Border"
 msgstr "Borde del Iframe"
 
-#: polis/models.py:65
+#: polis/models.py:71
 msgid "Show Visualization"
 msgstr "Mostrar Visualización"
 
-#: polis/models.py:66
+#: polis/models.py:72
 msgid "Show Share"
 msgstr "Mostrar Compartir"
 
-#: polis/models.py:67
+#: polis/models.py:73
 msgid "Background White"
 msgstr "Fondo Blanco"
 
-#: polis/models.py:70
+#: polis/models.py:76
 msgid "Authentication needed to vote"
 msgstr "Autenticación necesaria para votar"
 
-#: polis/models.py:73
+#: polis/models.py:79
 msgid "Authentication needed to write"
 msgstr "Autenticación necesaria para escribir"
 
-#: polis/models.py:76
+#: polis/models.py:82
 msgid "Show Facebook Authentication"
 msgstr "Mostrar Autenticación de Facebook"
 
-#: polis/models.py:77
+#: polis/models.py:83
 msgid "Show Twitter Authentication"
 msgstr "Mostrar Autenticación de Twitter"
 
-#: polis/models.py:79
+#: polis/models.py:85
 msgid "Show 3rd Party Authentication"
 msgstr "Mostrar Autenticación de Terceros"
 
-#: polis/models.py:82
+#: polis/models.py:88
 msgid "Show footer"
 msgstr "Mostrar pie de página"
 
-#: polis/models.py:83
+#: polis/models.py:89
 msgid "Show help text"
 msgstr "Mostrar texto de ayuda"
 
-#: polis/models.py:84
+#: polis/models.py:90
 #, fuzzy
 #| msgid "Description"
 msgid "Show description"
 msgstr "Descripción"
 
-#: polis/models.py:85
+#: polis/models.py:91
 msgid "Show topic"
 msgstr "Mostrar tema"
 
-#: polis/models.py:87
+#: polis/models.py:93
 msgid "Show subscribe type"
 msgstr "Mostrar tipo de suscripción"
 
-#: polis/models.py:109
+#: polis/models.py:115
 msgid "Conversation"
 msgstr "Conversación"
 
-#: polis/models.py:110
+#: polis/models.py:116
 msgid "Conversations"
 msgstr "Conversaciones"
 
-#: polis/models.py:120 polis/models.py:148
+#: polis/models.py:126 polis/models.py:163
 msgid "Territory"
 msgstr "Territorio"
 
-#: polis/models.py:121
+#: polis/models.py:127
 msgid "Territories"
 msgstr "Territorios"
 
-#: polis/models.py:131 polis/models.py:155
+#: polis/models.py:137 polis/models.py:170
 msgid "Affinity"
 msgstr "Afiliación"
 
-#: polis/models.py:132
+#: polis/models.py:138
 msgid "Affinities"
 msgstr "Afiliaciones"
 
-#: polis/models.py:140
+#: polis/models.py:145
+msgid "user"
+msgstr "Usuario"
+
+#: polis/models.py:155
 msgid "Gender"
 msgstr "Género"
 
-#: polis/models.py:142
+#: polis/models.py:157
 msgid "Year of Birth"
 msgstr "Año de nacimiento"
 
-#: polis/models.py:163
+#: polis/models.py:253
 msgid "Participant"
 msgstr "Paritcipante"
 
-#: polis/models.py:164
+#: polis/models.py:254
 msgid "Participants"
 msgstr "Participantes"
 
-#: polis/templates/pages/conversation.html:18
+#: polis/templates/components/user_profile.html:10
+msgid "Guest"
+msgstr "Anónimo"
+
+#: polis/templates/components/user_profile.html:25
+msgid "Sign Out"
+msgstr "Salir"
+
+#: polis/templates/pages/conversation.html:17
 msgid "See results"
 msgstr "Ver resultados"
 
-#: polis/templates/pages/home.html:13
+#: polis/templates/pages/home.html:12
 msgid "Go to the conversation"
 msgstr "Ir a la conversación"
 
-#: polis/templates/pages/participant_form.html:3
+#: polis/templates/pages/participant_form.html:7
 msgid "First time? tell us more about you..."
 msgstr "¿Primera vez? cuéntanos más sobre ti..."
 
-#: polis/templates/pages/participant_form.html:29
+#: polis/templates/pages/participant_form.html:36
+msgid "Participate anonymusly"
+msgstr "Participar de forma anónima"
+
+#: polis/templates/pages/participant_form.html:39
+msgid "Login to Add Photo"
+msgstr "Ingresar para agregar foto"
+
+#: polis/templates/pages/participant_form.html:43
 msgid "Start"
 msgstr "Comenzar"
 

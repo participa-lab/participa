@@ -1,5 +1,9 @@
 {% load widget_tweaks %}
-<section class="flex p-10 flex-col items-center">
+{% load socialaccount %}
+
+
+
+<section x-data="{ showLogin: false }" class="max-w-md w-full bg-white rounded p-6 space-y-4 flex flex-col items-center mx-auto">
   <h2 class="text-2xl font-bold">{{_("First time? tell us more about you...")}}</h2>
   <form method="post" action="{% url 'participant' %}">
     {% csrf_token %}
@@ -8,24 +12,53 @@
 
       <div class="fieldWrapper">{{ form.name.errors }}
         {{ form.name.label_tag }}
-        {% render_field form.name class="w-full rounded-md" %}</div>
+        {% render_field form.name class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
 
       <div class="fieldWrapper">{{ form.gender.errors }}
         {{ form.gender.label_tag }}
-        {% render_field form.gender class="w-full rounded-md" %}</div>
+        {% render_field form.gender class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
 
       <div class="fieldWrapper">{{ form.year_of_birth.errors }}
         {{ form.year_of_birth.label_tag }}
-        {% render_field form.year_of_birth class="w-full rounded-md" %}</div>
+        {% render_field form.year_of_birth class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
 
       <div class="fieldWrapper">{{ form.territory.errors }}
         {{ form.territory.label_tag }}
-        {% render_field form.territory class="w-full rounded-md" %}</div>
+        {% render_field form.territory class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
 
       <div class="fieldWrapper">{{ form.affinity.errors }}
         {{ form.affinity.label_tag }}
-        {% render_field form.affinity class="w-full rounded-md" %}</div>
+        {% render_field form.affinity class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
     </div>
-    <input type="submit" value="{{_("Start")}}" class="p-2 bg-turquesa rounded-md text-gray-100 w-full" />
+    <!-- Buttons -->
+    <div class="flex items-center justify-between">
+        <button class="bg-turquesa hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-1" type="button" @click="showLogin = false">
+          {{_("Participate anonymusly")}}
+        </button>
+        <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" @click="showLogin = true">
+          {{_("Login to Add Photo")}}
+        </button>
+    </div>
+    <div class="flex items-center justify-between w-full">
+      <input x-show="!showLogin" class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" value="{{_("Start")}}"/>
+        {% get_providers as socialaccount_providers %}
+        {% if socialaccount_providers %}
+          <ul x-show="showLogin" class="w-full flex justify-between my-4">
+            {% for provider in socialaccount_providers %}
+            <form action="{% provider_login_url provider.id %}" method="post">
+              {% csrf_token %}
+              {% if provider.id == 'google' %}
+              <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-google"></i>{{provider.name}}</button>
+              {% elif provider.id == 'telegram' %}
+              <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-telegram"></i>{{provider.name}}</button>
+              {% elif provider.id == 'twitter_oauth2' %}
+              <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-twitter"></i>{{provider.name}}</button>
+              {% endif %}
+            </form>
+            {% endfor %}
+          </ul>
+        {% endif %}
+    </div>
   </form>
+
 </section>

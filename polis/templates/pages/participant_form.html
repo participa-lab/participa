@@ -1,6 +1,7 @@
-{% load widget_tweaks %}
-{% load socialaccount %}
 
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
 
 
 <section x-data="{ showLogin: false }" class="max-w-md w-full bg-white rounded p-6 space-y-4 flex flex-col items-center mx-auto">
@@ -32,36 +33,16 @@
       <div class="fieldWrapper">{{ form.affinity.errors }}
         {{ form.affinity.label_tag }}
         {% render_field form.affinity class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
+
+      <div class="fieldWrapper">{{ form.login.errors }}
+          {% render_field form.login class="appearance-none rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
     </div>
     <!-- Buttons -->
     <div class="flex items-center justify-between">
-        <button class="bg-turquesa hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-1" type="button" @click="showLogin = false">
-          {{_("Participate anonymusly")}}
-        </button>
-        <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" @click="showLogin = true">
-          {{_("Login to Add Photo")}}
-        </button>
+      <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" value="{{_("Start")}}"/>
     </div>
-    <div class="flex items-center justify-between w-full">
-      <input x-show="!showLogin" class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" value="{{_("Start")}}"/>
-        {% get_providers as socialaccount_providers %}
-        {% if socialaccount_providers %}
-          <ul x-show="showLogin" class="w-full flex justify-between my-4">
-            {% for provider in socialaccount_providers %}
-            <form action="{% provider_login_url provider.id %}" method="post">
-              {% csrf_token %}
-              {% if provider.id == 'google' %}
-              <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-google"></i>{{provider.name}}</button>
-              {% elif provider.id == 'telegram' %}
-              <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-telegram"></i>{{provider.name}}</button>
-              {% elif provider.id == 'twitter_oauth2' %}
-              <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-twitter"></i>{{provider.name}}</button>
-              {% endif %}
-            </form>
-            {% endfor %}
-          </ul>
-        {% endif %}
-    </div>
+    
   </form>
 
 </section>
+{% endblock %}

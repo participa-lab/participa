@@ -1,9 +1,10 @@
 import logging
 
+from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
 from .forms import ParticipantForm
 from .models import Conversation, Participant
@@ -62,6 +63,9 @@ class ParticipantMixin(object):
         elif self.authenticated_user and user_participant:
             logger.info("User is authenticated and has a participant")
             self.participant = user_participant
+        elif cookie_participant:
+            logger.info("User is not authenticated and has a participant_id cookie")
+            self.participant = cookie_participant
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -72,38 +76,61 @@ class ParticipantMixin(object):
 class HomeView(ParticipantMixin, ListView):
     template_name = "pages/home.html"
     model = Conversation
-    form = None
 
     def get(self, request, *args, **kwargs):
-        initial = {}
         self.init_participant(request)
-        if not self.participant and self.authenticated_user:
-            # The user is logged in but there is no participant associated with the user
-            initial["name"] = self.request.user.get_full_name()
-            initial["email"] = self.request.user.email
+        print(self.participant)
+        if not self.participant:
+            return redirect("participant")
 
-        self.form = ParticipantForm(instance=self.participant, initial=initial)
         return super().get(request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form"] = self.form
-        return context
 
-
-class ParticipantView(CreateView):
+class ParticipantView(ParticipantMixin, CreateView):
     model = Participant
     form_class = ParticipantForm
+    template_name = "pages/participant_form.html"
+
+    def get_initial(self):
+        initial = super().get_initial()
+        if self.participant and self.participant.user:
+            initial["name"] = self.participant.user.get_full_name()
+            initial["email"] = self.participant.user.email
+        return initial
+
+    def get(self, request, *args, **kwargs):
+        self.init_participant(request)
+        if self.participant:
+            return redirect("home")
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         participant = form.save()
+        logger.info(f"Participant created: {participant}")
         current_user = self.request.user
         if current_user.is_authenticated:
             participant.assign_user(current_user)
-        response = HttpResponseRedirect(reverse("home"))  # Change to your success URL
+        if form.data.get("login") == "2":
+            response = HttpResponseRedirect(reverse("participant_login"))
+        else:
+            response = HttpResponseRedirect(
+                reverse("home")
+            )  # Change to your success URL
         response.set_cookie(
             "participant_id", participant.id, max_age=31536000
         )  # Set a cookie for one year
+        return response
+
+
+class LoginView(TemplateView):
+    template_name = "pages/login_form.html"
+
+
+class LogoutView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        response = HttpResponseRedirect(reverse("home"))
+        response.delete_cookie("participant_id")
+        logout(request)
         return response
 
 

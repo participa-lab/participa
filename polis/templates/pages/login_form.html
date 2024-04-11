@@ -3,9 +3,10 @@
 {% block content %}
   
 
-  {% if participant and show_login %}
+
+<section class="max-w-md w-full bg-white rounded p-6 space-y-4 flex flex-col items-center mx-auto">
+  <h2 class="text-2xl font-bold">{{_("Login")}}</h2>
   <div class="flex items-center justify-between w-full">
-    <input class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" value="{{_("Start")}}"/>
       {% get_providers as socialaccount_providers %}
       {% if socialaccount_providers %}
         <ul  class="w-full flex justify-between my-4">
@@ -24,17 +25,9 @@
         </ul>
       {% endif %}
   </div>
-  {% elif participant %}
-    <section class="grid grid-cols-1 gap-3 p-10 md:grid-cols-3">
-      {% for conversation in object_list %}
-        <div class="card p-5 bg-turquesa border border-1 rounded-md flex flex-col shadow-md text-gray-100">
-          <h2 class="text-xl font-bold">{{ conversation.topic }}</h2>
-          <p class="h-full">{{ conversation.description }}</p>
-          <a class="border border-1 rounded-md m-3 text-center p-2 bg-gray-100 text-black" href="{% url 'conversation' conversation.slug %}">{{ _('Go to the conversation') }}</a>
-        </div>
-      {% endfor %}
-    </section>
-  {% else %}
-    {% include 'pages/participant_form.html' %}
-  {% endif %}
+
+</section>
 {% endblock %}
+
+
+

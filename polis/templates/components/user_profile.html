@@ -18,12 +18,10 @@
 
   <div>
     <ul>
-      {% if user.is_authenticated %}
+      {% if user.is_authenticated or participant %}
         
-        <form action="{% url 'account_logout' %}" method="post">
-          {% csrf_token %}
-          <button type="submit">{{ _('Sign Out') }}</button>
-        </form>
+      <a href="{% url 'participant_logout' %}">{{ _('Sign Out') }}</a>
+   
       
       {% endif %}
     </ul>

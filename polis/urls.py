@@ -18,6 +18,16 @@ urlpatterns = [
         views.ParticipantView.as_view(),
         name="participant",
     ),
+    path(
+        "participant/login",
+        views.LoginView.as_view(),
+        name="participant_login",
+    ),
+    path(
+        "participant/logout",
+        views.LogoutView.as_view(),
+        name="participant_logout",
+    ),
     path("", views.HomeView.as_view(), name="home"),
     path("__reload__/", include("django_browser_reload.urls")),
 ]

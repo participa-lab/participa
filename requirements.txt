@@ -11,3 +11,4 @@ postgis
 django-widget-tweaks
 django-allauth
 requests
+jwt

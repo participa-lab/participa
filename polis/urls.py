@@ -2,6 +2,7 @@ from django.urls import include, path
 from django.http import HttpResponse
 from polis import views
 
+
 urlpatterns = [
     path(
         "polis/<str:slug>",

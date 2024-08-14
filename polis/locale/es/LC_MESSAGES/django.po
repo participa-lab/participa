@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-05 15:45-0300\n"
+"POT-Creation-Date: 2024-08-14 17:11-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,14 @@ msgstr "Otro"
 #: polis/choices.py:15 polis/models.py:153
 msgid "Email"
 msgstr "Correo electrónico"
+
+#: polis/forms.py:9
+msgid "Participate anonymusly"
+msgstr "Participar de forma anónima"
+
+#: polis/forms.py:10
+msgid "Login to Add Photo"
+msgstr "Ingresar para agregar foto"
 
 #: polis/models.py:30 polis/models.py:120 polis/models.py:131
 #: polis/models.py:152
@@ -209,7 +217,7 @@ msgstr "Participantes"
 msgid "Guest"
 msgstr "Anónimo"
 
-#: polis/templates/components/user_profile.html:25
+#: polis/templates/components/user_profile.html:23
 msgid "Sign Out"
 msgstr "Salir"
 
@@ -217,25 +225,22 @@ msgstr "Salir"
 msgid "See results"
 msgstr "Ver resultados"
 
-#: polis/templates/pages/home.html:12
+#: polis/templates/pages/home.html:8
+#: polis/templates/pages/participant_form.html:42
+msgid "Start"
+msgstr "Comenzar"
+
+#: polis/templates/pages/home.html:33
 msgid "Go to the conversation"
 msgstr "Ir a la conversación"
 
-#: polis/templates/pages/participant_form.html:7
+#: polis/templates/pages/login_form.html:8
+msgid "Login"
+msgstr ""
+
+#: polis/templates/pages/participant_form.html:8
 msgid "First time? tell us more about you..."
 msgstr "¿Primera vez? cuéntanos más sobre ti..."
-
-#: polis/templates/pages/participant_form.html:36
-msgid "Participate anonymusly"
-msgstr "Participar de forma anónima"
-
-#: polis/templates/pages/participant_form.html:39
-msgid "Login to Add Photo"
-msgstr "Ingresar para agregar foto"
-
-#: polis/templates/pages/participant_form.html:43
-msgid "Start"
-msgstr "Comenzar"
 
 #~ msgid "Change"
 #~ msgstr "Cambiar"

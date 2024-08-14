@@ -138,3 +138,7 @@ GitHub.sublime-settings
 .history
 participa/.env
 participa/.env
+
+node_modules/
+package-lock.json
+package.json

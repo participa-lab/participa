@@ -17,11 +17,16 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.generic.base import TemplateView
 from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("polis.urls")),
+    path("consensos/", include("polis.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
     path("accounts/", include("allauth.urls")),
+    path("", TemplateView.as_view(template_name="main_home.html"), name="main_home"),
+    path(
+        "about", TemplateView.as_view(template_name="main_quienes.html"), name="about"
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

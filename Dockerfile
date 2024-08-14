@@ -17,13 +17,12 @@ COPY . .
 
 
 COPY ./entrypoint.sh /
+COPY ./entrypoint_dev.sh /
 COPY ./makestatic.sh /
 
 
 RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint_dev.sh
 RUN chmod +x /makestatic.sh
-
-#RUN sh makestatic.sh
-
 
 ENTRYPOINT ["/entrypoint.sh"]

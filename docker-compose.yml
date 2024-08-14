@@ -9,6 +9,8 @@ services:
     volumes:
       - static_volume:/participa/staticfiles
       - media_volume:/participa/mediafiles
+      - .:/participa
+    entrypoint: /entrypoint_dev.sh
     
 volumes:
   media_volume:

@@ -29,7 +29,6 @@ urlpatterns = [
         views.LogoutView.as_view(),
         name="participant_logout",
     ),
-    path("healthcheck/", lambda r: HttpResponse()),
     path("", views.HomeView.as_view(), name="home"),
     path("__reload__/", include("django_browser_reload.urls")),
 ]

@@ -25,6 +25,12 @@ class ParticipantMixin(object):
                 return None
         return None
 
+    def set_cookie(self, response):
+        response.set_cookie(
+                "participant_id", self.participant.id, max_age=31536000
+            )  # Set a cookie for one year
+        return response
+
     def get_from_user(self, user):
         if user and user.is_authenticated:
             try:
@@ -50,11 +56,11 @@ class ParticipantMixin(object):
                     "User is authenticated and has a different participant_id cookie"
                 )
                 # If the user is logged in and has a different participant_id cookie, we delete the cookie
-                response = HttpResponseRedirect(reverse("home"))
-                response.delete_cookie("participant_id")
-                return response
-            else:
-                self.participant = user_participant
+                # response = HttpResponseRedirect(reverse("home"))
+                #response.delete_cookie("participant_id")
+                # return response
+            #else:
+            self.participant = user_participant
         elif self.authenticated_user and cookie_participant:
             logger.info("User is authenticated and has a participant_id cookie")
             # The participant started the conversation without being logged in and now logs in
@@ -66,6 +72,9 @@ class ParticipantMixin(object):
         elif cookie_participant:
             logger.info("User is not authenticated and has a participant_id cookie")
             self.participant = cookie_participant
+
+        if self.participant:
+            logger.info(f"User {self.participant} wins")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,8 +91,11 @@ class HomeView(ParticipantMixin, ListView):
         print(self.participant)
         if not self.participant:
             return redirect("participant")
+       
+        response = super().get(request, *args, **kwargs)
+        return self.set_cookie(response)
 
-        return super().get(request, *args, **kwargs)
+         
 
 
 class ParticipantView(ParticipantMixin, CreateView):
@@ -101,7 +113,10 @@ class ParticipantView(ParticipantMixin, CreateView):
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
         if self.participant:
-            return redirect("home")
+            # Consolidated participant, saving into cookies
+            response = HttpResponseRedirect(reverse("home"))
+            return self.set_cookie(response)
+        # else create a new one
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):

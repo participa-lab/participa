@@ -11,4 +11,6 @@ postgis
 django-widget-tweaks
 django-allauth
 requests
-jwt
+PyJWT
+cryptography
+requests-oauthlib

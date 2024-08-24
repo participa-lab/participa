@@ -27,8 +27,8 @@ class ParticipantMixin(object):
 
     def set_cookie(self, response):
         response.set_cookie(
-                "participant_id", self.participant.id, max_age=31536000
-            )  # Set a cookie for one year
+            "participant_id", self.participant.id, max_age=31536000
+        )  # Set a cookie for one year
         return response
 
     def get_from_user(self, user):
@@ -57,9 +57,9 @@ class ParticipantMixin(object):
                 )
                 # If the user is logged in and has a different participant_id cookie, we delete the cookie
                 # response = HttpResponseRedirect(reverse("home"))
-                #response.delete_cookie("participant_id")
+                # response.delete_cookie("participant_id")
                 # return response
-            #else:
+            # else:
             self.participant = user_participant
         elif self.authenticated_user and cookie_participant:
             logger.info("User is authenticated and has a participant_id cookie")
@@ -69,12 +69,19 @@ class ParticipantMixin(object):
         elif self.authenticated_user and user_participant:
             logger.info("User is authenticated and has a participant")
             self.participant = user_participant
+        elif self.authenticated_user and not user_participant:
+            logger.info("User is authenticated and has no participant")
+            participant_data = request.session.get("participant_form_data")
+            del participant_data["login"]
+            self.participant = Participant.objects.create(**participant_data)
+            self.participant.assign_user(self.authenticated_user)
         elif cookie_participant:
             logger.info("User is not authenticated and has a participant_id cookie")
             self.participant = cookie_participant
 
         if self.participant:
             logger.info(f"User {self.participant} wins")
+            self.participant.refresh_xid_metadata()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -88,14 +95,11 @@ class HomeView(ParticipantMixin, ListView):
 
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
-        print(self.participant)
         if not self.participant:
             return redirect("participant")
-       
+
         response = super().get(request, *args, **kwargs)
         return self.set_cookie(response)
-
-         
 
 
 class ParticipantView(ParticipantMixin, CreateView):
@@ -120,25 +124,32 @@ class ParticipantView(ParticipantMixin, CreateView):
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        participant = form.save()
-        logger.info(f"Participant created: {participant}")
-        current_user = self.request.user
-        if current_user.is_authenticated:
-            participant.assign_user(current_user)
         if form.data.get("login") == "2":
             response = HttpResponseRedirect(reverse("participant_login"))
+            # Save clened data in session
+            self.request.session["participant_form_data"] = form.cleaned_data
+            logger.info(f"Participant form data saved in session: {form.cleaned_data}")
         else:
+            # Anonymously created participant
+            participant = form.save()
+            logger.info(f"Participant created: {participant}")
+            current_user = self.request.user
+            if current_user.is_authenticated:
+                participant.assign_user(current_user)
             response = HttpResponseRedirect(
                 reverse("home")
             )  # Change to your success URL
-        response.set_cookie(
-            "participant_id", participant.id, max_age=31536000
-        )  # Set a cookie for one year
+            response.set_cookie(
+                "participant_id", participant.id, max_age=31536000
+            )  # Set a cookie for one year
         return response
 
 
 class LoginView(TemplateView):
     template_name = "pages/login_form.html"
+
+    def get_success_url(self):
+        return reverse("home")
 
 
 class LogoutView(TemplateView):

@@ -150,6 +150,7 @@ class Participant(models.Model):
     )
     avatar_url = models.CharField(max_length=256, blank=True, null=True)
     name = models.CharField(_("Name"), max_length=200, blank=True, null=True)
+    nick_name = models.CharField(_("Nick Name"), max_length=200, blank=True, null=True)
     email = models.EmailField(_("Email"), blank=True, null=True)
     gender = models.CharField(
         _("Gender"), max_length=2, choices=choices.GENDER_CHOICES, blank=True, null=True
@@ -171,7 +172,17 @@ class Participant(models.Model):
     )
 
     def __str__(self):
-        return f"{self.id} {self.name}"
+        return f"{self.id} {self.name} {self.nick_name}"
+
+    def refresh_xid_metadata(self):
+        id_str = "{}".format(self.id)
+        logger.info(f"Assigning participant {self} to PolisXid metadata {id_str}")
+        polis_xid = PolisXid.objects.filter(xid=id_str).first()
+        logger.info(f"PolisXid: {polis_xid}")
+        if polis_xid:
+            polis_xid.update_with_participant(self)
+        else:
+            logger.error(f"PolisXid not found for participant {self.id}")
 
     def assign_user(self, user):
         if not user or not user.is_authenticated:
@@ -237,14 +248,7 @@ class Participant(models.Model):
 
             user.save()
 
-            id_str = "{}".format(self.id)
-            logger.info(f"Assigning user {user} to participant {id_str}")
-            polis_xid = PolisXid.objects.filter(xid=id_str).first()
-            logger.info(f"PolisXid: {polis_xid}")
-            if polis_xid:
-                polis_xid.update_with_participant(self)
-            else:
-                logger.error(f"PolisXid not found for participant {self.id}")
+            self.refresh_xid_metadata()
 
         return self
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-14 17:11-0300\n"
+"POT-Creation-Date: 2024-08-24 11:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr "Prefiero no decirlo"
 msgid "Other"
 msgstr "Otro"
 
-#: polis/choices.py:15 polis/models.py:153
+#: polis/choices.py:15 polis/models.py:154
 msgid "Email"
 msgstr "Correo electrónico"
 
@@ -177,7 +177,7 @@ msgstr "Conversación"
 msgid "Conversations"
 msgstr "Conversaciones"
 
-#: polis/models.py:126 polis/models.py:163
+#: polis/models.py:126 polis/models.py:164
 msgid "Territory"
 msgstr "Territorio"
 
@@ -185,7 +185,7 @@ msgstr "Territorio"
 msgid "Territories"
 msgstr "Territorios"
 
-#: polis/models.py:137 polis/models.py:170
+#: polis/models.py:137 polis/models.py:171
 msgid "Affinity"
 msgstr "Afiliación"
 
@@ -197,19 +197,25 @@ msgstr "Afiliaciones"
 msgid "user"
 msgstr "Usuario"
 
-#: polis/models.py:155
+#: polis/models.py:153
+#, fuzzy
+#| msgid "Name"
+msgid "Nick Name"
+msgstr "Nombre"
+
+#: polis/models.py:156
 msgid "Gender"
 msgstr "Género"
 
-#: polis/models.py:157
+#: polis/models.py:158
 msgid "Year of Birth"
 msgstr "Año de nacimiento"
 
-#: polis/models.py:253
+#: polis/models.py:257
 msgid "Participant"
 msgstr "Paritcipante"
 
-#: polis/models.py:254
+#: polis/models.py:258
 msgid "Participants"
 msgstr "Participantes"
 

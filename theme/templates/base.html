@@ -17,24 +17,43 @@
   <body class="bg-white text-gray-600">
     <!-- Navigation -->
     <header id="header" class="fixed w-full bg-white border-b border-gray-100 z-10 transition-all duration-300">
-      <nav class="bg-naranja text-white border-b border-gray-100">
+      <nav x-data="{ open: false }" class="bg-naranja text-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-20 items-center">
+            <!-- Logo and title -->
             <div class="flex">
-              <!-- Logo and title -->
               <span><a href="{% url 'main_home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
             </div>
-            <div class="flex items-center w-3/4">
-              <!-- Navigation links -->
+            
+            <!-- Hamburger Icon -->
+            <div class="flex items-center lg:hidden">
+              <button @click="open = !open" class="text-white focus:outline-none">
+                <i class="fas fa-bars"></i>
+              </button>
+            </div>
+            
+            <!-- Navigation links -->
+            <div class="hidden lg:flex items-center w-3/4">
               <a href="{% url 'about' %}" class="ml-4 px-4">{{ _('About Us') }}</a>
               <a href="{% url 'home' %}" class="ml-4 px-4">{{ _('Polarization') }}</a>
             </div>
 
+            <!-- User Profile -->
+            <div class="hidden lg:flex">
+              {% include 'components/user_profile.html' %}
+            </div>
+          </div>
+          
+          <!-- Dropdown Menu for Mobile -->
+          <div x-show="open" @click.away="open = false" class="lg:hidden bg-naranja">
+            <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Us') }}</a>
+            <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Polarization') }}</a>
             {% include 'components/user_profile.html' %}
           </div>
         </div>
       </nav>
     </header>
+    
     <!-- Main content -->
     <main class="pt-[4rem] pb-[4rem]">
       <!-- Messages -->
@@ -43,7 +62,7 @@
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="py-4">
               {% for message in messages %}
-                <div class="bg-naranja border-l-4  text-white p-4" role="alert">
+                <div class="bg-naranja border-l-4 text-white p-4" role="alert">
                   <p class="font-bold">{{ message.tags }}</p>
                   <p>{{ message }}</p>
                 </div>
@@ -61,7 +80,8 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="py-4 flex items-center justify-between">
           <!-- Footer content -->
-          FOOTER<div class="flex items-center text-black">
+          <span><a href="{% url 'main_home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
+          <div class="flex items-center text-black">
             <!-- Navigation links -->
             {% include 'components/locale_switcher_form.html' %}
           </div>

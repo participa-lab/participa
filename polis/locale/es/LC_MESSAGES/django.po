@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-24 11:54-0300\n"
+"POT-Creation-Date: 2024-08-27 08:12-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,6 +61,10 @@ msgstr "Participar de forma anónima"
 #: polis/forms.py:10
 msgid "Login to Add Photo"
 msgstr "Ingresar para agregar foto"
+
+#: polis/forms.py:21 polis/forms.py:24 polis/forms.py:42 polis/forms.py:44
+msgid "This field is required"
+msgstr "Este campo es requerido"
 
 #: polis/models.py:30 polis/models.py:120 polis/models.py:131
 #: polis/models.py:152
@@ -211,19 +215,19 @@ msgstr "Género"
 msgid "Year of Birth"
 msgstr "Año de nacimiento"
 
-#: polis/models.py:257
+#: polis/models.py:261
 msgid "Participant"
 msgstr "Paritcipante"
 
-#: polis/models.py:258
+#: polis/models.py:262
 msgid "Participants"
 msgstr "Participantes"
 
-#: polis/templates/components/user_profile.html:10
+#: polis/templates/components/user_profile.html:12
 msgid "Guest"
 msgstr "Anónimo"
 
-#: polis/templates/components/user_profile.html:23
+#: polis/templates/components/user_profile.html:26
 msgid "Sign Out"
 msgstr "Salir"
 
@@ -231,8 +235,7 @@ msgstr "Salir"
 msgid "See results"
 msgstr "Ver resultados"
 
-#: polis/templates/pages/home.html:8
-#: polis/templates/pages/participant_form.html:42
+#: polis/templates/pages/home.html:8 polis/views.py:173
 msgid "Start"
 msgstr "Comenzar"
 
@@ -244,9 +247,23 @@ msgstr "Ir a la conversación"
 msgid "Login"
 msgstr ""
 
-#: polis/templates/pages/participant_form.html:8
+#: polis/templates/pages/login_form.html:25
+#, fuzzy
+#| msgid "Participate anonymusly"
+msgid "Participar de Forma Anónima"
+msgstr "Participar de forma anónima"
+
+#: polis/views.py:172
 msgid "First time? tell us more about you..."
 msgstr "¿Primera vez? cuéntanos más sobre ti..."
+
+#: polis/views.py:192
+msgid "Your profile"
+msgstr "Tú perfil"
+
+#: polis/views.py:193
+msgid "Update"
+msgstr "Actualizar"
 
 #~ msgid "Change"
 #~ msgstr "Cambiar"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-24 11:54-0300\n"
+"POT-Creation-Date: 2024-08-27 08:12-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2073,11 +2073,11 @@ msgstr ""
 msgid "Menu:"
 msgstr ""
 
-#: theme/templates/base.html:29
+#: theme/templates/base.html:37 theme/templates/base.html:49
 msgid "About Us"
 msgstr "Sobre Nosotros"
 
-#: theme/templates/base.html:30
+#: theme/templates/base.html:38 theme/templates/base.html:50
 msgid "Polarization"
 msgstr "Polarización"
 
@@ -2386,4 +2386,3 @@ msgstr ""
 #: theme/templates/usersessions/usersession_list.html:60
 msgid "Sign Out Other Sessions"
 msgstr ""
-

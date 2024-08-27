@@ -2,7 +2,7 @@
 
 {% block content %}
 <section>
-    <title>{{object.topic}}</title>
+    <title class="mt-10">{{object.topic}}</title>
    
     <div class="flex flex-col justify-center items-center">
         <div class="max-w-4xl flex flex-col items-center justify-center w-full mt-3">
@@ -44,7 +44,7 @@
                 "topic": "{{object.topic}}",
                 "parent_url": "{{ request.path }}",
                 "xid": "{{participant.id}}",
-                "x_name": "{{participant.name|default_if_none:''}}",
+                "x_name": "{{participant.nick_name|default_if_none:''}}",
                 "x_email": "{{participant.email|default_if_none:''}}",
                 "x_profile_image_url": "{{participant.avatar_url|default_if_none:''}}",
                 "border": "{{object.border}}",

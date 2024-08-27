@@ -177,7 +177,7 @@ SOCIALACCOUNT_PROVIDERS = {
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/polis/c"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

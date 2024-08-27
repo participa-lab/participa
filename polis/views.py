@@ -4,10 +4,18 @@ from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, ListView, TemplateView
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
+from django.utils.translation import gettext_lazy as _
 
-from .forms import ParticipantForm
-from .models import Conversation, Participant
+
+from .forms import ParticipantForm, ParticipantUpdateForm
+from .models import Conversation, Participant, Affinity, Territory
 
 logger = logging.getLogger(__name__)
 
@@ -72,9 +80,15 @@ class ParticipantMixin(object):
         elif self.authenticated_user and not user_participant:
             logger.info("User is authenticated and has no participant")
             participant_data = request.session.get("participant_form_data")
-            del participant_data["login"]
-            self.participant = Participant.objects.create(**participant_data)
-            self.participant.assign_user(self.authenticated_user)
+            if participant_data:
+                affinity_name = participant_data.pop("affinity")
+                affinity = Affinity.objects.filter(name=affinity_name).first()
+                territory_name = participant_data.pop("territory")
+                territory = Territory.objects.filter(name=territory_name).first()
+                participant_data.update({"affinity": affinity, "territory": territory})
+                del participant_data["login"]
+                self.participant = Participant.objects.create(**participant_data)
+                self.participant.assign_user(self.authenticated_user)
         elif cookie_participant:
             logger.info("User is not authenticated and has a participant_id cookie")
             self.participant = cookie_participant
@@ -96,7 +110,7 @@ class HomeView(ParticipantMixin, ListView):
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
         if not self.participant:
-            return redirect("participant")
+            return redirect("participant_login")
 
         response = super().get(request, *args, **kwargs)
         return self.set_cookie(response)
@@ -106,19 +120,25 @@ class ParticipantView(ParticipantMixin, CreateView):
     model = Participant
     form_class = ParticipantForm
     template_name = "pages/participant_form.html"
+    participant_data = {}
 
     def get_initial(self):
         initial = super().get_initial()
         if self.participant and self.participant.user:
             initial["name"] = self.participant.user.get_full_name()
             initial["email"] = self.participant.user.email
+        else:
+            if self.participant_data:
+                initial = self.participant_data
+            initial["login"] = "1"
         return initial
 
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
+        self.participant_data = request.session.get("participant_form_data")
         if self.participant:
             # Consolidated participant, saving into cookies
-            response = HttpResponseRedirect(reverse("home"))
+            response = redirect("home")
             return self.set_cookie(response)
         # else create a new one
         return super().get(request, *args, **kwargs)
@@ -127,8 +147,11 @@ class ParticipantView(ParticipantMixin, CreateView):
         if form.data.get("login") == "2":
             response = HttpResponseRedirect(reverse("participant_login"))
             # Save clened data in session
-            self.request.session["participant_form_data"] = form.cleaned_data
-            logger.info(f"Participant form data saved in session: {form.cleaned_data}")
+            data = form.cleaned_data.copy()
+            data["affinity"] = form.cleaned_data["affinity"].name
+            data["territory"] = form.cleaned_data["territory"].name
+            self.request.session["participant_form_data"] = data
+            logger.info(f"Participant form data saved in session: {data}")
         else:
             # Anonymously created participant
             participant = form.save()
@@ -144,12 +167,42 @@ class ParticipantView(ParticipantMixin, CreateView):
             )  # Set a cookie for one year
         return response
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("First time? tell us more about you...")
+        context["submit_label"] = _("Start")
+        return context
+
+
+class PerticipantUpdateView(UpdateView):
+    model = Participant
+    form_class = ParticipantUpdateForm
+    template_name = "pages/participant_form.html"
+
+    def get_success_url(self):
+        return reverse("home")
+
+    def form_valid(self, form):
+        form.save()
+        self.get_object().refresh_xid_metadata()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = _("Your profile")
+        context["submit_label"] = _("Update")
+        return context
+
 
 class LoginView(TemplateView):
     template_name = "pages/login_form.html"
 
     def get_success_url(self):
-        return reverse("home")
+        return reverse("polis::home")
+
+    def post(self, request, *args, **kwargs):
+        response = HttpResponseRedirect(self.get_success_url())
+        response.set_cookie("participant_id", self.participant.id, max_age=31536000)
 
 
 class LogoutView(TemplateView):

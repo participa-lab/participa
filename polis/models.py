@@ -174,6 +174,10 @@ class Participant(models.Model):
     def __str__(self):
         return f"{self.id} {self.name} {self.nick_name}"
 
+    @property
+    def some_name(self):
+        return self.name or self.nick_name
+
     def refresh_xid_metadata(self):
         id_str = "{}".format(self.id)
         logger.info(f"Assigning participant {self} to PolisXid metadata {id_str}")

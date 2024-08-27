@@ -15,6 +15,16 @@ class ParticipantForm(forms.ModelForm):
         required=True,
     )
 
+    def clean(self):
+        if self.cleaned_data.get("login") == "1":
+            if not self.cleaned_data.get("nick_name"):
+                self.add_error("nick_name", _("This field is required"))
+
+        if not self.cleaned_data.get("year_of_birth"):
+            self.add_error("year_of_birth", _("This field is required"))
+
+        return super().clean()
+
     class Meta:
         model = Participant
         fields = [
@@ -23,5 +33,22 @@ class ParticipantForm(forms.ModelForm):
             "year_of_birth",
             "territory",
             "affinity",
-            "email",
+        ]
+
+
+class ParticipantUpdateForm(forms.ModelForm):
+    def clean(self):
+        if not self.cleaned_data.get("year_of_birth"):
+            self.add_error("year_of_birth", _("This field is required"))
+        if not self.cleaned_data.get("nick_name"):
+            self.add_error("nick_name", _("This field is required"))
+
+    class Meta:
+        model = Participant
+        fields = [
+            "nick_name",
+            "gender",
+            "year_of_birth",
+            "territory",
+            "affinity",
         ]

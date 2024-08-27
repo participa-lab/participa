@@ -14,9 +14,9 @@
     {% tailwind_css %}
   </head>
 
-  <body class="bg-white text-gray-600">
+  <body class="flex flex-col bg-white text-gray-600 min-h-screen">
     <!-- Navigation -->
-    <header id="header" class="fixed w-full bg-white border-b border-gray-100 z-10 transition-all duration-300">
+    <header id="header" class="sticky top-0 w-full bg-white border-b border-gray-100 z-10 transition-all duration-300">
       <nav x-data="{ open: false }" class="bg-naranja text-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-20 items-center">
@@ -55,7 +55,7 @@
     </header>
     
     <!-- Main content -->
-    <main class="pt-[4rem] pb-[4rem]">
+    <main class="flex-grow">
       <!-- Messages -->
       <section>
         {% if messages %}
@@ -76,7 +76,7 @@
     </main>
 
     <!-- Footer -->
-    <footer id="footer" class="fixed bottom-0 w-full bg-naranja text-white z-10 transition-all duration-300">
+    <footer id="footer" class="sticky bottom-0 w-full bg-naranja text-white z-10 transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="py-4 flex items-center justify-between">
           <!-- Footer content -->

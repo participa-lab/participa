@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-27 08:12-0300\n"
+"POT-Creation-Date: 2024-08-27 18:28-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,11 +223,7 @@ msgstr "Paritcipante"
 msgid "Participants"
 msgstr "Participantes"
 
-#: polis/templates/components/user_profile.html:12
-msgid "Guest"
-msgstr "Anónimo"
-
-#: polis/templates/components/user_profile.html:26
+#: polis/templates/components/user_profile.html:24
 msgid "Sign Out"
 msgstr "Salir"
 
@@ -235,7 +231,7 @@ msgstr "Salir"
 msgid "See results"
 msgstr "Ver resultados"
 
-#: polis/templates/pages/home.html:8 polis/views.py:173
+#: polis/templates/pages/home.html:8 polis/views.py:189
 msgid "Start"
 msgstr "Comenzar"
 
@@ -247,23 +243,29 @@ msgstr "Ir a la conversación"
 msgid "Login"
 msgstr ""
 
-#: polis/templates/pages/login_form.html:25
-#, fuzzy
-#| msgid "Participate anonymusly"
-msgid "Participar de Forma Anónima"
-msgstr "Participar de forma anónima"
+#: polis/templates/pages/login_form.html:39
+msgid "Anonymus"
+msgstr "Anónimo"
 
-#: polis/views.py:172
+#: polis/views.py:188
 msgid "First time? tell us more about you..."
 msgstr "¿Primera vez? cuéntanos más sobre ti..."
 
-#: polis/views.py:192
+#: polis/views.py:208
 msgid "Your profile"
 msgstr "Tú perfil"
 
-#: polis/views.py:193
+#: polis/views.py:209
 msgid "Update"
 msgstr "Actualizar"
+
+#~ msgid "Guest"
+#~ msgstr "Anónimo"
+
+#, fuzzy
+#~| msgid "Participate anonymusly"
+#~ msgid "Participar de Forma Anónima"
+#~ msgstr "Participar de forma anónima"
 
 #~ msgid "Change"
 #~ msgstr "Cambiar"

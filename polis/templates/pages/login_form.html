@@ -6,24 +6,38 @@
 
 <section class="max-w-md w-full bg-white rounded p-6 space-y-4 flex flex-col items-center mx-auto">
   <h2 class="text-2xl font-bold">{{_("Login")}}</h2>
-  <div class="flex items-center justify-between w-full">
+  <div class="flex flex-col justify-between my-4 items-center justify-between w-full">
       {% get_providers as socialaccount_providers %}
       {% if socialaccount_providers %}
-        <ul  class="w-full flex justify-between my-4">
           {% for provider in socialaccount_providers %}
-          <form action="{% provider_login_url provider.id %}" method="post">
-            {% csrf_token %}
+          
             {% if provider.id == 'google' %}
-            <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-google"></i>{{provider.name}}</button>
+            <div class="p-2">
+              <form action="{% provider_login_url provider.id %}" method="post" >
+              {% csrf_token %}
+                <button class="flex items-center bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4  rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-google"></i>{{provider.name}}</button>
+              </form>
+            </div>
             {% elif provider.id == 'telegram' %}
-            <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-telegram"></i>{{provider.name}}</button>
+            <div class="p-2">
+              <form action="{% provider_login_url provider.id %}" method="post" >
+                {% csrf_token %}
+                <button class="flex items-center bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-telegram"></i>{{provider.name}}</button>
+              </form>
+            </div>
             {% elif provider.id == 'twitter_oauth2' %}
-            <button class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-twitter"></i>{{provider.name}}</button>
+            <div class="p-2">
+              <form action="{% provider_login_url provider.id %}" method="post">
+                {% csrf_token %}
+                <button class="flex items-center bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-twitter"></i>{{provider.name}}</button>
+              </form>
+            </div>
             {% endif %}
-          </form>
+          
           {% endfor %}
-          <a href="{% url 'participant_create' %}" class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ">{{_('Participar de Forma Anónima')}}</a>
-        </ul>
+          <div class="p-2">
+            <a href="{% url 'participant_create' %}" class="flex items-center wwhitespace-nowrap bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "><i class="mr-1 fa-regular fa-user-xmark"></i>{{_('Anonymus')}}</a>\
+          </div>
       {% endif %}
   </div>
 

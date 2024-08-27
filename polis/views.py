@@ -82,9 +82,17 @@ class ParticipantMixin(object):
             participant_data = request.session.get("participant_form_data")
             if participant_data:
                 affinity_name = participant_data.pop("affinity")
-                affinity = Affinity.objects.filter(name=affinity_name).first()
+                affinity = (
+                    Affinity.objects.filter(name=affinity_name).first()
+                    if affinity_name
+                    else None
+                )
                 territory_name = participant_data.pop("territory")
-                territory = Territory.objects.filter(name=territory_name).first()
+                territory = (
+                    Territory.objects.filter(name=territory_name).first()
+                    if territory_name
+                    else None
+                )
                 participant_data.update({"affinity": affinity, "territory": territory})
                 del participant_data["login"]
                 self.participant = Participant.objects.create(**participant_data)
@@ -148,8 +156,16 @@ class ParticipantView(ParticipantMixin, CreateView):
             response = HttpResponseRedirect(reverse("participant_login"))
             # Save clened data in session
             data = form.cleaned_data.copy()
-            data["affinity"] = form.cleaned_data["affinity"].name
-            data["territory"] = form.cleaned_data["territory"].name
+            data["affinity"] = (
+                form.cleaned_data["affinity"].name
+                if form.cleaned_data["affinity"]
+                else None
+            )
+            data["territory"] = (
+                form.cleaned_data["territory"].name
+                if form.cleaned_data["territory"]
+                else None
+            )
             self.request.session["participant_form_data"] = data
             logger.info(f"Participant form data saved in session: {data}")
         else:

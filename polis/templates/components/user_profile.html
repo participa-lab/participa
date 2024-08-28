@@ -19,12 +19,7 @@
 
   <div>
     <ul>
-      {% if user.is_authenticated %}
-        
-      <a href="{% url 'participant_logout' %}">{{ _('Sign Out') }}</a>
-   
-      
-      {% endif %}
+      <a href="{% url 'participant_logout' %}">{{ _('Sign Out') }}</a>      
     </ul>
   </div>
 </div>

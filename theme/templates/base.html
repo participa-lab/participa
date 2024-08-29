@@ -2,7 +2,7 @@
 {% load socialaccount %}
 
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
+<html lang="en">
   <head>
     <title>Plataforma Participa</title>
     <meta charset="UTF-8" />
@@ -15,94 +15,81 @@
     
   </head>
 
-  <body class="flex flex-col bg-white text-gray-600 min-h-screen" style="height: 100%;">
-    <!-- Navigation -->
-    <header id="header" class="sticky top-0 w-full bg-white border-b border-gray-100 z-10 transition-all duration-300">
-      <nav x-data="{ open: false }" class="bg-naranja text-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between h-20 items-center">
-            <!-- Logo and title -->
-            <div class="flex">
-              <span><a href="{% url 'main_home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
-            </div>
-            
-            <!-- Hamburger Icon -->
-            <div class="flex items-center lg:hidden">
-              <button @click="open = !open" class="text-white focus:outline-none">
-                <i class="fas fa-bars"></i>
-              </button>
-            </div>
-            
-            <!-- Navigation links -->
-            <div class="hidden lg:flex items-center w-3/4">
-              <a href="{% url 'about' %}" class="ml-4 px-4">{{ _('About Us') }}</a>
-              <a href="{% url 'home' %}" class="ml-4 px-4">{{ _('Polarization') }}</a>
-            </div>
+  <body class="bg-white text-gray-600">
+    <div class="flex flex-col h-screen">
+      <!-- Navigation -->
+      <header id="header" class="w-full bg-naranja text-white z-10 transition-all duration-300 sticky top-0">
+        <nav x-data="{ open: false }" class="bg-naranja text-white border-b border-gray-100">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+              <!-- Logo and title -->
+              <div class="flex">
+                <span><a href="{% url 'main_home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
+              </div>
+              
+              <!-- Hamburger Icon -->
+              <div class="flex items-center lg:hidden">
+                <button @click="open = !open" class="text-white focus:outline-none">
+                  <i class="fas fa-bars"></i>
+                </button>
+              </div>
+              
+              <!-- Navigation links -->
+              <div class="hidden lg:flex items-center w-3/4">
+                <a href="{% url 'about' %}" class="ml-4 px-4">{{ _('About Us') }}</a>
+                <a href="{% url 'home' %}" class="ml-4 px-4">{{ _('Polarization') }}</a>
+              </div>
 
-            <!-- User Profile -->
-            <div class="hidden lg:flex">
+              <!-- User Profile -->
+              <div class="hidden lg:flex">
+                {% include 'components/user_profile.html' %}
+              </div>
+            </div>
+            
+            <!-- Dropdown Menu for Mobile -->
+            <div x-show="open" @click.away="open = false" class="lg:hidden bg-naranja">
+              <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Us') }}</a>
+              <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Polarization') }}</a>
               {% include 'components/user_profile.html' %}
             </div>
           </div>
-          
-          <!-- Dropdown Menu for Mobile -->
-          <div x-show="open" @click.away="open = false" class="lg:hidden bg-naranja">
-            <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Us') }}</a>
-            <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Polarization') }}</a>
-            {% include 'components/user_profile.html' %}
-          </div>
-        </div>
-      </nav>
-    </header>
-    
-    <!-- Main content -->
-    <main class="flex-grow h-full">
-      <!-- Messages -->
-      <section>
-        {% if messages %}
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="py-4">
-              {% for message in messages %}
-                <div class="bg-naranja border-l-4 text-white p-4" role="alert">
-                  <p class="font-bold">{{ message.tags }}</p>
-                  <p>{{ message }}</p>
-                </div>
-              {% endfor %}
+        </nav>
+      </header>
+      
+      <!-- Main content -->
+      <main class="flex-grow flex-1 overflow-y-auto">
+        <!-- Messages -->
+        <section>
+          {% if messages %}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="py-4">
+                {% for message in messages %}
+                  <div class="bg-naranja border-l-4 text-white p-4" role="alert">
+                    <p class="font-bold">{{ message.tags }}</p>
+                    <p>{{ message }}</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        </section>
+        {% block content %}
+        {% endblock %}
+      </main>
+
+      <!-- Footer -->
+      <footer id="footer" class="absoulte bottom-0 w-full bg-naranja text-white z-10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="py-4 flex items-center justify-between">
+            <!-- Footer content -->
+            <span><a href="{% url 'main_home' %}"><img class="h-12" src="{% static 'H-DIAPO.svg' %}"/></a></span>
+            <div class="flex items-center text-black">
+              <!-- Navigation links -->
+              {% include 'components/locale_switcher_form.html' %}
             </div>
           </div>
-        {% endif %}
-      </section>
-      {% block content %}
-      {% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer id="footer" class="sticky bottom-0 w-full bg-naranja text-white z-10 transition-all duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="py-4 flex items-center justify-between">
-          <!-- Footer content -->
-          <span><a href="{% url 'main_home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
-          <div class="flex items-center text-black">
-            <!-- Navigation links -->
-            {% include 'components/locale_switcher_form.html' %}
-          </div>
         </div>
-      </div>
-    </footer>
-    <script>
-      // JavaScript for adding the scroll effect
-      window.addEventListener('scroll', () => {
-        const header = document.getElementById('header')
-        const footer = document.getElementById('footer')
-        if (window.scrollY > 50) {
-          // Adjust this value based on when you want the shrink effect to occur
-          header.classList.add('header-scrolled')
-          footer.classList.add('footer-scrolled')
-        } else {
-          header.classList.remove('header-scrolled')
-          footer.classList.remove('footer-scrolled')
-        }
-      })
-    </script>
+      </footer>
+    </div>
   </body>
 </html>

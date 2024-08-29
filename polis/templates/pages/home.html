@@ -28,7 +28,11 @@
     <section class="grid grid-cols-1 gap-3 p-10 md:grid-cols-3">
       {% for conversation in object_list %}
         <div class="card p-5 bg-turquesa border border-1 rounded-md flex flex-col shadow-md text-gray-100">
-          <h2 class="text-xl font-bold">{{ conversation.topic }}</h2>
+          <div class="flex justify-between">
+            <h2 class="text-xl font-bold">{{ conversation.topic }}</h2>
+            <span>{{_('Participants')}}: {{ conversation.participant_count }}</span>
+          </div>
+          <span class="w-full text-center text-sm p-2">{{_('Abierto desde')}}: {{ conversation.start_date|date:'d/m/Y' }} {{_('hasta')}}: {{ conversation.end_date|date:'d/m/Y' }}</span>
           <p class="h-full">{{ conversation.description }}</p>
           <a class="border border-1 rounded-md m-3 text-center p-2 bg-gray-100 text-black" href="{% url 'conversation' conversation.slug %}">{{ _('Go to the conversation') }}</a>
         </div>

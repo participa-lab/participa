@@ -100,16 +100,27 @@ class Conversation(models.Model):
     def __str__(self):
         return self.topic
 
+    def get_polis_conversation_xid(self):
+        polis_page_id = PolisPageId.objects.get(page_id=self.slug)
+        return polis_page_id.zid
+
     def get_report_url(self):
         url = None
         try:
-            polis_page_id = PolisPageId.objects.get(page_id=self.slug)
-            polis_report = PolisReport.objects.get(zid=polis_page_id.zid)
+            polis_report = PolisReport.objects.get(
+                zid=self.get_polis_conversation_xid()
+            )
             url = self.instance.url + "/report/" + polis_report.report_id
         except Exception:
             pass
 
         return url
+
+    @property
+    def participant_count(self):
+        return PolisConversation.objects.get(
+            zid=self.get_polis_conversation_xid()
+        ).participant_count
 
     class Meta:
         verbose_name = _("Conversation")

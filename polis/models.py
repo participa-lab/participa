@@ -97,6 +97,13 @@ class Conversation(models.Model):
         choices=choices.SUSCRIBE_CHOICES,
     )
 
+    color_primary = models.CharField(
+        _("Primary color"), max_length=200, blank=True, null=True
+    )
+    color_secondary = models.CharField(
+        _("Secondary color"), max_length=200, blank=True, null=True
+    )
+
     def __str__(self):
         return self.topic
 

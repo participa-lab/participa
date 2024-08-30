@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% load socialaccount %}
+
+{% block header %}
+{% include "header.html" %}
+{% endblock header %}
+
 {% block content %}
-
-
   {% if participant and show_login %}
   <div class="flex items-center justify-between w-full">
     <input class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" value="{{_("Start")}}"/>
@@ -42,3 +45,7 @@
     {% include 'pages/participant_form.html' %}
   {% endif %}
 {% endblock %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}

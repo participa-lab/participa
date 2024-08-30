@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
+{% block header %}
+{% include "components/polis_header.html" %}
+{% endblock header %}
+
 {% block content %}
 <section>
     <title class="mt-10">{{object.topic}}</title>
    
     <div class="flex flex-col justify-center items-center">
-        <div class="max-w-4xl flex flex-col items-center justify-center w-full mt-3">
+        <div class="max-w-4xl flex flex-col items-center justify-center w-full mt-5">
             {% if not object.show_topic %}
             <h1 class="text-3xl font-bold text-center">{{object.topic}}</h1>
             {% endif %}
@@ -67,3 +71,7 @@
     
 </section>
 {% endblock content%}
+
+{% block footer %}
+{% include "components/polis_footer.html" %}
+{% endblock footer %}

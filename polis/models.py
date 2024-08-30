@@ -116,7 +116,6 @@ class Conversation(models.Model):
             polis_conversation = PolisConversation.objects.filter(
                 zid=self.get_polis_conversation_zid()
             ).first()
-            logger.info(f"Polis conversation: {polis_conversation}")
             if polis_conversation:
                 polis_conversation.topic = self.topic
                 polis_conversation.description = self.description

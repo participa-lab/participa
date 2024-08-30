@@ -1,0 +1,39 @@
+{% load static %}
+
+<header id="header" class="w-full bg-naranja text-white z-10 transition-all duration-300 sticky top-0" style="background-color: {{conversation.color_primary}}">
+    <nav x-data="{ open: false }" class=" text-white border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+          <!-- Logo and title -->
+          <div class="flex">
+            <span><a href="{% url 'main_home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
+          </div>
+          
+          <!-- Hamburger Icon -->
+          <div class="flex items-center lg:hidden">
+            <button @click="open = !open" class="text-white focus:outline-none">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+          
+          <!-- Navigation links -->
+          <div class="hidden lg:flex items-center w-3/4">
+            <a href="{% url 'about' %}" class="ml-4 px-4">{{ _('About Us') }}</a>
+            <a href="{% url 'home' %}" class="ml-4 px-4">{{ _('Polarization') }}</a>
+          </div>
+
+          <!-- User Profile -->
+          <div class="hidden lg:flex">
+            {% include 'components/user_profile.html' %}
+          </div>
+        </div>
+        
+        <!-- Dropdown Menu for Mobile -->
+        <div x-show="open" @click.away="open = false" class="lg:hidden bg-naranja">
+          <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Us') }}</a>
+          <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Polarization') }}</a>
+          {% include 'components/user_profile.html' %}
+        </div>
+      </div>
+    </nav>
+  </header>

@@ -52,7 +52,7 @@ class Conversation(models.Model):
     )
 
     border = models.CharField(
-        _("Border"), max_length=200, blank=True, null=True, default="1px solid #ccc"
+        _("Border"), max_length=200, blank=True, null=True, default="0px solid #ccc"
     )
     border_radius = models.CharField(
         max_length=200, blank=True, null=True, default="4px"
@@ -61,7 +61,7 @@ class Conversation(models.Model):
         _("Iframe Padding"), max_length=200, blank=True, null=True, default="4px"
     )
     height = models.CharField(
-        _("Iframe Height"), max_length=200, blank=True, null=True, default="930"
+        _("Iframe Height"), max_length=200, blank=True, null=True, default="400"
     )
     ui_language = models.CharField(
         _("Iframe UI Languaje"), max_length=200, blank=True, null=True
@@ -97,10 +97,34 @@ class Conversation(models.Model):
         choices=choices.SUSCRIBE_CHOICES,
     )
 
+    color_primary = models.CharField(
+        _("Primary color"), max_length=200, blank=True, null=True
+    )
+    color_secondary = models.CharField(
+        _("Secondary color"), max_length=200, blank=True, null=True
+    )
+
     def __str__(self):
         return self.topic
 
-    def get_polis_conversation_xid(self):
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.sync_with_polis()
+
+    def sync_with_polis(self):
+        try:
+            polis_conversation = PolisConversation.objects.filter(
+                zid=self.get_polis_conversation_zid()
+            ).first()
+            if polis_conversation:
+                polis_conversation.topic = self.topic
+                polis_conversation.description = self.description
+                polis_conversation.style_btn = self.color_primary
+                polis_conversation.save()
+        except Exception as e:
+            logger.error(f"Error syncing with polis: {e}", exc_info=True)
+
+    def get_polis_conversation_zid(self):
         polis_page_id = PolisPageId.objects.get(page_id=self.slug)
         return polis_page_id.zid
 
@@ -108,7 +132,7 @@ class Conversation(models.Model):
         url = None
         try:
             polis_report = PolisReport.objects.get(
-                zid=self.get_polis_conversation_xid()
+                zid=self.get_polis_conversation_zid()
             )
             url = self.instance.url + "/report/" + polis_report.report_id
         except Exception:
@@ -119,7 +143,7 @@ class Conversation(models.Model):
     @property
     def participant_count(self):
         return PolisConversation.objects.get(
-            zid=self.get_polis_conversation_xid()
+            zid=self.get_polis_conversation_zid()
         ).participant_count
 
     class Meta:
@@ -304,14 +328,11 @@ class PolisConversation(models.Model):
     is_anon = models.BooleanField()
     is_active = models.BooleanField()
     is_public = models.BooleanField()
+    style_btn = models.TextField()
 
     class Meta:
         db_table = "conversations"
         managed = False
-
-    def save(self, *args, **kwargs):
-        # Prevent any changes by overriding the save method
-        pass
 
     def delete(self, *args, **kwargs):
         # Prevent deletion by overriding the delete method

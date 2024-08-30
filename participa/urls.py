@@ -31,4 +31,5 @@ urlpatterns = [
     path(
         "about", TemplateView.as_view(template_name="main_quienes.html"), name="about"
     ),
+    path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,10 +1,12 @@
 
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+
+{% block header %}
+{% include "header.html" %}
+{% endblock header %}
+
 {% block content %}
-
-
-
 <section x-data="{ showLogin: false }" class="max-w-md w-full bg-white rounded p-6 space-y-4 flex flex-col items-center mx-auto">
   <h2 class="text-2xl font-bold">{{title}}</h2>
   <form method="post" action="">
@@ -49,3 +51,8 @@
 
 </section>
 {% endblock %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}
+

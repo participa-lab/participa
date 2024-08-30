@@ -57,6 +57,7 @@
                 "ucst": "{{object.show_topic|yesno:'true,false'}}",
                 "bg_white": "{{object.bg_white|yesno:'true,false'}}",
                 "ui_lang": "{{LANGUAGE_CODE}}",
+                "style_btn": "{{object.color_primary|default_if_none:'#e25666'}}",
                 // Add other data attributes here as needed
             };
             polisContainer.innerHTML = buildEmbedDiv(dataAttributes);

@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 
+{% block header %}
+{% include "header.html" %}
+{% endblock header %}
+
 {% block content %}
-
-
-
 <iframe src={{ report_url }} width="100%" height="1000px" style="border:none;">
 
 
 </iframe>
-
-
-
 {% endblock content%}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}
+

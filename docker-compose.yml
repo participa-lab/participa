@@ -1,15 +1,27 @@
 version: '3.8'
-services:
 
-  participa:
-    build:
+
+x-app: &default-app
+  build:
       context: .
       dockerfile: Dockerfile
-    restart: always
-    volumes:
+  volumes:
       - static_volume:/participa/staticfiles
       - media_volume:/participa/mediafiles
       - .:/participa
+  restart: always
+
+
+services:
+
+  participa:
+    <<: *default-app
+
+  tailwind:
+    <<: *default-app
+    command: "python manage.py tailwind start"
+    tty: true
+
 
     
 volumes:

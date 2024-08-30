@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import path
 from polis import views
 
 
@@ -34,5 +34,5 @@ urlpatterns = [
         name="participant_logout",
     ),
     path("c", views.HomeView.as_view(), name="home"),
-    path("__reload__/", include("django_browser_reload.urls")),
+    # path("__reload__/", include("django_browser_reload.urls")),
 ]

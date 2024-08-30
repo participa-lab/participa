@@ -52,7 +52,7 @@ class Conversation(models.Model):
     )
 
     border = models.CharField(
-        _("Border"), max_length=200, blank=True, null=True, default="1px solid #ccc"
+        _("Border"), max_length=200, blank=True, null=True, default="0px solid #ccc"
     )
     border_radius = models.CharField(
         max_length=200, blank=True, null=True, default="4px"
@@ -61,7 +61,7 @@ class Conversation(models.Model):
         _("Iframe Padding"), max_length=200, blank=True, null=True, default="4px"
     )
     height = models.CharField(
-        _("Iframe Height"), max_length=200, blank=True, null=True, default="930"
+        _("Iframe Height"), max_length=200, blank=True, null=True, default="400"
     )
     ui_language = models.CharField(
         _("Iframe UI Languaje"), max_length=200, blank=True, null=True

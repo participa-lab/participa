@@ -19,7 +19,6 @@ services:
 
   tailwind:
     <<: *default-app
-    command: "python manage.py tailwind start"
     tty: true
 
 

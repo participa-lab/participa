@@ -5,8 +5,11 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
           <!-- Logo and title -->
-          <div class="flex">
+          <div class="hidden lg:flex">
             <span><a href="{% url 'main_home' %}"><img class="h-12 lg:h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
+          </div>
+          <div class="flex lg:hidden">
+            <span><a href="{% url 'main_home' %}"><img class="h-12 lg:h-16" src="{% static 'R2-DIAPO.svg' %}"/></a></span>
           </div>
 
            <!-- Conversation Title -->

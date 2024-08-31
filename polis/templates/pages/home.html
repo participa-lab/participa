@@ -35,7 +35,7 @@
             <h2 class="text-xl font-bold">{{ conversation.topic }}</h2>
             <span>{{_('Participants')}}: {{ conversation.participant_count }}</span>
           </div>
-          <span class="w-full text-center text-sm p-2">{{_('Abierto desde')}}: {{ conversation.start_date|date:'d/m/Y' }} {{_('hasta')}}: {{ conversation.end_date|date:'d/m/Y' }}</span>
+          <span class="w-full text-center text-sm p-2">{{_('Open from')}}: {{ conversation.start_date|date:'d/m/Y' }} {{_('to')}}: {{ conversation.end_date|date:'d/m/Y' }}</span>
           <p class="h-full">{{ conversation.description }}</p>
           <a class="border border-1 rounded-md m-3 text-center p-2 bg-gray-800 text-white font-bold" style="background-color: {{conversation.color_primary}}" href="{% url 'conversation' conversation.slug %}">{{ _('Go to the conversation') }}</a>
         </div>

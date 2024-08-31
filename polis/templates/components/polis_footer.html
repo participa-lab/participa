@@ -5,6 +5,22 @@
       <div class="py-4 flex items-center justify-between">
         <!-- Footer content -->
         <span><a href="{% url 'main_home' %}"><img class="h-12" src="{% static 'H-DIAPO.svg' %}"/></a></span>
+        <!-- Polis -->
+        {% if not conversation.show_footer %}
+        <div class="flex items-center text-black">
+          <!-- Navigation links -->
+          <div class="flex items-center">
+            <a href="https://pol.is/home" class="h-16">
+              {% include "components/polis_logo.html" %}
+            </a>
+            <div class="flex flex-col text-white px-3 text-sm">
+              {{_("Powered by Polis")}}
+              <a href="#" class="text-white">{{_("What is Polis")}}</a>
+              <a href="#" class="text-white">{{_("Privacy & Data")}}</a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
         <div class="flex items-center text-black">
           <!-- Navigation links -->
           {% include 'components/locale_switcher_form.html' %}

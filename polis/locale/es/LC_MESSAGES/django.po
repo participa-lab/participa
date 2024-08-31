@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-31 12:04-0300\n"
+"POT-Creation-Date: 2024-08-31 16:30-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,38 +227,52 @@ msgstr "Año de nacimiento"
 msgid "Participant"
 msgstr "Paritcipante"
 
-#: polis/models.py:297 polis/templates/pages/home.html:22
+#: polis/models.py:297
 msgid "Participants"
 msgstr "Participantes"
 
-#: polis/templates/components/polis_footer.html:17
+#: polis/templates/components/polis_footer.html:23
 msgid "Powered by Polis"
 msgstr "Desarrollado por Polis"
 
-#: polis/templates/components/polis_footer.html:18
+#: polis/templates/components/polis_footer.html:24
 msgid "What is Polis"
-msgstr "Qué es Polis"
+msgstr "¿Qué es Polis?"
 
-#: polis/templates/components/polis_footer.html:19
+#: polis/templates/components/polis_footer.html:25
+#: polis/templates/components/polis_header.html:38
 msgid "Privacy & Data"
 msgstr "Privacidad y Datos"
 
-#: polis/templates/components/polis_header.html:36
-msgid "About Us"
-msgstr "Sobre Nosotros"
-
 #: polis/templates/components/polis_header.html:37
-#: polis/templates/pages/home.html:14
 #, fuzzy
-#| msgid "Show Visualization"
-msgid "Polarization"
-msgstr "Polarización"
+#| msgid "What is Polis"
+msgid "What is this?"
+msgstr "¿Qué es esto?"
+
+#: polis/templates/components/polis_header.html:39
+#, fuzzy
+#| msgid "Participant"
+msgid "About Participa"
+msgstr "Sobre Participa"
+
+#: polis/templates/components/polis_header.html:40
+#, fuzzy
+#| msgid "Other"
+msgid "Other Polls"
+msgstr "Otros cuestionarios"
 
 #: polis/templates/pages/conversation.html:15
 msgid "See results"
 msgstr "Ver resultados"
 
-#: polis/templates/pages/home.html:15
+#: polis/templates/pages/home.html:10
+#, fuzzy
+#| msgid "Show Visualization"
+msgid "Polarization"
+msgstr "Polarización"
+
+#: polis/templates/pages/home.html:11 polis/templates/pages/login_form.html:11
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa dolor, "
 "aliquet nec diam maximus, aliquet feugiat magna. Nulla id velit luctus augue "
@@ -267,21 +281,13 @@ msgid ""
 "ullamcorper nisl in, dictum purus. "
 msgstr ""
 
-#: polis/templates/pages/home.html:16
+#: polis/templates/pages/home.html:12
 #, fuzzy
 #| msgid "Conversations"
 msgid "Active conversations"
 msgstr "Conversaciones activas"
 
-#: polis/templates/pages/home.html:24
-msgid "Open from"
-msgstr "Abierto desde"
-
-#: polis/templates/pages/home.html:24
-msgid "to"
-msgstr "hasta"
-
-#: polis/templates/pages/home.html:26
+#: polis/templates/pages/home.html:22
 msgid "Go to the conversation"
 msgstr "Ir a la conversación"
 
@@ -289,7 +295,7 @@ msgstr "Ir a la conversación"
 msgid "Login"
 msgstr "Entrar"
 
-#: polis/templates/pages/login_form.html:41
+#: polis/templates/pages/login_form.html:42
 msgid "Anonymus"
 msgstr "Anónimo"
 
@@ -297,21 +303,30 @@ msgstr "Anónimo"
 msgid "Sign Out"
 msgstr "Salir"
 
-#: polis/views.py:188
+#: polis/views.py:184
 msgid "First time? tell us more about you..."
 msgstr "¿Primera vez? cuéntanos más sobre ti..."
 
-#: polis/views.py:189
+#: polis/views.py:185
 msgid "Start"
 msgstr "Comenzar"
 
-#: polis/views.py:208
+#: polis/views.py:204
 msgid "Your profile"
 msgstr "Tú perfil"
 
-#: polis/views.py:209
+#: polis/views.py:205
 msgid "Update"
 msgstr "Actualizar"
+
+#~ msgid "About Us"
+#~ msgstr "Sobre Nosotros"
+
+#~ msgid "Open from"
+#~ msgstr "Abierto desde"
+
+#~ msgid "to"
+#~ msgstr "hasta"
 
 #~ msgid "Guest"
 #~ msgstr "Anónimo"

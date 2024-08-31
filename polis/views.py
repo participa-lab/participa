@@ -117,11 +117,7 @@ class HomeView(ParticipantMixin, ListView):
 
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
-        if not self.participant:
-            return redirect("participant_login")
-
-        response = super().get(request, *args, **kwargs)
-        return self.set_cookie(response)
+        return super().get(request, *args, **kwargs)
 
 
 class ParticipantView(ParticipantMixin, CreateView):
@@ -237,9 +233,10 @@ class PolisConversationView(ParticipantMixin, DetailView):
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
         if not self.participant:
-            return redirect("home")
+            return redirect("participant_login")
 
-        return super().get(request, *args, **kwargs)
+        response = super().get(request, *args, **kwargs)
+        return self.set_cookie(response)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

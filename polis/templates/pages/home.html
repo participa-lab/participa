@@ -7,27 +7,22 @@
 
 {% block content %}
 <div class="max-w-7xl mx-auto">
-  <div class="p-5">
-
-  </div>
-  {% if participant %}
     <h1 class="text-2xl lg:text-3xl font-bold text-center p-3">{{ _('Polarization') }}</h1>
-    <p class="p-5">{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa dolor, aliquet nec diam maximus, aliquet feugiat magna. Nulla id velit luctus augue posuere vulputate ut quis ipsum. Proin molestie nisi vel gravida euismod. Fusce sed odio nec mauris cursus dapibus. Suspendisse eu massa vehicula, ullamcorper nisl in, dictum purus. ') }}</p>
+    <p class="mx-auto max-w-3xl p-5">{{ _('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa dolor, aliquet nec diam maximus, aliquet feugiat magna. Nulla id velit luctus augue posuere vulputate ut quis ipsum. Proin molestie nisi vel gravida euismod. Fusce sed odio nec mauris cursus dapibus. Suspendisse eu massa vehicula, ullamcorper nisl in, dictum purus. ') }}</p>
     <h2 class="text-xl lg:text-2xl font-bold text-center p-3">{{ _('Active conversations') }}</h2>
     <section class="grid grid-cols-1 gap-3 p-5 md:grid-cols-3">
       {% for conversation in object_list %}
-        <div class="card p-5 bg-turquesa border border-1 rounded-md flex flex-col shadow-md text-gray-100" style="background-color: {{conversation.color_secondary}}">
-          <div class="flex justify-between">
-            <h2 class="text-xl font-bold">{{ conversation.topic }}</h2>
-            <span>{{_('Participants')}}: {{ conversation.participant_count }}</span>
+        <div class="card p-2 bg-turquesa border border-1 rounded-md flex flex-col shadow-md text-gray-100" style="background-color: {{conversation.color_secondary}}">
+          <h2 class="p-2 text-xl font-bold text-center lg:text-left">{{ conversation.topic }}</h2>
+          <div class="flex flex-row justify-between text-sm">
+            <span class="text-center p-2"><i class="fa-solid fa-calendar-days p-1"></i> {{ conversation.end_date|date:'d/m/Y' }}</span>
+            <span class="text-center p-2"><i class="fa-solid fa-users p-1"></i> {{ conversation.participant_count }}</span>
           </div>
-          <span class="w-full text-center text-sm p-2">{{_('Open from')}}: {{ conversation.start_date|date:'d/m/Y' }} {{_('to')}}: {{ conversation.end_date|date:'d/m/Y' }}</span>
-          <p class="h-full">{{ conversation.description }}</p>
+          <p class="p-2 flex-grow text-sm">{{ conversation.description }}</p>
           <a class="border border-1 rounded-md m-3 text-center p-2 bg-gray-800 text-white font-bold" style="background-color: {{conversation.color_primary}}" href="{% url 'conversation' conversation.slug %}">{{ _('Go to the conversation') }}</a>
         </div>
       {% endfor %}
     </section>
-  {% endif %}
 </div>
 {% endblock %}
 

@@ -5,6 +5,11 @@
       <div class="py-4 flex items-center justify-between">
         <!-- Footer content -->
         <span><a href="{% url 'main_home' %}"><img class="h-12" src="{% static 'H-DIAPO.svg' %}"/></a></span>
+        <!-- Polis -->
+        <div class="flex items-center text-black">
+          <!-- Navigation links -->
+          <img class="h-6" src="{% static 'polis.svg' %}"/>
+        </div>
         <div class="flex items-center text-black">
           <!-- Navigation links -->
           {% include 'components/locale_switcher_form.html' %}

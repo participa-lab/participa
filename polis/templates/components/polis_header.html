@@ -8,14 +8,12 @@
           <div class="hidden lg:flex">
             <span><a href="{% url 'main_home' %}"><img class="h-12 lg:h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
           </div>
-          <div class="flex lg:hidden">
-            <span><a href="{% url 'main_home' %}"><img class="h-12 lg:h-16" src="{% static 'R2-DIAPO.svg' %}"/></a></span>
-          </div>
+          
 
            <!-- Conversation Title -->
            <div class="flex w-3/4 ">
             {% if not conversation.show_topic %}
-            <h1 class="w-full text-xl lg:text-3xl font-bold p-2 text-center">{{conversation.topic}}</h1>
+            <h1 class="w-full text-xl lg:text-3xl font-bold p-2 text-left lg:text-center">{{conversation.topic}}</h1>
             {% endif %}
           </div>
           
@@ -35,7 +33,7 @@
         </div>
         
         <!-- Dropdown Menu for Mobile -->
-        <div x-show="open" @click.away="open = false" class="lg:hidden bg-naranja">
+        <div x-show="open" @click.away="open = false" class="lg:hidden">
           <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Us') }}</a>
           <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Polarization') }}</a>
           {% include 'components/user_profile.html' %}

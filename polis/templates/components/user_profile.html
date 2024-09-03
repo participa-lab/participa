@@ -12,7 +12,7 @@
 
   
   {% if participant.avatar_url %}
-    <img class="w-12 h-12 p-0 rounded-full ring-2 ring-blue-500 dark:ring-blue-400" src="{{ participant.avatar_url }}" alt="Avatar" />
+    <img class="w-10 h-10 p-0 rounded-full ring-2 ring-blue-500 dark:ring-blue-400" src="{{ participant.avatar_url }}" alt="Avatar" />
   {% else %}
       {% include "components/person.html" %}    
   {% endif %}

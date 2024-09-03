@@ -1,6 +1,6 @@
 from django.urls import path
 from polis import views
-
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path(
@@ -34,5 +34,9 @@ urlpatterns = [
         name="participant_logout",
     ),
     path("c", views.HomeView.as_view(), name="home"),
-    # path("__reload__/", include("django_browser_reload.urls")),
+    path(
+        "about",
+        TemplateView.as_view(template_name="pages/about.html"),
+        name="about_polis",
+    ),
 ]

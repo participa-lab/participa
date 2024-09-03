@@ -33,9 +33,9 @@
         </div>
         
         <!-- Dropdown Menu for Mobile -->
-        <div x-show="open" @click.away="open = false" class="flex flex-col lg:flex-row items-center mx-auto max-w-3xl justify-between">
-          <a href="#" class="block px-4 py-2">{{_("What is this?")}}</a>
-          <a href="#" class="block px-4 py-2">{{_("Privacy & Data")}}</a>
+        <div x-show="open" @click.away="open = false" class="flex flex-col lg:flex-row items-center mx-auto max-w-3xl justify-between my-3">
+          <a href="{% url 'about_polis' %}" class="block px-4 py-2">{{_("What is this?")}}</a>
+          <a href="{% url 'about_polis' %}" class="block px-4 py-2">{{_("Privacy & Data")}}</a>
           <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Participa') }}</a>
           <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Other Polls') }}</a>
         </div>

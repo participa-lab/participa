@@ -233,7 +233,7 @@ msgstr "Participantes"
 
 #: polis/templates/components/polis_footer.html:23
 msgid "Powered by Polis"
-msgstr "Desarrollado por Polis"
+msgstr "Powered by Polis"
 
 #: polis/templates/components/polis_footer.html:24
 msgid "What is Polis"
@@ -260,7 +260,7 @@ msgstr "Sobre Participa"
 #, fuzzy
 #| msgid "Other"
 msgid "Other Polls"
-msgstr "Otros cuestionarios"
+msgstr "Otras conversaciones"
 
 #: polis/templates/pages/conversation.html:15
 msgid "See results"

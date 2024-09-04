@@ -1,0 +1,6 @@
+<div class="fixed inset-0 items-center justify-center z-20 bg-naranja flex-grow" :class="showHelp ? 'flex' : 'hidden'" style="background-color: {{conversation.color_primary}}">
+    {% include "components/about_content.html" %}
+    <button @click="showHelp = !showHelp" class="absolute top-0 right-0 text-white focus:outline-none m-4">
+        <i class="text-xl fa-regular fa-times"></i>
+    </button>
+</div>

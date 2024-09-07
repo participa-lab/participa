@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+{% block header %}
+{% include "header.html" %}
+{% endblock header %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+   {% include "components/about_content.html" %}
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}

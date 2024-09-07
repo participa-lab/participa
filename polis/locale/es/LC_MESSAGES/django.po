@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-31 16:30-0300\n"
+"POT-Creation-Date: 2024-09-07 10:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,36 +231,50 @@ msgstr "Paritcipante"
 msgid "Participants"
 msgstr "Participantes"
 
+#: polis/templates/components/about_content.html:2
+msgid "Why this poll?"
+msgstr "¿Porqué este cuestionario?"
+
+#: polis/templates/components/about_content.html:3
+msgid "What is Polis and how it works?"
+msgstr "¿Qué es Polis y cómo funciona?"
+
+#: polis/templates/components/about_content.html:4
+#, fuzzy
+#| msgid "Privacy & Data"
+msgid "Privacy and Personal Data"
+msgstr "Privacidad y Datos"
+
 #: polis/templates/components/polis_footer.html:23
 msgid "Powered by Polis"
-msgstr "Desarrollado por Polis"
+msgstr "Powered by Polis"
 
 #: polis/templates/components/polis_footer.html:24
 msgid "What is Polis"
 msgstr "¿Qué es Polis?"
 
 #: polis/templates/components/polis_footer.html:25
-#: polis/templates/components/polis_header.html:38
+#: polis/templates/components/polis_header.html:34
 msgid "Privacy & Data"
 msgstr "Privacidad y Datos"
 
-#: polis/templates/components/polis_header.html:37
+#: polis/templates/components/polis_header.html:33
 #, fuzzy
 #| msgid "What is Polis"
 msgid "What is this?"
 msgstr "¿Qué es esto?"
 
-#: polis/templates/components/polis_header.html:39
+#: polis/templates/components/polis_header.html:35
 #, fuzzy
 #| msgid "Participant"
 msgid "About Participa"
 msgstr "Sobre Participa"
 
-#: polis/templates/components/polis_header.html:40
+#: polis/templates/components/polis_header.html:36
 #, fuzzy
 #| msgid "Other"
 msgid "Other Polls"
-msgstr "Otros cuestionarios"
+msgstr "Otras conversaciones"
 
 #: polis/templates/pages/conversation.html:15
 msgid "See results"

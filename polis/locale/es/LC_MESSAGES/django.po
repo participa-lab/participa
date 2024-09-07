@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-07 16:28-0300\n"
+"POT-Creation-Date: 2024-09-07 17:06-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr "Participar de forma anónima"
 
 #: polis/forms.py:10
 msgid "Login to Add Photo"
-msgstr "Ingresar para agregar foto"
+msgstr "Ingresar con redes para agregar foto"
 
 #: polis/forms.py:21 polis/forms.py:24 polis/forms.py:42 polis/forms.py:44
 msgid "This field is required"
@@ -213,7 +213,7 @@ msgstr "Usuario"
 #, fuzzy
 #| msgid "Name"
 msgid "Nick Name"
-msgstr "Nombre"
+msgstr "Apodo"
 
 #: polis/models.py:191
 msgid "Gender"
@@ -310,19 +310,21 @@ msgid "Login"
 msgstr "Entrar"
 
 #: polis/templates/pages/login_form.html:11
-msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa dolor, "
-"aliquet nec diam maximus, aliquet feugiat magna. Nulla id velit luctus augue "
-"posuere vulputate ut quis ipsum. Proin molestie nisi vel gravida euismod. "
-"Fusce sed odio nec mauris cursus dapibus. Suspendisse eu massa vehicula, "
-"ullamcorper nisl in, dictum purus. "
+msgid "Podés participar de forma anónima o usango alguna red social."
 msgstr ""
 
 #: polis/templates/pages/login_form.html:45
 msgid "Anonymus"
 msgstr "Anónimo"
 
-#: polis/templates/pages/participant_form.html:49
+#: polis/templates/pages/participant_form.html:12
+msgid ""
+"Te pedimos como mínimo un apodo y un año de nacimiento como referencia. Si "
+"querés que tu foto aparezca en los resultados deberás hacer login con un red "
+"social."
+msgstr ""
+
+#: polis/templates/pages/participant_form.html:50
 msgid "Sign Out"
 msgstr "Salir"
 

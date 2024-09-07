@@ -8,7 +8,8 @@
 
 {% block content %}
 <section x-data="{ showLogin: false }" class="max-w-md w-full bg-white rounded p-6 space-y-4 flex flex-col items-center mx-auto">
-  <h2 class="text-2xl font-bold">{{title}}</h2>
+  <h2 class="text-xl lg:text-2xl font-bold text-center p-3">{{title}}</h2>
+  <p class="mx-auto max-w-3xl p-5">{{ _('Te pedimos como mínimo un apodo y un año de nacimiento como referencia. Si querés que tu foto aparezca en los resultados deberás hacer login con un red social.') }}</p>
   <form method="post" action="">
     {% csrf_token %}
     <div class="flex flex-col my-5 w-full">

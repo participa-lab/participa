@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-07 10:25-0300\n"
+"POT-Creation-Date: 2024-09-07 16:28-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -284,22 +284,22 @@ msgstr "Ver resultados"
 #, fuzzy
 #| msgid "Show Visualization"
 msgid "Polarization"
-msgstr "Polarización"
+msgstr "Consensos y disensos"
 
-#: polis/templates/pages/home.html:11 polis/templates/pages/login_form.html:11
+#: polis/templates/pages/home.html:11
 msgid ""
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa dolor, "
-"aliquet nec diam maximus, aliquet feugiat magna. Nulla id velit luctus augue "
-"posuere vulputate ut quis ipsum. Proin molestie nisi vel gravida euismod. "
-"Fusce sed odio nec mauris cursus dapibus. Suspendisse eu massa vehicula, "
-"ullamcorper nisl in, dictum purus. "
+"Consensos y disensos busca aportar al debate en distintas temáticas de "
+"discusión pública. Para ello, pone a disposición una herramienta digital que "
+"promueve la discusión ciudadana a partir de diferentes interrogantes y "
+"enunciados. Así, invitamos a reconocer en qué estamos de acuerdo y en qué en "
+"desacuerdo en las conversaciones públicas."
 msgstr ""
 
 #: polis/templates/pages/home.html:12
 #, fuzzy
 #| msgid "Conversations"
 msgid "Active conversations"
-msgstr "Conversaciones activas"
+msgstr "Conversaciones"
 
 #: polis/templates/pages/home.html:22
 msgid "Go to the conversation"
@@ -309,27 +309,36 @@ msgstr "Ir a la conversación"
 msgid "Login"
 msgstr "Entrar"
 
-#: polis/templates/pages/login_form.html:42
+#: polis/templates/pages/login_form.html:11
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis massa dolor, "
+"aliquet nec diam maximus, aliquet feugiat magna. Nulla id velit luctus augue "
+"posuere vulputate ut quis ipsum. Proin molestie nisi vel gravida euismod. "
+"Fusce sed odio nec mauris cursus dapibus. Suspendisse eu massa vehicula, "
+"ullamcorper nisl in, dictum purus. "
+msgstr ""
+
+#: polis/templates/pages/login_form.html:45
 msgid "Anonymus"
 msgstr "Anónimo"
 
-#: polis/templates/pages/participant_form.html:48
+#: polis/templates/pages/participant_form.html:49
 msgid "Sign Out"
 msgstr "Salir"
 
-#: polis/views.py:184
+#: polis/views.py:199
 msgid "First time? tell us more about you..."
 msgstr "¿Primera vez? cuéntanos más sobre ti..."
 
-#: polis/views.py:185
+#: polis/views.py:200
 msgid "Start"
 msgstr "Comenzar"
 
-#: polis/views.py:204
+#: polis/views.py:219
 msgid "Your profile"
 msgstr "Tú perfil"
 
-#: polis/views.py:205
+#: polis/views.py:220
 msgid "Update"
 msgstr "Actualizar"
 

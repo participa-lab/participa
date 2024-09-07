@@ -16,10 +16,10 @@
         <div class="flex items-center text-black my-2">
           <!-- Navigation links -->
           <div class="flex items-center">
-            <a href="https://pol.is/home" class="h-16">
+            <a href="https://pol.is/home" class="h-12 md:h-16">
               {% include "components/polis_logo.html" %}
             </a>
-            <div class="flex flex-col text-white px-3 text-sm">
+            <div class="flex flex-col text-white px-3 text-xs md:text-sm">
               {{_("Powered by Polis")}}
               <a href="{% url 'about_polis' %}" class="text-white">{{_("What is Polis")}}</a>
               <a href="{% url 'about_polis' %}" class="text-white">{{_("Privacy & Data")}}</a>

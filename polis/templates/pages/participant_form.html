@@ -45,7 +45,9 @@
     <!-- Buttons -->
     <div class="flex items-center justify-between">
       <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" value="{{submit_label}}"/>
+      {% if participant %}
       <a class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" href="{% url 'participant_logout' %}">{{ _('Sign Out') }}</a> 
+      {% endif %}
     </div>
     
   </form>

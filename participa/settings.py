@@ -173,7 +173,8 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-# SOCIALACCOUNT_ADAPTER = "polis.adapters.CustomSocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "polis.adapters.CustomSocialAccountAdapter"
+ACCOUNT_ADAPTER = "polis.adapters.CustomAccountAdapter"
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 

@@ -18,6 +18,7 @@
             <div class="p-2">
               <form action="{% provider_login_url provider.id %}" method="post" >
               {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
                 <button class="flex items-center bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4  rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-google"></i>{{provider.name}}</button>
               </form>
             </div>
@@ -25,6 +26,7 @@
             <div class="p-2">
               <form action="{% provider_login_url provider.id %}" method="post" >
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
                 <button class="flex items-center bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-telegram"></i>{{provider.name}}</button>
               </form>
             </div>
@@ -32,6 +34,7 @@
             <div class="p-2">
               <form action="{% provider_login_url provider.id %}" method="post">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
                 <button class="flex items-center bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline " type="submit" ><i class="mr-1 fa-brands fa-twitter"></i>{{provider.name}}</button>
               </form>
             </div>
@@ -39,7 +42,7 @@
           
           {% endfor %}
           <div class="p-2">
-            <a href="{% url 'participant_create' %}" class="flex items-center wwhitespace-nowrap bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "><i class="mr-1 fa-regular fa-user-xmark"></i>{{_('Anonymus')}}</a>
+            <a href="{% url 'participant_create' %}?next={{ request.GET.next }}" class="flex items-center wwhitespace-nowrap bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "><i class="mr-1 fa-regular fa-user-xmark"></i>{{_('Anonymus')}}</a>
           </div>
       {% endif %}
   </div>

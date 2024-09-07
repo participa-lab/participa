@@ -125,6 +125,7 @@ class ParticipantView(ParticipantMixin, CreateView):
     form_class = ParticipantForm
     template_name = "pages/participant_form.html"
     participant_data = {}
+    next = None
 
     def get_initial(self):
         initial = super().get_initial()
@@ -138,14 +139,24 @@ class ParticipantView(ParticipantMixin, CreateView):
         return initial
 
     def get(self, request, *args, **kwargs):
+        self.next = request.GET.get("next")
+        logger.info(f"GET ParticipantView, next: {self.next}")
         self.init_participant(request)
         self.participant_data = request.session.get("participant_form_data")
         if self.participant:
             # Consolidated participant, saving into cookies
-            response = redirect("home")
+            if self.next:
+                response = redirect(self.next)
+            else:
+                response = redirect("home")
             return self.set_cookie(response)
         # else create a new one
         return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.next = request.GET.get("next")
+        logger.info(f"POST ParticipantView, next: {self.next}")
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         if form.data.get("login") == "2":
@@ -168,12 +179,16 @@ class ParticipantView(ParticipantMixin, CreateView):
             # Anonymously created participant
             participant = form.save()
             logger.info(f"Participant created: {participant}")
+            logger.info(f"Next: {self.next}")
             current_user = self.request.user
             if current_user.is_authenticated:
                 participant.assign_user(current_user)
-            response = HttpResponseRedirect(
-                reverse("home")
-            )  # Change to your success URL
+            if self.next:
+                response = redirect(self.next)
+            else:
+                response = HttpResponseRedirect(
+                    reverse("home")
+                )  # Change to your success URL
             response.set_cookie(
                 "participant_id", participant.id, max_age=31536000
             )  # Set a cookie for one year
@@ -233,7 +248,10 @@ class PolisConversationView(ParticipantMixin, DetailView):
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
         if not self.participant:
-            return redirect("participant_login")
+            # Add next parameter to redirect to the conversation after login
+            response = redirect("participant_login")
+            response["Location"] += f"?next={request.path}"
+            return response
 
         response = super().get(request, *args, **kwargs)
         return self.set_cookie(response)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-07 17:06-0300\n"
+"POT-Creation-Date: 2024-09-08 14:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,8 +160,6 @@ msgid "Show help text"
 msgstr "Mostrar texto de ayuda"
 
 #: polis/models.py:90
-#, fuzzy
-#| msgid "Description"
 msgid "Show description"
 msgstr "Descripción"
 
@@ -210,10 +208,8 @@ msgid "user"
 msgstr "Usuario"
 
 #: polis/models.py:188
-#, fuzzy
-#| msgid "Name"
 msgid "Nick Name"
-msgstr "Apodo"
+msgstr "Nombre"
 
 #: polis/models.py:191
 msgid "Gender"
@@ -240,8 +236,6 @@ msgid "What is Polis and how it works?"
 msgstr "¿Qué es Polis y cómo funciona?"
 
 #: polis/templates/components/about_content.html:4
-#, fuzzy
-#| msgid "Privacy & Data"
 msgid "Privacy and Personal Data"
 msgstr "Privacidad y Datos"
 
@@ -259,20 +253,14 @@ msgid "Privacy & Data"
 msgstr "Privacidad y Datos"
 
 #: polis/templates/components/polis_header.html:33
-#, fuzzy
-#| msgid "What is Polis"
 msgid "What is this?"
-msgstr "¿Qué es esto?"
+msgstr "¿Qué es Polis?"
 
 #: polis/templates/components/polis_header.html:35
-#, fuzzy
-#| msgid "Participant"
 msgid "About Participa"
 msgstr "Sobre Participa"
 
 #: polis/templates/components/polis_header.html:36
-#, fuzzy
-#| msgid "Other"
 msgid "Other Polls"
 msgstr "Otras conversaciones"
 
@@ -281,8 +269,6 @@ msgid "See results"
 msgstr "Ver resultados"
 
 #: polis/templates/pages/home.html:10
-#, fuzzy
-#| msgid "Show Visualization"
 msgid "Polarization"
 msgstr "Consensos y disensos"
 
@@ -296,10 +282,8 @@ msgid ""
 msgstr ""
 
 #: polis/templates/pages/home.html:12
-#, fuzzy
-#| msgid "Conversations"
 msgid "Active conversations"
-msgstr "Conversaciones"
+msgstr "Conversaciones activas"
 
 #: polis/templates/pages/home.html:22
 msgid "Go to the conversation"
@@ -355,11 +339,6 @@ msgstr "Actualizar"
 
 #~ msgid "Guest"
 #~ msgstr "Anónimo"
-
-#, fuzzy
-#~| msgid "Participate anonymusly"
-#~ msgid "Participar de Forma Anónima"
-#~ msgstr "Participar de forma anónima"
 
 #~ msgid "Change"
 #~ msgstr "Cambiar"

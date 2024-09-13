@@ -43,12 +43,42 @@ module.exports = {
     ],
     theme: {
         extend: {
-            colors: {
-                naranja: '#e25622',
-                turquesa: '#00808c',
-            }
+          colors: {
+            'primary-2': 'rgba(0, 65, 70, 1)',
+            'primary-1': 'rgba(0, 102, 109, 1)',
+            'primary-regular': 'rgba(0, 139, 147, 1)',
+            'secondary-regular': 'rgba(226, 86, 34, 1)',
+            'secondary-white': 'rgba(255, 255, 255, 1)',
+            'danger-1': 'rgba(169, 0, 0, 1)',
+            'danger-regular': 'rgba(227, 24, 24, 1)',
+            naranja: '#e25622',
+            turquesa: '#00808c',
+          },
+          fontFamily: {
+            'libre-franklin': ['"Libre Franklin"', 'Helvetica', 'sans-serif'],
+          },
+          boxShadow: {
+            'cards-style': '6px 6px 14px 0px rgba(0, 0, 0, 0.05)',
+          },
+          letterSpacing: {
+            '-1.92px': '-1.92px',
+            '2px': '2px',
+          },
+          lineHeight: {
+            '94.4px': '94.4px',
+            '150%': '1.5',
+          },
+          fontSize: {
+            '96px': '96px',
+            '40px': '40px',
+            '24px': '24px',
+            '20px': '20px',
+            '18px': '18px',
+            '16px': '16px',
+            '14px': '14px',
+          },
         },
-    },
+      },
     plugins: [
         /**
          * '@tailwindcss/forms' is the forms plugin that provides a minimal styling

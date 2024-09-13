@@ -5,6 +5,11 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path(
         "c/<str:slug>",
+        views.PolisConversationHomeView.as_view(),
+        name="conversation_home",
+    ),
+    path(
+        "c/p/<str:slug>",
         views.PolisConversationView.as_view(),
         name="conversation",
     ),

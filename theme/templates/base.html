@@ -16,13 +16,13 @@
     
   </head>
 
-  <body class="bg-white text-gray-600">
+  <body class="bg-zinc-100 font-libre-franklin text-cyan-950" >
     <div class="flex flex-col min-h-screen">
       <!-- Navigation -->
       {% block header %}{% endblock header %}
       
       <!-- Main content -->
-      <main class="flex-grow flex-1 overflow-y-auto">
+      <!--<main class="flex-grow flex-1 overflow-y-auto"> -->
         <!-- Messages -->
         <section>
           {% if messages %}
@@ -40,10 +40,11 @@
         </section>
         {% block content %}
         {% endblock %}
-      </main>
+      <!--</main> -->
 
       <!-- Footer -->
-      {% block footer %}{% endblock footer %}
+    {% block footer %}{% endblock footer %}
     </div>
+    
   </body>
 </html>

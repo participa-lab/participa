@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block header %}
+{% include "header.html" %}
+{% endblock header %}
+
+{% block content %}
+<section>
+    <div class="flex flex-col justify-center items-center mt-5 lg:mt-10">
+        <div class="max-w-4xl flex flex-col items-center justify-center w-full">
+            <p class="px-5 lg:p-0 text-sm lg:text-base text-center">{{object.description}}</p>
+            
+        </div>
+        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9">
+            
+        </div>
+         
+    </div>
+    
+</section>
+{% endblock content%}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock footer %}

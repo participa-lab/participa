@@ -262,6 +262,11 @@ class PolisConversationView(ParticipantMixin, DetailView):
         return context
 
 
+class PolisConversationHomeView(ParticipantMixin, DetailView):
+    template_name = "pages/conversation_home.html"
+    model = Conversation
+
+
 class PolisConversationReportView(DetailView):
     template_name = "pages/report.html"
     model = Conversation

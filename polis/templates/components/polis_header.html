@@ -1,6 +1,6 @@
 {% load static %}
 
-<header id="header" class="w-full bg-naranja text-white z-10 transition-all duration-300 sticky top-0" style="background-color: {{conversation.color_primary}}">
+<header id="header" class="w-full bg-turquesa text-white z-10 transition-all duration-300 sticky top-0" style="background-color: {{conversation.color_primary}}">
     <nav x-data="{ open: false, showHelp: false }" class=" text-white border-b border-gray-100">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
@@ -13,7 +13,7 @@
            <!-- Conversation Title -->
            <div class="flex w-2/3 lg:w-4/6 ">
             {% if not conversation.show_topic %}
-            <h1 class="w-full text-xl lg:text-3xl font-bold p-2 text-left lg:text-center">{{conversation.topic}}</h1>
+            <h1 class="w-full text-xl lg:text-3xl font-bold p-2 text-left lg:text-center">{{_('Depolarize:')}} {{conversation.topic}}</h1>
             {% endif %}
           </div>
           

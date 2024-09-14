@@ -176,6 +176,7 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_ADAPTER = "polis.adapters.CustomSocialAccountAdapter"
 ACCOUNT_ADAPTER = "polis.adapters.CustomAccountAdapter"
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
 LOGIN_REDIRECT_URL = "/polis/c"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-08 14:40-0300\n"
+"POT-Creation-Date: 2024-09-14 12:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,15 +54,8 @@ msgstr "Otro"
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: polis/forms.py:9
-msgid "Participate anonymusly"
-msgstr "Participar de forma anónima"
-
-#: polis/forms.py:10
-msgid "Login to Add Photo"
-msgstr "Ingresar con redes para agregar foto"
-
-#: polis/forms.py:21 polis/forms.py:24 polis/forms.py:42 polis/forms.py:44
+#: polis/forms.py:10 polis/forms.py:12 polis/forms.py:14 polis/forms.py:31
+#: polis/forms.py:33 polis/forms.py:35
 msgid "This field is required"
 msgstr "Este campo es requerido"
 
@@ -252,6 +245,10 @@ msgstr "¿Qué es Polis?"
 msgid "Privacy & Data"
 msgstr "Privacidad y Datos"
 
+#: polis/templates/components/polis_header.html:16
+msgid "Depolarize:"
+msgstr "Despolarizar:"
+
 #: polis/templates/components/polis_header.html:33
 msgid "What is this?"
 msgstr "¿Qué es Polis?"
@@ -268,65 +265,87 @@ msgstr "Otras conversaciones"
 msgid "See results"
 msgstr "Ver resultados"
 
-#: polis/templates/pages/home.html:10
-msgid "Polarization"
-msgstr "Consensos y disensos"
+#: polis/templates/pages/conversation_home.html:11
+msgid "Despolarizar el Plebiscito de la Seguridad Social"
+msgstr "Despolarizar el Plebiscito de la Seguridad Social"
+
+#: polis/templates/pages/conversation_home.html:14
+#, fuzzy
+#| msgid "About Participa"
+msgid "¿Qué es Participa?"
+msgstr "Sobre Participa"
 
 #: polis/templates/pages/home.html:11
-msgid ""
-"Consensos y disensos busca aportar al debate en distintas temáticas de "
-"discusión pública. Para ello, pone a disposición una herramienta digital que "
-"promueve la discusión ciudadana a partir de diferentes interrogantes y "
-"enunciados. Así, invitamos a reconocer en qué estamos de acuerdo y en qué en "
-"desacuerdo en las conversaciones públicas."
-msgstr ""
-
-#: polis/templates/pages/home.html:12
-msgid "Active conversations"
-msgstr "Conversaciones activas"
-
-#: polis/templates/pages/home.html:22
-msgid "Go to the conversation"
-msgstr "Ir a la conversación"
+msgid "Depolarize the debate"
+msgstr "Despolarizar el debate"
 
 #: polis/templates/pages/login_form.html:10
 msgid "Login"
 msgstr "Entrar"
 
-#: polis/templates/pages/login_form.html:11
-msgid "Podés participar de forma anónima o usango alguna red social."
-msgstr ""
-
 #: polis/templates/pages/login_form.html:45
 msgid "Anonymus"
 msgstr "Anónimo"
 
-#: polis/templates/pages/participant_form.html:12
+#: polis/templates/pages/participant_form.html:11
+#, fuzzy
+#| msgid "Your profile"
+msgid "Create your profile"
+msgstr "Crear tu perfil"
+
+#: polis/templates/pages/participant_form.html:80
+msgid "Add photo with"
+msgstr "Agregar foto con"
+
+#: polis/templates/pages/participant_form.html:87
+msgid "Create without photo"
+msgstr "Crear sin foto"
+
+#: polis/templates/pages/participant_form.html:89
+msgid "Create"
+msgstr "Crear"
+
+#: polis/templates/pages/participant_update_form.html:10
+#, fuzzy
+#| msgid "Your profile"
+msgid "Update your profile"
+msgstr "Actualizar tu perfil"
+
+#: polis/templates/pages/participant_update_form.html:11
 msgid ""
 "Te pedimos como mínimo un apodo y un año de nacimiento como referencia. Si "
 "querés que tu foto aparezca en los resultados deberás hacer login con un red "
 "social."
 msgstr ""
 
-#: polis/templates/pages/participant_form.html:50
+#: polis/templates/pages/participant_update_form.html:77
+msgid "Update"
+msgstr "Actualizar"
+
+#: polis/templates/pages/participant_update_form.html:79
 msgid "Sign Out"
 msgstr "Salir"
 
-#: polis/views.py:199
-msgid "First time? tell us more about you..."
-msgstr "¿Primera vez? cuéntanos más sobre ti..."
+#~ msgid "Participate anonymusly"
+#~ msgstr "Participar de forma anónima"
 
-#: polis/views.py:200
-msgid "Start"
-msgstr "Comenzar"
+#~ msgid "Login to Add Photo"
+#~ msgstr "Ingresar con redes para agregar foto"
 
-#: polis/views.py:219
-msgid "Your profile"
-msgstr "Tú perfil"
+#~ msgid "Polarization"
+#~ msgstr "Consensos y disensos"
 
-#: polis/views.py:220
-msgid "Update"
-msgstr "Actualizar"
+#~ msgid "Active conversations"
+#~ msgstr "Conversaciones activas"
+
+#~ msgid "Go to the conversation"
+#~ msgstr "Ir a la conversación"
+
+#~ msgid "First time? tell us more about you..."
+#~ msgstr "¿Primera vez? cuéntanos más sobre ti..."
+
+#~ msgid "Start"
+#~ msgstr "Comenzar"
 
 #~ msgid "About Us"
 #~ msgstr "Sobre Nosotros"

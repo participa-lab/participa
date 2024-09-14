@@ -68,14 +68,14 @@ class ParticipantMixin(object):
             )
             if user_participant != cookie_participant:
                 logger.info(
-                    f"[Session: {session_id}] User is authenticated and has a different participant_id cookie"
+                    f"[Session: {session_id}] User is authenticated and has a different participant_id cookie, merging participants"
                 )
-                # If the user is logged in and has a different participant_id cookie, we delete the cookie
-                # response = HttpResponseRedirect(reverse("home"))
-                # response.delete_cookie("participant_id")
-                # return response
-            # else:
+                # merge the two participants
+                user_participant.merge(cookie_participant)
+                cookie_participant.delete()
+
             self.participant = user_participant
+            self.set_cookie(self.participant)
         elif self.authenticated_user and cookie_participant:
             logger.info(
                 f"[Session: {session_id}] User is authenticated and has a participant_id cookie"
@@ -124,10 +124,6 @@ class ParticipantView(ParticipantMixin, CreateView):
         if self.participant and self.participant.user:
             initial["name"] = self.participant.user.get_full_name()
             initial["email"] = self.participant.user.email
-        else:
-            if self.participant_data:
-                initial = self.participant_data
-            initial["login"] = "1"
         return initial
 
     def get(self, request, *args, **kwargs):
@@ -228,7 +224,7 @@ class LoginView(TemplateView):
         return response
 
 
-class LogoutView(TemplateView):
+class LogoutView(ParticipantMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         session_id = self.get_session_id(request)
         response = HttpResponseRedirect(reverse("home"))

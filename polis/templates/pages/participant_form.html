@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% load socialaccount %}
@@ -7,58 +6,91 @@
 {% endblock header %}
 
 {% block content %}
-<section  class="max-w-md w-full bg-white rounded p-6 space-y-4 flex flex-col items-center mx-auto">
-  <h1 class="page-title">{{ _('Create your profile') }}</h1>
-  <div class="mx-auto max-w-3xl p-5">{% include "texts/login_text_1.html" %}</div>
-  <form method="post" action="">
-    {% csrf_token %}
-    <div class="flex flex-col my-5 w-full">
-      {{ form.non_field_errors }}
-
-      <div class="fieldWrapper">{{ form.nick_name.errors }}
-        {{ form.nick_name.label_tag }}
-        {% render_field form.nick_name class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
-
-      <div class="flex justify-between">
-        <div class="fieldWrapper">{{ form.gender.errors }}
-          {{ form.gender.label_tag }}
-          {% render_field form.gender class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
+<div class="max-w-7xl mx-auto flex-col xl:flex-row flex xl:flex-grow xl:flex-1 p-6 xl:px-24 xl:py-16">
+  <section class="w-full xl:w-1/2 flex flex-col justify-center">
+    <h1 class="page-title">{{ _('Create your profile') }}</h1>
+    <div class="mx-auto max-w-3xl py-5">{% include "texts/login_text_1.html" %}</div>
+  </section>
+  <section class="w-full xl:w-1/2  flex flex-col justify-center p-16">       
+    <form method="post" action="">
+      {% csrf_token %}
+      <div class="flex flex-col my-5 w-full">
+        {% if form.non_field_errors %}
+        <div class="text-red-500 bg-red-100 p-2 rounded">
+          {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+        <div class="fieldWrapper">
+          {{ form.nick_name.label_tag }}
+          {% render_field form.nick_name class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
+          {% if form.nick_name.errors %}
+          <div class="text-red-500 bg-red-100 p-2 rounded">
+            {{ form.nick_name.errors }}
+          </div>
+          {% endif %}
+        </div>
   
-        <div class="fieldWrapper">{{ form.year_of_birth.errors }}
-          {{ form.year_of_birth.label_tag }}
-          {% render_field form.year_of_birth class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
+        <div class="flex justify-between gap-2">
+          <div class="fieldWrapper w-1/2">
+            {{ form.gender.label_tag }}
+            {% render_field form.gender class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
+            {% if form.gender.errors %}
+            <div class="text-red-500 bg-red-100 p-2 rounded">
+              {{ form.gender.errors }}
+            </div>
+            {% endif %}
+          </div>
+    
+          <div class="fieldWrapper w-1/2">
+            {{ form.year_of_birth.label_tag }}
+            {% render_field form.year_of_birth class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
+            {% if form.year_of_birth.errors %}
+            <div class="text-red-500 bg-red-100 p-2 rounded">
+              {{ form.year_of_birth.errors }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+       
+        <div class="fieldWrapper">
+          {{ form.territory.label_tag }}
+          {% render_field form.territory class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
+          {% if form.territory.errors %}
+          <div class="text-red-500 bg-red-100 p-2 rounded">
+            {{ form.territory.errors }}
+          </div>
+          {% endif %}
+        </div>
   
+        <div class="fieldWrapper">
+          {{ form.affinity.label_tag }}
+          {% render_field form.affinity class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
+          {% if form.affinity.errors %}
+          <div class="text-red-500 bg-red-100 p-2 rounded">
+            {{ form.affinity.errors }}
+          </div>
+          {% endif %}
+        </div>
+  
+        {% get_providers as socialaccount_providers %}
+        
+       
+      <!-- Buttons -->
+      {% if socialaccount_providers %}
+      <h3 class="text-lg font-bold text-center mt-3">{{_('Add photo with')}}</h3>
+      <div class="flex items-center justify-between">
+            {% for provider in socialaccount_providers %}
+            <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" name="login"  value="{{provider.name}}"/>
+            {% endfor %}
       </div>
-     
-      <div class="fieldWrapper">{{ form.territory.errors }}
-        {{ form.territory.label_tag }}
-        {% render_field form.territory class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
-
-      <div class="fieldWrapper">{{ form.affinity.errors }}
-        {{ form.affinity.label_tag }}
-        {% render_field form.affinity class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}</div>
-
-      {% get_providers as socialaccount_providers %}
-      
-     
-    <!-- Buttons -->
-    {% if socialaccount_providers %}
-    <h3 class="text-lg font-bold text-center mt-3">{{_('Add photo with')}}</h3>
-    <div class="flex items-center justify-between">
-          {% for provider in socialaccount_providers %}
-          <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" name="login"  value="{{provider.name}}"/>
-          {% endfor %}
-    </div>
-    {% endif %}
-    <h3 class="text-lg font-bold text-center mt-3">{{_('Create without photo')}}</h3>
-    <div class="flex items-center justify-between">
-      <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" name="login" value="{{_('Create')}}"/>
-    </div>
-    
-    
-  </form>
-
-</section>
+      {% endif %}
+      <h3 class="text-lg font-bold text-center mt-3">{{_('Create without photo')}}</h3>
+      <div class="flex items-center justify-between">
+        <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" name="login" value="{{_('Create')}}"/>
+      </div>
+    </form>  
+  </section>
+</div>
 {% endblock %}
 
 

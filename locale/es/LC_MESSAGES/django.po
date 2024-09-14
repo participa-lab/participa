@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-31 11:16-0300\n"
+"POT-Creation-Date: 2024-09-14 12:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2077,7 +2077,11 @@ msgstr ""
 msgid "About Us"
 msgstr "Sobre Nosotros"
 
-#: theme/templates/header.html:22 theme/templates/header.html:34
+#: theme/templates/header.html:22
+msgid "Depolarize the debate"
+msgstr ""
+
+#: theme/templates/header.html:34
 msgid "Polarization"
 msgstr "Polarización"
 

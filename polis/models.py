@@ -291,6 +291,14 @@ class Participant(models.Model):
 
         return self
 
+    def merge(self, participant):
+        self.nick_name = participant.nick_name
+        self.gender = participant.gender
+        self.year_of_birth = participant.year_of_birth
+        self.territory = participant.territory
+        self.affinity = participant.affinity
+        self.save()
+
     class Meta:
         ordering = ["id", "affinity"]
         verbose_name = _("Participant")

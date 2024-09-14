@@ -180,7 +180,7 @@ class ParticipantView(ParticipantMixin, CreateView):
         for provider in providers:
             if provider.name == name_login:
                 logger.info(f"Provider: {provider}")
-                redirect_url = reverse("socialaccount_login", args=[provider.id])
+                redirect_url = reverse("provider_login_url", args=[provider.id])
                 # add next parameter
                 redirect_url += f"?next={self.next}"
                 response = redirect(redirect_url)

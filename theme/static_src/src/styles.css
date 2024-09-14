@@ -15,6 +15,9 @@ html, body {
   @apply text-teal-700 text-4xl font-semibold font-libre-franklin;
 }
 
+
+
+
 .button-primary {
   @apply h-11 px-6 py-3 bg-orange-600 rounded-3xl justify-center items-center gap-2.5 inline-flex text-white;
 }

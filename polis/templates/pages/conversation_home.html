@@ -1,25 +1,33 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
 {% block header %}
 {% include "header.html" %}
 {% endblock header %}
 
 {% block content %}
-<section>
-    <div class="flex flex-col justify-center items-center mt-5 lg:mt-10">
-        <div class="max-w-4xl flex flex-col items-center justify-center w-full">
-            <p class="px-5 lg:p-0 text-sm lg:text-base text-center">{{object.description}}</p>
-            
-        </div>
-        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9">
-            
-        </div>
-         
+<div class="max-w-7xl mx-auto flex-col xl:flex-row flex xl:flex-grow xl:flex-1 p-6 xl:px-24 xl:py-16">
+  <section class="w-full xl:w-1/2 flex flex-col justify-center">
+    <h1 class="page-title">{{ _('Despolarizar el Plebiscito de la Seguridad Social') }}</h1>
+    <div class="leading-normal mt-5 max-w-lg">
+    {% include "texts/depolarize_ss_text_1.html" %}
+    <h2 class="page-title !text-base mt-10">{{ _('¿Qué es Participa?') }}</h2>
+    <span class="text-xs">{% include "texts/participa_text_1.html" %}</span>
     </div>
+  </section>
+  <section class="w-full xl:w-1/2  flex flex-col justify-center p-10">
     
-</section>
-{% endblock content%}
+                
+    <div class="h-11 px-6 py-3 bg-orange-600 rounded-3xl justify-center items-center gap-2.5 inline-flex">
+        <a href="{% url 'conversation' conversation.slug %}" class="text-right text-zinc-100 text-lg font-medium">Participar <span class="text-center p-2"><i class="fa-solid fa-users p-1"></i> {{ conversation.participant_count }}</span></a>
+    </div>
+    <div class="p-2 bg-teal-600 rounded-3xl justify-center items-center gap-2.5 flex">
+        <div class="text-zinc-100 text-sm font-medium"><i class="fa-solid fa-calendar-days p-1"></i>Hasta: {{ conversation.end_date|date:'d/m/Y' }}</div>
+    </div>
+                  
+             
+  </section>
+</div>
+{% endblock %}
 
-{% block footer %}
-{% include "footer.html" %}
-{% endblock footer %}
+

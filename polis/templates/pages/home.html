@@ -28,7 +28,7 @@
               <div class="Content w-96 justify-between items-center inline-flex">
                 
                 <div class="h-11 px-6 py-3 bg-orange-600 rounded-3xl justify-center items-center gap-2.5 inline-flex">
-                  <div class="text-right text-zinc-100 text-lg font-medium">Participar <span class="text-center p-2"><i class="fa-solid fa-users p-1"></i> {{ conversation.participant_count }}</span></div>
+                  <a href="{% url 'conversation_home' conversation.slug %}" class="text-right text-zinc-100 text-lg font-medium">Participar <span class="text-center p-2"><i class="fa-solid fa-users p-1"></i> {{ conversation.participant_count }}</span></a>
                 </div>
                 <div class="p-2 bg-teal-600 rounded-3xl justify-center items-center gap-2.5 flex">
                     <div class="text-zinc-100 text-sm font-medium font-['Libre Franklin']"><i class="fa-solid fa-calendar-days p-1"></i>Hasta: {{ conversation.end_date|date:'d/m/Y' }}</div>

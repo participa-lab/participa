@@ -11,11 +11,11 @@ from django.views.generic import (
     TemplateView,
     UpdateView,
 )
-from django.utils.translation import gettext_lazy as _
 
 
 from .forms import ParticipantForm, ParticipantUpdateForm
 from .models import Conversation, Participant, Affinity, Territory
+from allauth.socialaccount.adapter import get_adapter
 
 logger = logging.getLogger(__name__)
 
@@ -158,53 +158,45 @@ class ParticipantView(ParticipantMixin, CreateView):
         logger.info(f"POST ParticipantView, next: {self.next}")
         return super().post(request, *args, **kwargs)
 
+    def form_invalid(self, form):
+        logger.info(f"ParticipantView form_invalid: {form.errors}")
+        return super().form_invalid(form)
+
     def form_valid(self, form):
-        if form.data.get("login") == "2":
-            response = HttpResponseRedirect(reverse("participant_login"))
-            # Save clened data in session
-            data = form.cleaned_data.copy()
-            data["affinity"] = (
-                form.cleaned_data["affinity"].name
-                if form.cleaned_data["affinity"]
-                else None
-            )
-            data["territory"] = (
-                form.cleaned_data["territory"].name
-                if form.cleaned_data["territory"]
-                else None
-            )
-            self.request.session["participant_form_data"] = data
-            logger.info(f"Participant form data saved in session: {data}")
-        else:
-            # Anonymously created participant
-            participant = form.save()
-            logger.info(f"Participant created: {participant}")
-            logger.info(f"Next: {self.next}")
-            current_user = self.request.user
-            if current_user.is_authenticated:
-                participant.assign_user(current_user)
-            if self.next:
-                response = redirect(self.next)
-            else:
-                response = HttpResponseRedirect(
-                    reverse("home")
-                )  # Change to your success URL
-            response.set_cookie(
-                "participant_id", participant.id, max_age=31536000
-            )  # Set a cookie for one year
+        logger.info(f"ParticipantView form_valid: {form.data}")
+        self.participant = form.save()
+        logger.info(f"ParticipantView created: {self.participant}, next: {self.next}")
+        response = HttpResponseRedirect(reverse("home"))  # Change to your success URL
+        if self.next:
+            response = redirect(self.next)
+
+        # get name login
+        name_login = form.data.get("login")
+        # name_login has the name of the provider
+        # find the provider in the registry
+        adapter = get_adapter()
+        providers = adapter.list_providers(self.request)
+
+        for provider in providers:
+            if provider.name == name_login:
+                logger.info(f"Provider: {provider}")
+                redirect_url = reverse("socialaccount_login", args=[provider.id])
+                # add next parameter
+                redirect_url += f"?next={self.next}"
+                response = redirect(redirect_url)
+
+        self.set_cookie(response)  # Set a cookie for one year
         return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = _("First time? tell us more about you...")
-        context["submit_label"] = _("Start")
         return context
 
 
 class PerticipantUpdateView(UpdateView):
     model = Participant
     form_class = ParticipantUpdateForm
-    template_name = "pages/participant_form.html"
+    template_name = "pages/participant_update_form.html"
 
     def get_success_url(self):
         return reverse("home")
@@ -216,8 +208,6 @@ class PerticipantUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = _("Your profile")
-        context["submit_label"] = _("Update")
         return context
 
 
@@ -249,7 +239,7 @@ class PolisConversationView(ParticipantMixin, DetailView):
         self.init_participant(request)
         if not self.participant:
             # Add next parameter to redirect to the conversation after login
-            response = redirect("participant_login")
+            response = redirect("participant_create")
             response["Location"] += f"?next={request.path}"
             return response
 

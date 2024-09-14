@@ -12,9 +12,8 @@ from django.views.generic import (
     UpdateView,
 )
 
-
 from .forms import ParticipantForm, ParticipantUpdateForm
-from .models import Conversation, Participant, Affinity, Territory
+from .models import Conversation, Participant
 from allauth.socialaccount.adapter import get_adapter
 
 logger = logging.getLogger(__name__)
@@ -23,6 +22,11 @@ logger = logging.getLogger(__name__)
 class ParticipantMixin(object):
     participant = None
     authenticated_user = None
+
+    def get_session_id(self, request):
+        if not request.session.session_key:
+            request.session.create()
+        return request.session.session_key
 
     def get_from_cookies(self, request):
         if "participant_id" in request.COOKIES:
@@ -48,20 +52,23 @@ class ParticipantMixin(object):
         return None
 
     def init_participant(self, request):
+        session_id = self.get_session_id(request)
         self.authenticated_user = (
             request.user if request.user and request.user.is_authenticated else None
         )
         user_participant = self.get_from_user(self.authenticated_user)
         cookie_participant = self.get_from_cookies(request)
         logger.info(
-            f"authenticated_user: {self.authenticated_user}, user_participant: {user_participant}, cookie_participant: {cookie_participant}"
+            f"[Session: {session_id}] authenticated_user: {self.authenticated_user}, user_participant: {user_participant}, cookie_participant: {cookie_participant}"
         )
 
         if self.authenticated_user and user_participant and cookie_participant:
-            logger.info("User is authenticated and has a participant_id cookie")
+            logger.info(
+                f"[Session: {session_id}] User is authenticated and has a participant_id cookie"
+            )
             if user_participant != cookie_participant:
                 logger.info(
-                    "User is authenticated and has a different participant_id cookie"
+                    f"[Session: {session_id}] User is authenticated and has a different participant_id cookie"
                 )
                 # If the user is logged in and has a different participant_id cookie, we delete the cookie
                 # response = HttpResponseRedirect(reverse("home"))
@@ -70,39 +77,25 @@ class ParticipantMixin(object):
             # else:
             self.participant = user_participant
         elif self.authenticated_user and cookie_participant:
-            logger.info("User is authenticated and has a participant_id cookie")
+            logger.info(
+                f"[Session: {session_id}] User is authenticated and has a participant_id cookie"
+            )
             # The participant started the conversation without being logged in and now logs in
             self.participant = cookie_participant
             self.participant.assign_user(self.authenticated_user)
         elif self.authenticated_user and user_participant:
-            logger.info("User is authenticated and has a participant")
+            logger.info(
+                f"[Session: {session_id}] User is authenticated and has a participant"
+            )
             self.participant = user_participant
-        elif self.authenticated_user and not user_participant:
-            logger.info("User is authenticated and has no participant")
-            participant_data = request.session.get("participant_form_data")
-            if participant_data:
-                affinity_name = participant_data.pop("affinity")
-                affinity = (
-                    Affinity.objects.filter(name=affinity_name).first()
-                    if affinity_name
-                    else None
-                )
-                territory_name = participant_data.pop("territory")
-                territory = (
-                    Territory.objects.filter(name=territory_name).first()
-                    if territory_name
-                    else None
-                )
-                participant_data.update({"affinity": affinity, "territory": territory})
-                del participant_data["login"]
-                self.participant = Participant.objects.create(**participant_data)
-                self.participant.assign_user(self.authenticated_user)
         elif cookie_participant:
-            logger.info("User is not authenticated and has a participant_id cookie")
+            logger.info(
+                f"[Session: {session_id}] User is not authenticated and has a participant_id cookie"
+            )
             self.participant = cookie_participant
 
         if self.participant:
-            logger.info(f"User {self.participant} wins")
+            logger.info(f"[Session: {session_id}] User {self.participant} wins")
             self.participant.refresh_xid_metadata()
 
     def get_context_data(self, **kwargs):
@@ -124,7 +117,6 @@ class ParticipantView(ParticipantMixin, CreateView):
     model = Participant
     form_class = ParticipantForm
     template_name = "pages/participant_form.html"
-    participant_data = {}
     next = None
 
     def get_initial(self):
@@ -139,10 +131,10 @@ class ParticipantView(ParticipantMixin, CreateView):
         return initial
 
     def get(self, request, *args, **kwargs):
+        session_id = self.get_session_id(request)
         self.next = request.GET.get("next")
-        logger.info(f"GET ParticipantView, next: {self.next}")
+        logger.info(f"[Session: {session_id}] GET ParticipantView, next: {self.next}")
         self.init_participant(request)
-        self.participant_data = request.session.get("participant_form_data")
         if self.participant:
             # Consolidated participant, saving into cookies
             if self.next:
@@ -154,18 +146,27 @@ class ParticipantView(ParticipantMixin, CreateView):
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        session_id = self.get_session_id(request)
         self.next = request.GET.get("next")
-        logger.info(f"POST ParticipantView, next: {self.next}")
+        logger.info(f"[Session: {session_id}] POST ParticipantView, next: {self.next}")
         return super().post(request, *args, **kwargs)
 
     def form_invalid(self, form):
-        logger.info(f"ParticipantView form_invalid: {form.errors}")
+        session_id = self.get_session_id(self.request)
+        logger.info(
+            f"[Session: {session_id}] POST ParticipantView form_invalid: {form.errors}"
+        )
         return super().form_invalid(form)
 
     def form_valid(self, form):
-        logger.info(f"ParticipantView form_valid: {form.data}")
+        session_id = self.get_session_id(self.request)
+        logger.info(
+            f"[Session: {session_id}] POST ParticipantView form_valid: {form.data}"
+        )
         self.participant = form.save()
-        logger.info(f"ParticipantView created: {self.participant}, next: {self.next}")
+        logger.info(
+            f"[Session: {session_id}] POST ParticipantView created: {self.participant}, next: {self.next}"
+        )
         response = HttpResponseRedirect(reverse("home"))  # Change to your success URL
         if self.next:
             response = redirect(self.next)
@@ -179,14 +180,9 @@ class ParticipantView(ParticipantMixin, CreateView):
 
         for provider in providers:
             if provider.name == name_login:
-                logger.info(f"Provider: {provider}")
-                # allauth provider login url not found
-
+                logger.info(f"[Session: {session_id}] Provider: {provider}")
                 redirect_url = provider.get_login_url(self.request, next=self.next)
                 response = redirect(redirect_url)
-                # add next parameter
-                # redirect_url += f"?next={self.next}"
-                # response = redirect(redirect_url)
 
         self.set_cookie(response)  # Set a cookie for one year
         return response
@@ -196,7 +192,7 @@ class ParticipantView(ParticipantMixin, CreateView):
         return context
 
 
-class PerticipantUpdateView(UpdateView):
+class ParticipantUpdateView(UpdateView):
     model = Participant
     form_class = ParticipantUpdateForm
     template_name = "pages/participant_update_form.html"
@@ -205,8 +201,10 @@ class PerticipantUpdateView(UpdateView):
         return reverse("home")
 
     def form_valid(self, form):
+        session_id = self.get_session_id(self.request)
         form.save()
         self.get_object().refresh_xid_metadata()
+        logger.info(f"[Session: {session_id}] Participant updated: {self.get_object()}")
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -221,15 +219,24 @@ class LoginView(TemplateView):
         return reverse("polis::home")
 
     def post(self, request, *args, **kwargs):
+        session_id = self.get_session_id(request)
         response = HttpResponseRedirect(self.get_success_url())
         response.set_cookie("participant_id", self.participant.id, max_age=31536000)
+        logger.info(
+            f"[Session: {session_id}] User logged in, participant_id set in cookie"
+        )
+        return response
 
 
 class LogoutView(TemplateView):
     def get(self, request, *args, **kwargs):
+        session_id = self.get_session_id(request)
         response = HttpResponseRedirect(reverse("home"))
         response.delete_cookie("participant_id")
         logout(request)
+        logger.info(
+            f"[Session: {session_id}] User logged out, participant_id cookie deleted"
+        )
         return response
 
 
@@ -239,11 +246,15 @@ class PolisConversationView(ParticipantMixin, DetailView):
     participant = None
 
     def get(self, request, *args, **kwargs):
+        session_id = self.get_session_id(request)
         self.init_participant(request)
         if not self.participant:
             # Add next parameter to redirect to the conversation after login
             response = redirect("participant_create")
             response["Location"] += f"?next={request.path}"
+            logger.info(
+                f"[Session: {session_id}] No participant found, redirecting to participant_create"
+            )
             return response
 
         response = super().get(request, *args, **kwargs)

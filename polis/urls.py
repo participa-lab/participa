@@ -25,7 +25,7 @@ urlpatterns = [
     ),
     path(
         "p/update/<uuid:pk>",
-        views.PerticipantUpdateView.as_view(),
+        views.ParticipantUpdateView.as_view(),
         name="participant_update",
     ),
     path(

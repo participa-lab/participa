@@ -58,9 +58,6 @@ class ParticipantMixin(object):
         )
         user_participant = self.get_from_user(self.authenticated_user)
         cookie_participant = self.get_from_cookies(request)
-        logger.info(
-            f"[Session: {session_id}] authenticated_user: {self.authenticated_user}, user_participant: {user_participant}, cookie_participant: {cookie_participant}"
-        )
 
         if self.authenticated_user and user_participant and cookie_participant:
             logger.info(
@@ -75,7 +72,6 @@ class ParticipantMixin(object):
                 cookie_participant.delete()
 
             self.participant = user_participant
-            self.set_cookie(self.participant)
         elif self.authenticated_user and cookie_participant:
             logger.info(
                 f"[Session: {session_id}] User is authenticated and has a participant_id cookie"
@@ -156,9 +152,6 @@ class ParticipantView(ParticipantMixin, CreateView):
 
     def form_valid(self, form):
         session_id = self.get_session_id(self.request)
-        logger.info(
-            f"[Session: {session_id}] POST ParticipantView form_valid: {form.data}"
-        )
         self.participant = form.save()
         logger.info(
             f"[Session: {session_id}] POST ParticipantView created: {self.participant}, next: {self.next}"

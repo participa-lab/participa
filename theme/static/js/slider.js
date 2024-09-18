@@ -1,9 +1,11 @@
+//import Splide from "@splidejs/splide";
 
-const slider = () => {
-  document.addEventListener( 'DOMContentLoaded', function() {
-    var splide = new Splide( '.splide' );
-    splide.mount();
-  } );
-};
+//const slider = () => {
+ // var elms = document.getElementsByClassName("splide");
 
-export { slider };
+//  for (var i = 0; i < elms.length; i++) {
+ //   new Splide(elms[i]).mount();
+//  }
+////};
+
+//export { slider };

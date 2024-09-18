@@ -12,12 +12,19 @@
       rel="stylesheet"
     />
     {% tailwind_css %}
+    <!-- Splide CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <!-- Splide JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script>
+        document.addEventListener( 'DOMContentLoaded', function () {
+            new Splide( '.splide' ).mount();
+        } );
+    </script>
     <script type="module" src="{% static 'js/menu.js' %}"></script>
     <script type="module" src="{% static 'js/slider.js' %}"></script>
     <script type="module" src="{% static 'js/tabs.js' %}"></script>
     <script type="module" src="{% static 'js/main.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
   </head>
   <body class="bg-[#f0f0f0]">
     <header

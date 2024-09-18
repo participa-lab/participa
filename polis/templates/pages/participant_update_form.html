@@ -23,8 +23,7 @@
           {{_('Update your profile')}}
           </h3>
           <div class="space-y-4 text-teal-600">
-            <p>Te preguntamos tu edad, género y el territorio de dónde sos para entender como se diferencian los acuerdos, desacuerdos u opiniones según esas características.</p>
-          <p>Podés participar con un apodo, o si querés que tu foto aparezca en el mapa de opiniones podés loguearte con redes sociales, mostrandole a los demás dónde te ubicás vos en esta conversación.</p>
+            {% include "texts/login_text_1.html" %}
           </div>
          
         </div>
@@ -81,10 +80,11 @@
         
           
             <div class="flex items-center justify-around">
-              <input  class="parti-btn" type="submit" name="login" value="{{_('Update')}}"/>
               {% if participant %}
-              <a class="parti-btn" href="{% url 'participant_logout' %}">{{ _('Sign Out') }}</a> 
+              <a class="parti-btn parti-btn--secondary" href="{% url 'participant_logout' %}">{{ _('Sign Out') }}</a> 
               {% endif %}
+              <input  class="parti-btn" type="submit" name="login" value="{{_('Update')}}"/>
+              
             </div>
           </form>  
         </div>

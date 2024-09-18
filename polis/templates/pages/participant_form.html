@@ -23,8 +23,7 @@
           {{ _('Create your profile') }}
           </h3>
           <div class="space-y-4 text-teal-600">
-            <p>Te preguntamos tu edad, género y el territorio de dónde sos para entender como se diferencian los acuerdos, desacuerdos u opiniones según esas características.</p>
-          <p>Podés participar con un apodo, o si querés que tu foto aparezca en el mapa de opiniones podés loguearte con redes sociales, mostrandole a los demás dónde te ubicás vos en esta conversación.</p>
+            {% include "texts/login_text_1.html" %}
           </div>
          
         </div>
@@ -84,16 +83,16 @@
              
             <!-- Buttons -->
             {% if socialaccount_providers %}
-            <h3 class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl">{{_('Add photo with')}}</h3>
+            <h3 class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-lg text-center">{{_('Participate with photo of')}}</h3>
             <div class="flex items-center justify-around">
                   {% for provider in socialaccount_providers %}
-                  <input  class="parti-btn" type="submit" name="login"  value="{{provider.name}}"/>
+                  <input  class="parti-btn parti-btn--secondary" type="submit" name="login"  value="{{provider.name}}"/>
                   {% endfor %}
             </div>
             {% endif %}
-            <h3 class="my-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl">{{_('Create without photo')}}</h3>
+            <hr class="my-4 border-teal-300" />
             <div class="flex items-center justify-around">
-              <input  class="parti-btn" type="submit" name="login" value="{{_('Create')}}"/>
+              <input  class="parti-btn" type="submit" name="login" value="{{_('Participate without photo')}}"/>
             </div>
           </form>  
         </div>

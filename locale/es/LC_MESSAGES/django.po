@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-14 12:19-0300\n"
+"POT-Creation-Date: 2024-09-18 19:18-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2073,18 +2073,6 @@ msgstr ""
 msgid "Menu:"
 msgstr ""
 
-#: theme/templates/header.html:21 theme/templates/header.html:33
-msgid "About Us"
-msgstr "Sobre Nosotros"
-
-#: theme/templates/header.html:22
-msgid "Depolarize the debate"
-msgstr ""
-
-#: theme/templates/header.html:34
-msgid "Polarization"
-msgstr "Polarización"
-
 #: theme/templates/mfa/authenticate.html:9 theme/templates/mfa/index.html:5
 #: theme/templates/mfa/index.html:9
 msgid "Two-Factor Authentication"
@@ -2390,3 +2378,9 @@ msgstr ""
 #: theme/templates/usersessions/usersession_list.html:60
 msgid "Sign Out Other Sessions"
 msgstr ""
+
+#~ msgid "About Us"
+#~ msgstr "Sobre Nosotros"
+
+#~ msgid "Polarization"
+#~ msgstr "Polarización"

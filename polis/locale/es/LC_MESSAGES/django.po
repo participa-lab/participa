@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-14 12:19-0300\n"
+"POT-Creation-Date: 2024-09-18 19:18-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,72 +212,51 @@ msgstr "Género"
 msgid "Year of Birth"
 msgstr "Año de nacimiento"
 
-#: polis/models.py:296
+#: polis/models.py:304
 msgid "Participant"
 msgstr "Paritcipante"
 
-#: polis/models.py:297
+#: polis/models.py:305
 msgid "Participants"
 msgstr "Participantes"
 
 #: polis/templates/components/about_content.html:2
-msgid "Why this poll?"
-msgstr "¿Porqué este cuestionario?"
-
-#: polis/templates/components/about_content.html:3
-msgid "What is Polis and how it works?"
-msgstr "¿Qué es Polis y cómo funciona?"
+#, fuzzy
+#| msgid "About Participa"
+msgid "¿Qué es participa?"
+msgstr "Sobre Participa"
 
 #: polis/templates/components/about_content.html:4
-msgid "Privacy and Personal Data"
+#, fuzzy
+#| msgid "Depolarize the debate"
+msgid "¿Por qué Despolarizar el Debate?"
+msgstr "Despolarizar el debate"
+
+#: polis/templates/components/about_content.html:6
+#, fuzzy
+#| msgid "About Participa"
+msgid "¿Qué es Polis y cómo funciona?"
+msgstr "Sobre Participa"
+
+#: polis/templates/components/about_content.html:8
+#, fuzzy
+#| msgid "Privacy and Personal Data"
+msgid "Privacidad y Datos personales"
 msgstr "Privacidad y Datos"
 
-#: polis/templates/components/polis_footer.html:23
+#: polis/templates/components/polis_footer.html:37
 msgid "Powered by Polis"
 msgstr "Powered by Polis"
 
-#: polis/templates/components/polis_footer.html:24
-msgid "What is Polis"
-msgstr "¿Qué es Polis?"
-
-#: polis/templates/components/polis_footer.html:25
-#: polis/templates/components/polis_header.html:34
-msgid "Privacy & Data"
-msgstr "Privacidad y Datos"
-
-#: polis/templates/components/polis_header.html:16
-msgid "Depolarize:"
-msgstr "Despolarizar:"
-
-#: polis/templates/components/polis_header.html:33
-msgid "What is this?"
-msgstr "¿Qué es Polis?"
-
-#: polis/templates/components/polis_header.html:35
-msgid "About Participa"
-msgstr "Sobre Participa"
-
-#: polis/templates/components/polis_header.html:36
-msgid "Other Polls"
-msgstr "Otras conversaciones"
-
-#: polis/templates/pages/conversation.html:15
-msgid "See results"
-msgstr "Ver resultados"
-
-#: polis/templates/pages/conversation_home.html:11
+#: polis/templates/pages/conversation_home.html:96
 msgid "Despolarizar el Plebiscito de la Seguridad Social"
 msgstr "Despolarizar el Plebiscito de la Seguridad Social"
 
-#: polis/templates/pages/conversation_home.html:14
+#: polis/templates/pages/conversation_home.html:99
 #, fuzzy
 #| msgid "About Participa"
 msgid "¿Qué es Participa?"
 msgstr "Sobre Participa"
-
-#: polis/templates/pages/home.html:11
-msgid "Depolarize the debate"
-msgstr "Despolarizar el debate"
 
 #: polis/templates/pages/login_form.html:10
 msgid "Login"
@@ -287,44 +266,70 @@ msgstr "Entrar"
 msgid "Anonymus"
 msgstr "Anónimo"
 
-#: polis/templates/pages/participant_form.html:11
+#: polis/templates/pages/participant_form.html:23
 #, fuzzy
 #| msgid "Your profile"
 msgid "Create your profile"
 msgstr "Crear tu perfil"
 
-#: polis/templates/pages/participant_form.html:80
-msgid "Add photo with"
-msgstr "Agregar foto con"
-
-#: polis/templates/pages/participant_form.html:87
-msgid "Create without photo"
+#: polis/templates/pages/participant_form.html:86
+#, fuzzy
+#| msgid "Create without photo"
+msgid "Participate with photo of"
 msgstr "Crear sin foto"
 
-#: polis/templates/pages/participant_form.html:89
-msgid "Create"
-msgstr "Crear"
+#: polis/templates/pages/participant_form.html:95
+#, fuzzy
+#| msgid "Create without photo"
+msgid "Participate without photo"
+msgstr "Crear sin foto"
 
-#: polis/templates/pages/participant_update_form.html:10
+#: polis/templates/pages/participant_update_form.html:23
 #, fuzzy
 #| msgid "Your profile"
 msgid "Update your profile"
 msgstr "Actualizar tu perfil"
 
-#: polis/templates/pages/participant_update_form.html:11
-msgid ""
-"Te pedimos como mínimo un apodo y un año de nacimiento como referencia. Si "
-"querés que tu foto aparezca en los resultados deberás hacer login con un red "
-"social."
-msgstr ""
+#: polis/templates/pages/participant_update_form.html:84
+msgid "Sign Out"
+msgstr "Salir"
 
-#: polis/templates/pages/participant_update_form.html:77
+#: polis/templates/pages/participant_update_form.html:86
 msgid "Update"
 msgstr "Actualizar"
 
-#: polis/templates/pages/participant_update_form.html:79
-msgid "Sign Out"
-msgstr "Salir"
+#~ msgid "Why this poll?"
+#~ msgstr "¿Porqué este cuestionario?"
+
+#~ msgid "What is Polis and how it works?"
+#~ msgstr "¿Qué es Polis y cómo funciona?"
+
+#~ msgid "What is Polis"
+#~ msgstr "¿Qué es Polis?"
+
+#~ msgid "Privacy & Data"
+#~ msgstr "Privacidad y Datos"
+
+#~ msgid "Depolarize:"
+#~ msgstr "Despolarizar:"
+
+#~ msgid "What is this?"
+#~ msgstr "¿Qué es Polis?"
+
+#~ msgid "About Participa"
+#~ msgstr "Sobre Participa"
+
+#~ msgid "Other Polls"
+#~ msgstr "Otras conversaciones"
+
+#~ msgid "See results"
+#~ msgstr "Ver resultados"
+
+#~ msgid "Add photo with"
+#~ msgstr "Agregar foto con"
+
+#~ msgid "Create"
+#~ msgstr "Crear"
 
 #~ msgid "Participate anonymusly"
 #~ msgstr "Participar de forma anónima"

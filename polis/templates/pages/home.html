@@ -62,34 +62,18 @@
                       class="mt-auto flex items-center justify-between gap-8"
                     >
                     
-                      <!--<div class="flex items-center gap-4">
-                        
-                        <figure
-                          class="relative h-12 w-12 shrink-0 overflow-hidden rounded-full"
-                        >
-                          <img
-                            class="absolute h-full w-full object-cover object-center"
-                            src="{% static 'img/avatar.jpg' %}"
-                            alt="Foto de Juan Pérez"
-                          />
-                        </figure>
-                        <span class="text-teal-600">Juan Pérez</span>
-                        
-                      </div>-->
+       
                       
                       <a
                         href="#"
                         class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white"
                         >Abierta</a
                       >
-                      <a href="#" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                      <a href="{% url 'conversation_home' conversation.slug %}" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
                     </div>
                   </div>
                   <div class="mt-8 flex justify-end gap-3">
-                    <!--<a href="#" class="parti-btn">Participar</a>
-                     <a href="#" class="parti-btn parti-btn--secondary"
-                      >Ver más</a
-                    >-->
+
                   </div>
                 </li>
                 {% endfor %}

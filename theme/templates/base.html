@@ -1,50 +1,35 @@
 {% load static tailwind_tags %}
-{% load socialaccount %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
-    <title>Plataforma Participa</title>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Participa</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     {% tailwind_css %}
-    
+    <!-- Include Splide CSS from CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+    />
   </head>
 
-  <body class="bg-zinc-100 font-libre-franklin text-cyan-950" >
-    <div class="flex flex-col min-h-screen">
-      <!-- Navigation -->
-      {% block header %}{% endblock header %}
-      
-      <!-- Main content -->
-      <!--<main class="flex-grow flex-1 overflow-y-auto"> -->
-        <!-- Messages -->
-        <section>
-          {% if messages %}
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="py-4">
-                {% for message in messages %}
-                  <div class="bg-naranja border-l-4 text-white p-4" role="alert">
-                    <p class="font-bold">{{ message.tags }}</p>
-                    <p>{{ message }}</p>
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
-          {% endif %}
-        </section>
-        {% block content %}
-        {% endblock %}
-      <!--</main> -->
-
-      <!-- Footer -->
-    {% block footer %}{% endblock footer %}
-    </div>
+  <body class="bg-[#f0f0f0]">
     
+    <!-- Navigation -->
+    {% block header %}{% endblock header %}
+      
+    <!--</main> -->
+    {% block content %}{% endblock %}
+    
+    <!-- Splide JS from CDN -->
+    <!-- Include Splide JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script type="module" src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

@@ -1,0 +1,1054 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Participa</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    {% tailwind_css %}
+    <!-- Splide CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <!-- Splide JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script>
+        document.addEventListener( 'DOMContentLoaded', function () {
+            new Splide( '.splide' ).mount();
+        } );
+    </script>
+    <script type="module" src="{% static 'js/menu.js' %}"></script>
+    <script type="module" src="{% static 'js/slider.js' %}"></script>
+    <script type="module" src="{% static 'js/tabs.js' %}"></script>
+    <script type="module" src="{% static 'js/main.js' %}"></script>
+  </head>
+  <body class="bg-[#f0f0f0]">
+    <header
+      class="container mx-auto flex h-[80px] flex-wrap content-between items-center gap-4 bg-[#f0f0f0] px-6 py-4 xl:px-4"
+    >
+      <span class="sr-only">Participa</span>
+
+      <div class="flex w-full content-between items-center lg:w-auto">
+        <a href="#" class="logo__link w-[59px] xl:w-[81px]">
+          <img src="{% static 'img/logo.svg' %}" alt="Participa" class="w-full" />
+        </a>
+
+        <button
+          id="menu-toggle"
+          class="ms-auto block lg:hidden"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Menú</span>
+        </button>
+      </div>
+
+      <nav
+        class="hidden px-6 py-8 lg:ms-auto lg:block lg:px-0 lg:py-0"
+        id="nav"
+      >
+        <ul class="flex flex-col gap-5 lg:flex-row lg:gap-[30px]">
+          <li>
+            <a
+              href="#quienes-somos"
+              class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+              >Quiénes somos</a
+            >
+          </li>
+          <li>
+            <a
+              href="#publicaciones"
+              class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+              >Publicaciones</a
+            >
+          </li>
+          <li>
+            <a
+              href="#actividades"
+              class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+              >Actividades</a
+            >
+          </li>
+          <li>
+            <a
+              href="#conversaciones"
+              class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+              >Conversaciones</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contacto"
+              class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+              >Contacto</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="content">
+      <header class="hero pb-24 pt-7 lg:pb-12 lg:pt-5">
+        <div class="container mx-auto px-8 xl:px-4">
+          <div
+            class="grid grid-cols-1 gap-16 md:grid-cols-12 md:items-center md:gap-16"
+          >
+            <h1
+              class="text-center text-[40px] font-bold leading-tight text-teal-600 md:col-span-6 md:text-start md:text-[3rem] lg:text-[4rem] xl:text-[5.70rem] 2xl:text-[5.6rem]"
+            >
+              Participa&shy;ción activa ciudadana
+            </h1>
+            <div class="md:col-span-6">
+              <img src="{% static 'img/shapes.svg' %}" alt="" class="lg:ms-auto" />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section
+        id="quienes-somos"
+        class="hero bg-teal-600 bg-contain bg-center bg-no-repeat pb-[72px] pt-[72px] text-white lg:bg-[url('{% static 'img/bg-quienes.jpg' %}')] lg:pb-12 lg:pt-5"
+      >
+        <div class="container mx-auto px-8 xl:px-4">
+          <div
+            class="grid grid-cols-1 gap-16 md:gap-16 lg:min-h-[700px] lg:grid-cols-12 lg:items-center"
+          >
+            <div class="lg:col-span-6 lg:col-start-7">
+              <h2
+                class="mb-5 text-base font-semibold uppercase tracking-widest lg:text-xl"
+              >
+                Quiénes somos
+              </h2>
+              <h3 class="mb-12 text-[40px] font-semibold xl:mb-8">
+                Vení a conocernos!
+              </h3>
+              <div class="text-body space-y-7">
+                <p>
+                  El Laboratorio de Participación y Tecnologías de la
+                  Universidad de la República, Participa, propone procesos de
+                  Investigación-acción para la transformación social
+                  participativa, utilizando tecnologías digitales de modos
+                  socialmente inteligentes. 
+                </p>
+
+                <p>
+                  Se propone comprender los procesos participativos de forma
+                  interdisciplinaria, a partir de articular saberes diversos
+                  como: informática, comunicación, ciencia política y
+                  sociología. Se investiga haciendo, viendo los problemas a
+                  partir de la práctica, para volver a investigarlos y buscar
+                  alternativas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-teal-300">
+        <div class="container mx-auto px-6 py-[72px] xl:px-4">
+          <h2
+            class="mb-4 text-center text-base font-semibold uppercase tracking-widest text-teal-600 lg:text-xl"
+          >
+            Sobre nosotros
+          </h2>
+          <h3
+            class="mb-8 text-center text-[40px] font-semibold text-teal-600 xl:mb-16"
+          >
+            Nuestros pilares
+          </h3>
+          <div
+            class="splide"
+            role="group"
+            data-splide='{"autoHeight":true,"type":"loop","gap":"0.1px","arrows":true,"pagination":false,"perPage":3,"perMove":1,"breakpoints":{"1280":{"perPage":1}}}'
+          >
+            <div class="splide__track -mx-3">
+              <ul class="splide__list">
+                <li class="splide__slide p-3">
+                  <div
+                    class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                  >
+                    <div><img src="{% static 'img/icon.svg' %}" alt="" /></div>
+                    <div>
+                      <h3 class="mb-[19px] text-2xl font-medium text-teal-600">
+                        Sociedad Civil
+                      </h3>
+                      <div class="text-base text-teal-600">
+                        Participa apoya a organizaciones públicas y movimientos
+                        sociales que quieren usar -o usar mejor- herramientas
+                        digitales en procesos participativos. Se propone
+                        aprender con ellas y ellos sobre los problemas de la
+                        participación, las alternativas para encararlos, las
+                        posibilidades y límites de las herramientas digitales en
+                        esos procesos, para compartir luego el conocimiento
+                        generado.
+                      </div>
+                    </div>
+                    <div class="mt-auto flex justify-end">
+                      <a href="#" class="parti-btn parti-btn--secondary"
+                        >Label</a
+                      >
+                    </div>
+                  </div>
+                </li>
+                <li class="splide__slide p-3">
+                  <div
+                    class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                  >
+                    <div><img src="{% static 'img/icon-mic.svg' %}" alt="" /></div>
+                    <div>
+                      <h3 class="mb-[19px] text-2xl font-medium text-teal-600">
+                        Trabajo con Sector Público
+                      </h3>
+                      <div class="text-base text-teal-600">
+                        A partir de investigar las potencialidades
+                        democratizadoras y democráticas que pueden aportar las
+                        tecnologías digitales, Participa, se plantea contribuir
+                        a los ámbitos de participación ciudadana y a los
+                        procesos de participación promovidos por el Estado. Con
+                        la convicción de que, en un contexto de pérdida de la
+                        confianza en la democracia, resulta fundamental repensar
+                        la participación, para construir o mejorar
+                        colectivamente planteos, propuestas y políticas
+                        públicas.
+                      </div>
+                    </div>
+                    <div class="mt-auto flex justify-end">
+                      <a href="#" class="parti-btn parti-btn--secondary"
+                        >Label</a
+                      >
+                    </div>
+                  </div>
+                </li>
+                <li class="splide__slide p-3">
+                  <div
+                    class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                  >
+                    <div><img src="{% static 'img/icon-mega.svg' %}" alt="" /></div>
+                    <div>
+                      <h3 class="mb-[19px] text-2xl font-medium text-teal-600">
+                        Sociedad Civil
+                      </h3>
+                      <div class="text-base text-teal-600">
+                        Participa busca aportar al debate público sobre temas de
+                        interés ciudadano usando herramientas digitales. A su
+                        vez, investiga sobre problemas complejos que se plantean
+                        en este terreno, como la calidad de la deliberación
+                        digital o la confluencia y tensiones entre aportes
+                        individuales y colectivos.  
+                      </div>
+                    </div>
+                    <div class="mt-auto flex justify-end">
+                      <a href="#" class="parti-btn parti-btn--secondary"
+                        >Label</a
+                      >
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-10 flex justify-end xl:hidden">
+              <div
+                class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="publicaciones" class="parti-fade relative overflow-x-hidden">
+        <div class="container mx-auto px-6 py-[72px] xl:px-4">
+          <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
+            <div class="xl:col-span-4">
+              <h2
+                class="mb-4 text-base font-medium uppercase tracking-widest text-orange-400 lg:text-xl"
+              >
+                Publicaciones
+              </h2>
+              <h3
+                class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
+              >
+                Publicaciones y Trabajos Académicos
+              </h3>
+              <h4 class="mb-[19px] text-2xl font-medium text-teal-600">
+                Participación ciudadana digital.
+              </h4>
+              <div class="space-y-4 text-teal-600">
+                <p>
+                  Esta publicación trata sobre el diseño y la implementación de
+                  procesos participativos con herramientas digitales en
+                  organismos públicos.
+                </p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+              </div>
+            </div>
+            <div class="tabs col-span-8">
+              <div
+                class="manual mb-10 flex flex-wrap gap-[5px] lg:gap-6"
+                role="tablist"
+              >
+                <button
+                  class="parti-tag"
+                  id="tab-1"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="tabpanel-1"
+                >
+                  Libros
+                </button>
+                <button
+                  class="parti-tag"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="tabpanel-2"
+                  tabindex="-1"
+                >
+                  Artículos
+                </button>
+                <button
+                  class="parti-tag"
+                  id="tab-3"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="tabpanel-3"
+                  tabindex="-1"
+                >
+                  Ponencias
+                </button>
+              </div>
+
+              <!-- slider -->
+              <div
+                class="xl:-me-[4vw] 2xl:-me-[4vw]"
+                id="tabpanel-1"
+                role="tabpanel"
+                aria-labelledby="tab-1"
+              >
+                <div
+                  class="splide"
+                  role="group"
+                  data-splide='{"autoHeight":true,"gap":"0.1px","arrows":true,"pagination":false,"perPage":3,"perMove":1,"breakpoints":{"1024":{"perPage":1}}}'
+                >
+                  <div class="splide__track -mx-3">
+                    <ul class="splide__list">
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Sociedad Civil
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Participación y democracia en un mundo digital.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Seminario 2024
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Participación y democracia en un mundo digital.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Curso de educación permanente 2023
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Innovaciones democráticas, participación social y
+                              herramientas digitales.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Último ítem
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Innovaciones democráticas, participación social y
+                              herramientas digitales.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mt-10 flex">
+                    <div
+                      class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- /slider -->
+              <!-- slider-2 -->
+              <div
+                class="xl:-me-[4vw] 2xl:-me-[4vw]"
+                id="tabpanel-2"
+                role="tabpanel"
+                aria-labelledby="tab-2"
+              >
+                <div
+                  class="splide"
+                  role="group"
+                  data-splide='{"autoHeight":true,"gap":"0.1px","arrows":true,"pagination":false,"perPage":3,"perMove":1,"breakpoints":{"1024":{"perPage":1}}}'
+                >
+                  <div class="splide__track -mx-3">
+                    <ul class="splide__list">
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Artículo tres
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Participación y democracia en un mundo digital.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Seminario 2024
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Participación y democracia en un mundo digital.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Primer artículo
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Innovaciones democráticas, participación social y
+                              herramientas digitales.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Último ítem
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Innovaciones democráticas, participación social y
+                              herramientas digitales.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mt-10 flex">
+                    <div
+                      class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- /slider -->
+              <!-- slider-3 -->
+              <div
+                class="xl:-me-[4vw] 2xl:-me-[4vw]"
+                id="tabpanel-3"
+                role="tabpanel"
+                aria-labelledby="tab-3"
+              >
+                <div
+                  class="splide"
+                  role="group"
+                  data-splide='{"autoHeight":true,"gap":"0.1px","arrows":true,"pagination":false,"perPage":3,"perMove":1,"breakpoints":{"1024":{"perPage":1}}}'
+                >
+                  <div class="splide__track -mx-3">
+                    <ul class="splide__list">
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Primera ponencia
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Participación y democracia en un mundo digital.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                      <li class="splide__slide p-3">
+                        <div
+                          class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                        >
+                          <div
+                            class="relative aspect-square overflow-clip rounded-3xl"
+                          >
+                            <img
+                              src="{% static 'img/photo.jpg' %}"
+                              class="absolute h-full w-full object-cover object-center"
+                              alt="Descripción de la foto"
+                            />
+                          </div>
+                          <div>
+                            <h3
+                              class="mb-[19px] text-2xl font-medium text-teal-600"
+                            >
+                              Segunda ponencia
+                            </h3>
+                            <div class="text-base text-teal-600">
+                              Participación y democracia en un mundo digital.
+                            </div>
+                          </div>
+                          <div class="mt-auto flex justify-end">
+                            <a href="#" class="parti-btn parti-btn--secondary"
+                              >Label</a
+                            >
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mt-10 flex">
+                    <div
+                      class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <!-- /slider-3 -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="actividades" class="bg-teal-300">
+        <div class="container mx-auto px-6 py-[72px] xl:px-4">
+          <h2
+            class="mb-4 text-center text-base font-semibold uppercase tracking-widest text-teal-600 lg:text-xl"
+          >
+            Actividades
+          </h2>
+          <h3
+            class="mb-8 text-center text-[40px] font-semibold text-teal-600 xl:mb-16"
+          >
+            Actividades
+          </h3>
+          <div
+            class="splide"
+            role="group"
+            data-splide='{"autoHeight":true,"type":"loop","gap":"0.1px","arrows":true,"pagination":false,"perPage":3,"perMove":1,"breakpoints":{"1280":{"perPage":1}}}'
+          >
+            <div class="splide__track -mx-3">
+              <ul class="splide__list">
+                <li class="splide__slide p-3">
+                  <div
+                    class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                  >
+                    <div
+                      class="relative aspect-[3/2] overflow-clip rounded-3xl"
+                    >
+                      <img
+                        src="{% static 'img/photo.jpg' %}"
+                        class="absolute object-cover object-center"
+                        alt="Descripción de la foto"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="mb-[19px] text-2xl font-medium text-teal-600">
+                        Sociedad Civil
+                      </h3>
+                      <div class="text-base text-teal-600">
+                        Participación y democracia en un mundo digital.
+                      </div>
+                    </div>
+                    <div class="mt-auto flex justify-end">
+                      <a href="#" class="parti-btn parti-btn--secondary"
+                        >Label</a
+                      >
+                    </div>
+                  </div>
+                </li>
+                <li class="splide__slide p-3">
+                  <div
+                    class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                  >
+                    <div
+                      class="relative aspect-[3/2] overflow-clip rounded-3xl"
+                    >
+                      <img
+                        src="{% static 'img/photo.jpg' %}"
+                        class="absolute object-cover object-center"
+                        alt="Descripción de la foto"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="mb-[19px] text-2xl font-medium text-teal-600">
+                        Seminario 2024
+                      </h3>
+                      <div class="text-base text-teal-600">
+                        Participación y democracia en un mundo digital.
+                      </div>
+                    </div>
+                    <div class="mt-auto flex justify-end">
+                      <a href="#" class="parti-btn parti-btn--secondary"
+                        >Label</a
+                      >
+                    </div>
+                  </div>
+                </li>
+                <li class="splide__slide p-3">
+                  <div
+                    class="flex h-full flex-col gap-8 rounded-3xl bg-white p-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                  >
+                    <div
+                      class="relative aspect-[3/2] overflow-clip rounded-3xl"
+                    >
+                      <img
+                        src="{% static 'img/photo.jpg' %}"
+                        class="absolute object-cover object-center"
+                        alt="Descripción de la foto"
+                      />
+                    </div>
+                    <div>
+                      <h3 class="mb-[19px] text-2xl font-medium text-teal-600">
+                        Curso de educación permanente 2023
+                      </h3>
+                      <div class="text-base text-teal-600">
+                        Innovaciones democráticas, participación social y
+                        herramientas digitales.
+                      </div>
+                    </div>
+                    <div class="mt-auto flex justify-end">
+                      <a href="#" class="parti-btn parti-btn--secondary"
+                        >Label</a
+                      >
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-10 flex justify-end xl:hidden">
+              <div
+                class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="polarizacion"
+        class="hero bg-teal-600 bg-contain bg-center bg-no-repeat pb-[72px] pt-[72px] text-white lg:bg-[url('{% static 'img/bg-polarizacion.jpg' %}')] lg:pb-12 lg:pt-5"
+      >
+        <div class="container mx-auto px-8 xl:px-4">
+          <div
+            class="grid grid-cols-1 gap-16 md:gap-16 lg:min-h-[700px] lg:grid-cols-12 lg:items-center"
+          >
+            <div class="lg:col-span-6">
+              <h3 class="mb-12 text-[40px] font-semibold xl:mb-8">
+                Polarización
+              </h3>
+              <div class="text-body space-y-7">
+                <p>
+                  Consensos y disensos busca aportar al debate en distintas
+                  temáticas de discusión pública.
+                </p>
+                <p>
+                  Para ello, pone a disposición una herramienta digital que
+                  promueve la discusión ciudadana a partir de diferentes
+                  interrogantes y enunciados. Así, invitamos a reconocer en qué
+                  estamos de acuerdo y en qué en desacuerdo en las
+                  conversaciones públicas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="conversaciones">
+        <div class="container mx-auto px-6 py-[72px] xl:px-4">
+          <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
+            <div class="xl:col-span-4">
+              <h2
+                class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl"
+              >
+                Conversaciones
+              </h2>
+              <h3
+                class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
+              >
+                Plebiscito de seguridad social
+              </h3>
+              <div class="space-y-4 text-teal-600">
+                <p>
+                  RESUMEN/INTRODUCCION-Lisus Ut luctus odio Nunc quis ipsum
+                  sapien adipiscing efficitur. risus tincidunt hendrerit porta
+                </p>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint
+                  quas fugit aspernatur rem. Animi voluptatem suscipit.
+                </p>
+              </div>
+            </div>
+            <div class="xl:col-span-5 xl:col-start-7">
+              <div
+                class="splide"
+                role="group"
+                data-splide='{"autoHeight":true,"type":"loop","gap":"16px","arrows":true,"pagination":false,"perPage":1,"perMove":1}'
+              >
+                <div class="splide__track -mx-3">
+                  <ul class="splide__list">
+                    <li class="splide__slide p-3">
+                      <div
+                        class="flex flex-col rounded-3xl bg-white px-14 py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                      >
+                        <div class="mb-[15px]">
+                          <img src="{% static 'img/icon-conversaciones.svg' %}" alt="" />
+                        </div>
+                        <div>
+                          <h3
+                            class="mb-[19px] text-2xl font-medium text-teal-600"
+                          >
+                            Plebiscito de seguridad social
+                          </h3>
+                          <div class="text-base text-teal-600">
+                            Lisus Ut luctus odio Nunc quis ipsum sapien
+                            adipiscing efficitur. risus tincidunt hendrerit
+                            porta Nullam consectetur vel nisl. consectetur quam
+                            Ut eget Cras tincidunt risus vitae vitae ex Nullam
+                            non dolor ex scelerisque Quisque fringilla
+                          </div>
+                          <hr class="my-4 border-teal-300" />
+                        </div>
+                        <div
+                          class="mt-auto flex items-center justify-between gap-8"
+                        >
+                          <div class="flex items-center gap-4">
+                            <figure
+                              class="relative h-12 w-12 shrink-0 overflow-hidden rounded-full"
+                            >
+                              <img
+                                class="absolute h-full w-full object-cover object-center"
+                                src="{% static 'img/avatar.jpg' %}"
+                                alt="Foto de Juan Pérez"
+                              />
+                            </figure>
+                            <span class="text-teal-600">Juan Pérez</span>
+                          </div>
+                          <a
+                            href="#"
+                            class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white"
+                            >Abierta</a
+                          >
+                        </div>
+                      </div>
+                      <div class="mt-8 flex justify-end gap-3">
+                        <a href="#" class="parti-btn">Participar</a>
+                        <a href="#" class="parti-btn parti-btn--secondary"
+                          >Ver más</a
+                        >
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt-8 flex justify-end">
+                  <div
+                    class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contacto" class="bg-teal-600 text-white">
+      <div class="container mx-auto px-6 py-[72px] xl:px-4">
+        <h3 class="mb-16 text-[40px] font-semibold leading-tight lg:mb-7">
+          Contactate con nosotros,<br />
+          trabaja con nosotros.
+        </h3>
+
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:items-center">
+          <div class="lg:order-2 lg:col-span-4">
+            <form action="">
+              <div class="mb-6">
+                <label for="name" class="mb-2 block text-lg font-medium"
+                  >Nombre y apellido</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Nombre y apellido"
+                  class="parti-input"
+                />
+              </div>
+              <div class="mb-6">
+                <label for="name" class="mb-2 block text-lg font-medium"
+                  >Correo electrónico</label
+                >
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="Correo electrónico"
+                  class="parti-input error"
+                  required
+                />
+                <span class="text-danger-400 mt-1 inline-block font-semibold"
+                  >Acá un error opcional</span
+                >
+              </div>
+              <div class="mb-6">
+                <label for="name" class="mb-2 block text-lg font-medium"
+                  >Asunto</label
+                >
+                <textarea
+                  name="asunto"
+                  id="asunto"
+                  class="parti-input"
+                  placeholder="Por favor, escriba su asunto aquí"
+                  rows="3"
+                ></textarea>
+                <span class="text-lg font-medium">Máximo 150 caracteres</span>
+              </div>
+              <div class="mb-6">
+                <label for="name" class="mb-2 block text-lg font-medium"
+                  >Mensaje</label
+                >
+                <textarea
+                  name="asunto"
+                  id="message"
+                  class="parti-input"
+                  placeholder="Por favor, escriba su mensaje aquí"
+                  rows="3"
+                ></textarea>
+                <span class="text-lg font-medium">Máximo 150 caracteres</span>
+              </div>
+              <button type="submit" class="parti-btn">Enviar</button>
+            </form>
+          </div>
+          <div class="lg:order-1 lg:col-span-8">
+            <div class="mb-2">Montevideo, Uruguay</div>
+            <div class="embed-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.8656041784725!2d-56.166493587678005!3d-34.909822073617214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f81a69a5e9493%3A0x3e14212c3c5e8b2d!2sFacultad%20de%20Arquitectura%2C%20Dise%C3%B1o%20y%20Urbanismo%20%7C%20FADU-UDELAR!5e0!3m2!1sen!2suy!4v1726496621030!5m2!1sen!2suy"
+                height="280"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-16 flex grid-cols-1 flex-wrap items-center gap-8 pt-9 lg:gap-12 lg:border-t lg:border-t-white"
+        >
+          <img
+            src="{% static 'img/footer-logo-3.svg' %}"
+            alt="Facultad de ciencias sociales"
+            class="h-8 lg:h-16"
+          />
+          <img
+            src="{% static 'img/footer-logo-2.svg' %}"
+            alt="Facultad de información y comunicación"
+            class="h-8 lg:h-16"
+          />
+          <img
+            src="{% static 'img/footer-logo-1.svg' %}"
+            alt="Facultad de Ingeniería"
+            class="h-8 lg:h-16"
+          />
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

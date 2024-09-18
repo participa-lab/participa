@@ -6,50 +6,107 @@
 {% endblock header %}
 
 {% block content %}
-<div class="max-w-7xl mx-auto flex-col xl:flex-row flex xl:flex-grow xl:flex-1 p-6 xl:px-24 xl:py-16">
-  <section class="w-full xl:w-1/2 flex flex-col justify-center">
-    <h1 class="page-title">{{ _('Depolarize the debate') }}</h1>
-    <div class="leading-normal mt-5 max-w-lg">
-    {% include "texts/depolarize_text_1.html" %}
-    </div>
-  </section>
-  <section class="w-full xl:w-1/2 overflow-x-auto flex flex-col justify-center">
-    <div x-data="{ scrollLeft() { this.$refs.scrollContainer.scrollBy({ left: -300, behavior: 'smooth' }) }, scrollRight() { this.$refs.scrollContainer.scrollBy({ left: 300, behavior: 'smooth' }) } }" class="flex flex-col space-x-4 p-5 relative">
-      <div x-ref="scrollContainer" class="flex flex-col xl:flex-row xl:space-x-4 xl:p-5 xl:overflow-x-auto ">
-        {% for conversation in object_list %}
-        <div class="h-96 px-14 py-6 bg-white rounded-3xl shadow flex-col justify-start items-start gap-3.5 inline-flex text-cyan-950">
-          <img class="w-11 h-12 relative" src="{% static 'Group 10323.svg' %}"/>
-          <div class="h-40 flex-col justify-start items-start gap-5 flex">
-              <div class="self-stretch text-cyan-950 text-2xl font-medium">{{ conversation.topic }}</div>
-              <div class="self-stretch flex-grow h-28 text-cyan-950 text-base font-normal leading-normal">{{ conversation.description }}</div>
-          </div>
-          <div class="flex-col justify-start items-center gap-3 flex">
-              <div class="Line self-stretch h-px border border-zinc-100"></div>
-              <div class="Content w-96 justify-between items-center inline-flex">
-                
-                <div class="h-11 px-6 py-3 bg-orange-600 rounded-3xl justify-center items-center gap-2.5 inline-flex">
-                  <a href="{% url 'conversation_home' conversation.slug %}" class="text-right text-zinc-100 text-lg font-medium">Participar <span class="text-center p-2"><i class="fa-solid fa-users p-1"></i> {{ conversation.participant_count }}</span></a>
-                </div>
-                <div class="p-2 bg-teal-600 rounded-3xl justify-center items-center gap-2.5 flex">
-                    <div class="text-zinc-100 text-sm font-medium font-['Libre Franklin']"><i class="fa-solid fa-calendar-days p-1"></i>Hasta: {{ conversation.end_date|date:'d/m/Y' }}</div>
-                </div>
-                  
-              </div>
+<main id="content">
+  <section id="conversaciones">
+    <div class="container mx-auto px-6 py-[72px] xl:px-4">
+      <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
+        <div class="xl:col-span-4">
+          <h2
+            class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl"
+          >
+            Conversaciones
+          </h2>
+          <h3
+            class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
+          >
+          Despolarizar el debate
+          </h3>
+          <div class="space-y-4 text-teal-600">
+            <p>
+              Participa busca aportar a la despolarización en distintas temáticas de discusión pública. 
+              Para ello, pone a disposición una herramienta que promueve la discusión a partir de diferentes opiniones. 
+              Así, invitamos a descrubrir acuerdos aún en las diferentes posiciones.
+            </p>
           </div>
         </div>
-        {% endfor %}
-      </div>
-      <div class="flex justify-start items-center gap-4 mt-2">
-      <button @click="scrollLeft" class="flex button-primary rounded-full">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-      <button @click="scrollRight" class="flex button-primary rounded-full">
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
+        <div class="xl:col-span-5 xl:col-start-7">
+          <div
+            class="splide"
+            role="group"
+            data-splide='{"autoHeight":true,"type":"loop","gap":"16px","arrows":true,"pagination":false,"perPage":1,"perMove":1}'
+          >
+            <div class="splide__track -mx-3">
+              <ul class="splide__list">
+                {% for conversation in object_list %}
+                <li class="splide__slide p-3">
+                  <div
+                    class="flex flex-col rounded-3xl bg-white px-14 py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                  >
+                    <div class="mb-[15px]">
+                      <img src="{% static 'img/icon-conversaciones.svg' %}" alt="" />
+                    </div>
+                    <div>
+                      <h3
+                        class="mb-[19px] text-2xl font-medium text-teal-600"
+                      >
+                      {{ conversation.topic }}
+                      </h3>
+                      <div class="space-y-4 text-base text-teal-600">
+                        <p>{{ conversation.description }}</p>
+ 
+
+                      </div>
+                      <hr class="my-4 border-teal-300" />
+                    </div>
+                    <div
+                      class="mt-auto flex items-center justify-between gap-8"
+                    >
+                    
+                      <!--<div class="flex items-center gap-4">
+                        
+                        <figure
+                          class="relative h-12 w-12 shrink-0 overflow-hidden rounded-full"
+                        >
+                          <img
+                            class="absolute h-full w-full object-cover object-center"
+                            src="{% static 'img/avatar.jpg' %}"
+                            alt="Foto de Juan Pérez"
+                          />
+                        </figure>
+                        <span class="text-teal-600">Juan Pérez</span>
+                        
+                      </div>-->
+                      
+                      <a
+                        href="#"
+                        class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white"
+                        >Abierta</a
+                      >
+                      <a href="#" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                    </div>
+                  </div>
+                  <div class="mt-8 flex justify-end gap-3">
+                    <!--<a href="#" class="parti-btn">Participar</a>
+                     <a href="#" class="parti-btn parti-btn--secondary"
+                      >Ver más</a
+                    >-->
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="mt-8 flex justify-end">
+              <div
+                class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-</div>
+</main>
+
 {% endblock %}
 
 

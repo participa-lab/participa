@@ -5,67 +5,69 @@
 {% endblock header %}
 
 {% block content %}
-<section>
-    <div class="flex flex-col justify-center items-center mt-5 lg:mt-10">
-        <div class="max-w-4xl flex flex-col items-center justify-center w-full">
-            {% if not object.show_description %}
-            <p class="px-5 lg:p-0 text-sm lg:text-base text-center">{{object.description}}</p>
-            {% endif %}
-            {% if show_report %}
-            <a class="p-1 m-1 rounded-md bg-turquesa text-white text-sm text-center" href="{% url "conversation_report" object.slug %}" target="_blank" class="text-blue-500">{{_("See results")}}</a>
-            {% endif %}
-        </div>
-        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9">
-            <div id="polis-container">
+<main id="content bg-white!">
+    <section id="conversaciones">
+        <div class="container mx-auto px-6 py-[60px] xl:px-4">
+          <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
+            <div class="xl:col-span-12 ">
+              <h3
+                class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
+              ><span class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl">Despolarizar</span> {{object.topic}}
+              </h3>
+    
+                
+                    <div id="polis-container">
+                    </div>
+        
+                <script type="text/javascript">
+                    function buildEmbedDiv(dataAttributes) {
+                        var dataAttributesString = '';
+                        for (var key in dataAttributes) {
+                            if (dataAttributes.hasOwnProperty(key)) {
+                                dataAttributesString += "data-" + key + "='" + dataAttributes[key] + "' ";
+                            }
+                        }
+                        return "<div class='polis' " + dataAttributesString + "></div>";
+                    }
+                
+                    var embedScript = document.createElement("script");
+                    embedScript.setAttribute("src", "{{object.instance.url}}/embed.js");
+                
+                    var polisContainer = document.getElementById('polis-container');
+                    {% load i18n %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    var dataAttributes = {
+                        "site_id": "{{object.instance.site_id}}",
+                        "page_id": "{{object.slug}}",
+                        "topic": "{{object.topic}}",
+                        "parent_url": "{{ request.path }}",
+                        "xid": "{{participant.id}}",
+                        "x_name": "{{participant.nick_name|default_if_none:''}}",
+                        "x_email": "{{participant.email|default_if_none:''}}",
+                        "x_profile_image_url": "{{participant.avatar_url|default_if_none:''}}",
+                        "border": "{{object.border}}",
+                        "border_radius": "{{object.border_radius}}",
+                        "padding": "{{object.padding}}",
+                        "height": "{{object.height|default_if_none:'930'}}",
+                        "ucsf": "{{object.show_footer|yesno:'true,false'}}",
+                        "ucsh": "{{object.show_help|yesno:'true,false'}}",
+                        "ucsd": "{{object.show_description|yesno:'true,false'}}",
+                        "ucst": "{{object.show_topic|yesno:'true,false'}}",
+                        "bg_white": "{{object.bg_white|yesno:'true,false'}}",
+                        "ui_lang": "{{LANGUAGE_CODE}}",
+                        "style_btn": "{{object.color_primary|default_if_none:'#e25666'}}",
+                        // Add other data attributes here as needed
+                    };
+                    polisContainer.innerHTML = buildEmbedDiv(dataAttributes);
+                    polisContainer.appendChild(embedScript);
+                </script>   
             </div>
         </div>
-        <script type="text/javascript">
-            function buildEmbedDiv(dataAttributes) {
-                var dataAttributesString = '';
-                for (var key in dataAttributes) {
-                    if (dataAttributes.hasOwnProperty(key)) {
-                        dataAttributesString += "data-" + key + "='" + dataAttributes[key] + "' ";
-                    }
-                }
-                return "<div class='polis' " + dataAttributesString + "></div>";
-            }
-        
-            var embedScript = document.createElement("script");
-            embedScript.setAttribute("src", "{{object.instance.url}}/embed.js");
-        
-            var polisContainer = document.getElementById('polis-container');
-            {% load i18n %}
-            {% get_current_language as LANGUAGE_CODE %}
-            var dataAttributes = {
-                "site_id": "{{object.instance.site_id}}",
-                "page_id": "{{object.slug}}",
-                "topic": "{{object.topic}}",
-                "parent_url": "{{ request.path }}",
-                "xid": "{{participant.id}}",
-                "x_name": "{{participant.nick_name|default_if_none:''}}",
-                "x_email": "{{participant.email|default_if_none:''}}",
-                "x_profile_image_url": "{{participant.avatar_url|default_if_none:''}}",
-                "border": "{{object.border}}",
-                "border_radius": "{{object.border_radius}}",
-                "padding": "{{object.padding}}",
-                "height": "{{object.height|default_if_none:'930'}}",
-                "ucsf": "{{object.show_footer|yesno:'true,false'}}",
-                "ucsh": "{{object.show_help|yesno:'true,false'}}",
-                "ucsd": "{{object.show_description|yesno:'true,false'}}",
-                "ucst": "{{object.show_topic|yesno:'true,false'}}",
-                "bg_white": "{{object.bg_white|yesno:'true,false'}}",
-                "ui_lang": "{{LANGUAGE_CODE}}",
-                "style_btn": "{{object.color_primary|default_if_none:'#e25666'}}",
-                // Add other data attributes here as needed
-            };
-            polisContainer.innerHTML = buildEmbedDiv(dataAttributes);
-            polisContainer.appendChild(embedScript);
-        </script>   
-    </div>
-    
-</section>
+    </section>
+</main>
+{% include "components/polis_footer.html" %}
 {% endblock content%}
 
 {% block footer %}
-{% include "components/polis_footer.html" %}
+
 {% endblock footer %}

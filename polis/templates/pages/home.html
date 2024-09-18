@@ -29,7 +29,7 @@
             </p>
           </div>
           <h4
-          class="my-10 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">
+          class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">
         Sobre Participa
         </h4>
         <div class="space-y-4 text-teal-600 text-sm">
@@ -79,7 +79,7 @@
                         class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white"
                         >Abierta</a
                       >
-                      <a href="{% url 'conversation_home' conversation.slug %}" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                      <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
                     </div>
                   </div>
                   <div class="mt-8 flex justify-end gap-3">

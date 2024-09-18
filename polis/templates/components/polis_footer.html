@@ -1,25 +1,47 @@
 {% load static %}
 
-<footer id="footer" class="">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="py-2 lg:py-4 flex flex-row items-center justify-between">
- 
-        <!-- Polis -->
-        {% if not conversation.show_footer %}
-        <div class="flex items-center text-black my-2">
-          <!-- Navigation links -->
-          <div class="flex items-center">
-            <a href="https://pol.is/home" class="h-12 md:h-16">
-              {% include "components/polis_logo.html" %}
-            </a>
-            <div class="flex flex-col  px-3 text-xs md:text-sm">
-              <a href="https://compdemocracy.org/Polis/" target="_blank">{{_("Powered by Polis")}}</a>
-            </div>
-            {% include 'components/locale_switcher_form.html' %}
-          </div>
-        </div>
-        {% endif %}
-        
-      </div>
+<footer id="contacto" class="bg-teal-600 text-white mt-auto">
+  <div class="container flex mx-auto px-6 py-[20px] xl:px-4">
+    
+
+    
+    <div class="flex grid-cols-1 flex-wrap items-center gap-8  lg:gap-12">
+      <img
+        src="{% static 'img/footer-logo-3.svg' %}"
+        alt="Facultad de ciencias sociales"
+        class="h-8 lg:h-16"
+      />
+      <img
+        src="{% static 'img/footer-logo-2.svg' %}"
+        alt="Facultad de información y comunicación"
+        class="h-8 lg:h-16"
+      />
+      <img
+        src="{% static 'img/footer-logo-1.svg' %}"
+        alt="Facultad de Ingeniería"
+        class="h-8 lg:h-16"
+      />
     </div>
-  </footer>
+
+    <div class="py-2 lg:py-4 flex flex-row items-center justify-between ml-auto">
+ 
+      <!-- Polis -->
+      {% if not conversation.show_footer %}
+      <div class="flex items-center text-black my-2">
+        <!-- Navigation links -->
+        <div class="flex flex-col lg:flex-row items-center">
+          <a href="https://pol.is/home" class="h-8 lg:h-16">
+            {% include "components/polis_logo.html" %}
+          </a>
+          <div class="flex flex-col text-white px-3 text-xs md:text-sm">
+            <a class="my-1" href="https://compdemocracy.org/Polis/" target="_blank">{{_("Powered by Polis")}}</a>
+
+          </div>
+          {% include 'components/locale_switcher_form.html' %}          
+        </div>
+      </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</footer>

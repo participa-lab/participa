@@ -19,15 +19,19 @@
       href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css"
     />
     {% tailwind_css %}
+    <!-- Alpine JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
 
-  <body class="bg-[#f0f0f0]">
+  <body class="bg-[#f0f0f0] flex flex-col h-screen">
     
     <!-- Navigation -->
     {% block header %}{% endblock header %}
       
     <!--</main> -->
     {% block content %}{% endblock %}
+
+    {% block footer %}{% endblock footer %}
     
     <!-- Splide JS from CDN -->
     <!-- Include Splide JS from CDN -->

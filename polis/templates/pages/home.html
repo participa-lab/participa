@@ -28,16 +28,18 @@
               Así, invitamos a descrubrir acuerdos aún en las diferentes posiciones.
             </p>
           </div>
-          <h4
-          class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">
-        Sobre Participa
-        </h4>
-        <div class="space-y-4 text-teal-600 text-sm">
-          <p>El Laboratorio de Participación y Tecnologías de la Universidad de la República, Participa,  
+          
+        <div class="hidden lg:block">
+          <h4 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">
+            Sobre Participa
+          </h4>
+          <div class="space-y-4 text-teal-600 text-sm">
+            <p>El Laboratorio de Participación y Tecnologías de la Universidad de la República, Participa,  
             impulsa procesos de investigación-acción para la transformación social, 
             utilizando tecnologías digitales de manera inteligente. 
             Con un enfoque interdisciplinario, combina saberes de informática, comunicación, ciencia política y sociología.</p>
         </div>
+
         </div>
         <div class="xl:col-span-5 xl:col-start-7">
           <div
@@ -50,7 +52,7 @@
                 {% for conversation in object_list %}
                 <li class="splide__slide p-3">
                   <div
-                    class="flex flex-col rounded-3xl bg-white px-14 py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
+                    class="flex flex-col rounded-3xl bg-white px-4 lg:px-14 py-3 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
                   >
                     <div class="mb-[15px]">
                       <img src="{% static 'img/icon-conversaciones.svg' %}" alt="" />
@@ -69,7 +71,7 @@
                       <hr class="my-4 border-teal-300" />
                     </div>
                     <div
-                      class="mt-auto flex items-center justify-between gap-8"
+                      class="mt-auto flex items-center justify-between gap-4 lg:gap-8"
                     >
                     
        
@@ -92,11 +94,26 @@
             </div>
           </div>
         </div>
+        <div class="block lg:hidden">
+          <h4 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">
+            Sobre Participa
+          </h4>
+          <div class="space-y-4 text-teal-600 text-sm">
+            <p>El Laboratorio de Participación y Tecnologías de la Universidad de la República, Participa,  
+            impulsa procesos de investigación-acción para la transformación social, 
+            utilizando tecnologías digitales de manera inteligente. 
+            Con un enfoque interdisciplinario, combina saberes de informática, comunicación, ciencia política y sociología.</p>
+        </div>
+
       </div>
     </div>
   </section>
 </main>
 
 {% endblock %}
+
+{% block footer %}
+{% include "components/polis_footer.html" %}
+{% endblock footer %}
 
 

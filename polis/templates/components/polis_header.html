@@ -1,10 +1,18 @@
 {% extends "header.html" %}
-
+{% load account %}
+{% load socialaccount %}
 {% block user_profile %}
-<div class="ml-auto flex items-center">
-  {% include 'components/user_profile.html' %}
-  <button @click="showHelp = !showHelp" class="text-white focus:outline-none ml-2">
-    <i class="text-xl fa-regular fa-circle-question"></i>
-  </button>
+<div class="lg:ml-auto items-center flex">
+  {% if participant %}
+  <a href="{% url 'participant_update' participant.pk %}"  class="flex items-center justify-between">
+    <span class="p-2 whitespace-nowrap">{{ participant.some_name }}</span>
+    {% if participant.avatar_url %}
+      <img class="w-10 h-10 p-0 rounded-full ring-2 ring-orange-400 dark:ring-orange-400" src="{{ participant.avatar_url }}" alt="Avatar" />
+    {% else %}
+        {% include "components/person.html" %}    
+    {% endif %}
+  </a>
+  {% endif %}
+
   </div>
 {% endblock user_profile %}

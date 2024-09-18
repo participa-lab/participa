@@ -6,91 +6,104 @@
 {% endblock header %}
 
 {% block content %}
-<div class="max-w-7xl mx-auto flex-col xl:flex-row flex xl:flex-grow xl:flex-1 p-6 xl:px-24 xl:py-16">
-  <section class="w-full xl:w-1/2 flex flex-col justify-center">
-    <h1 class="page-title">{{ _('Create your profile') }}</h1>
-    <div class="mx-auto max-w-3xl py-5">{% include "texts/login_text_1.html" %}</div>
-  </section>
-  <section class="w-full xl:w-1/2  flex flex-col justify-center p-16">       
-    <form method="post" action="">
-      {% csrf_token %}
-      <div class="flex flex-col my-5 w-full">
-        {% if form.non_field_errors %}
-        <div class="text-red-500 bg-red-100 p-2 rounded">
-          {{ form.non_field_errors }}
-        </div>
-        {% endif %}
-        <div class="fieldWrapper">
-          {{ form.nick_name.label_tag }}
-          {% render_field form.nick_name class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
-          {% if form.nick_name.errors %}
-          <div class="text-red-500 bg-red-100 p-2 rounded">
-            {{ form.nick_name.errors }}
+
+<main id="content">
+  <section id="conversaciones">
+    <div class="container mx-auto px-6 py-[72px] xl:px-4">
+      <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
+        <div class="xl:col-span-4">
+          <h2
+            class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl"
+          >
+            Despolarizar
+          </h2>
+          <h3
+            class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
+          >
+          {{ _('Create your profile') }}
+          </h3>
+          <div class="space-y-4 text-teal-600">
+            <p>Te preguntamos tu edad, género y el territorio de dónde sos para entender como se diferencian los acuerdos, desacuerdos u opiniones según esas características.</p>
+          <p>Podés participar con un apodo, o si querés que tu foto aparezca en el mapa de opiniones podés loguearte con redes sociales, mostrandole a los demás dónde te ubicás vos en esta conversación.</p>
           </div>
-          {% endif %}
+         
         </div>
-  
-        <div class="flex justify-between gap-2">
-          <div class="fieldWrapper w-1/2">
-            {{ form.gender.label_tag }}
-            {% render_field form.gender class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
-            {% if form.gender.errors %}
-            <div class="text-red-500 bg-red-100 p-2 rounded">
-              {{ form.gender.errors }}
-            </div>
-            {% endif %}
-          </div>
-    
-          <div class="fieldWrapper w-1/2">
-            {{ form.year_of_birth.label_tag }}
-            {% render_field form.year_of_birth class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
-            {% if form.year_of_birth.errors %}
-            <div class="text-red-500 bg-red-100 p-2 rounded">
-              {{ form.year_of_birth.errors }}
-            </div>
-            {% endif %}
-          </div>
-        </div>
-       
-        <div class="fieldWrapper">
-          {{ form.territory.label_tag }}
-          {% render_field form.territory class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
-          {% if form.territory.errors %}
-          <div class="text-red-500 bg-red-100 p-2 rounded">
-            {{ form.territory.errors }}
-          </div>
-          {% endif %}
-        </div>
-  
-        <div class="fieldWrapper">
-          {{ form.affinity.label_tag }}
-          {% render_field form.affinity class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %}
-          {% if form.affinity.errors %}
-          <div class="text-red-500 bg-red-100 p-2 rounded">
-            {{ form.affinity.errors }}
-          </div>
-          {% endif %}
-        </div>
-  
-        {% get_providers as socialaccount_providers %}
+        <div class="xl:col-span-5 xl:col-start-7">
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="flex flex-col my-5 w-full">
+              {% if form.non_field_errors %}
+              <div class="text-red-500 bg-red-100 p-2 rounded">
+                {{ form.non_field_errors }}
+              </div>
+              {% endif %}
+              <div class="mb-6">
+                <span class="mb-2 block text-lg font-medium">{{ form.nick_name.label_tag }}</span>
+                {% render_field form.nick_name class="parti-input" placeholder="Tu apodo" %}
+                {% if form.nick_name.errors %}
+                <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.nick_name.errors }}</span>
+                {% endif %}
+              </div>
         
-       
-      <!-- Buttons -->
-      {% if socialaccount_providers %}
-      <h3 class="text-lg font-bold text-center mt-3">{{_('Add photo with')}}</h3>
-      <div class="flex items-center justify-between">
-            {% for provider in socialaccount_providers %}
-            <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" name="login"  value="{{provider.name}}"/>
-            {% endfor %}
+              <div class="flex justify-between gap-2">
+                <div class="mb-6 w-1/2">
+                  <span class="mb-2 block text-lg font-medium">{{ form.gender.label_tag }}</span>
+                  {% render_field form.gender class="parti-input" placeholder="Tu género" %}
+                  {% if form.gender.errors %}
+                  <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.gender.errors }}</span>
+                  {% endif %}
+                </div>
+          
+                <div class="mb-6 w-1/2">
+                  <span class="mb-2 block text-lg font-medium">{{ form.year_of_birth.label_tag }}</span>
+                  {% render_field form.year_of_birth class="parti-input" placeholder="Tu año de nacimiento" %}
+                  {% if form.year_of_birth.errors %}
+                  <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.year_of_birth.errors }}</span>
+                  {% endif %}
+                </div>
+              </div>
+             
+              <div class="mb-6">
+                <span class="mb-2 block text-lg font-medium">{{ form.territory.label_tag }}</span>
+                {% render_field form.territory class="parti-input" placeholder="Tu territorio" %}
+                {% if form.territory.errors %}
+                <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.territory.errors }}</span>
+                {% endif %}
+              </div>
+        
+              <div class="mb-6">
+                <span class="mb-2 block text-lg font-medium">{{ form.affinity.label_tag }}</span>
+                {% render_field form.affinity class="parti-input" placeholder="Tu afinidad" %}
+                {% if form.affinity.errors %}
+                <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.affinity.errors }}</span>
+                {% endif %}
+              </div>
+        
+            {% get_providers as socialaccount_providers %}
+              
+             
+            <!-- Buttons -->
+            {% if socialaccount_providers %}
+            <h3 class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl">{{_('Add photo with')}}</h3>
+            <div class="flex items-center justify-around">
+                  {% for provider in socialaccount_providers %}
+                  <input  class="parti-btn" type="submit" name="login"  value="{{provider.name}}"/>
+                  {% endfor %}
+            </div>
+            {% endif %}
+            <h3 class="my-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl">{{_('Create without photo')}}</h3>
+            <div class="flex items-center justify-around">
+              <input  class="parti-btn" type="submit" name="login" value="{{_('Create')}}"/>
+            </div>
+          </form>  
+        </div>
       </div>
-      {% endif %}
-      <h3 class="text-lg font-bold text-center mt-3">{{_('Create without photo')}}</h3>
-      <div class="flex items-center justify-between">
-        <input  class="bg-naranja hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto my-4" type="submit" name="login" value="{{_('Create')}}"/>
-      </div>
-    </form>  
+    </div>
   </section>
-</div>
+</main>
+
+
+
 {% endblock %}
 
 

@@ -103,6 +103,7 @@ class Conversation(models.Model):
     color_secondary = models.CharField(
         _("Secondary color"), max_length=200, blank=True, null=True
     )
+    show_in_list = models.BooleanField(_("Show in list"), default=False)
 
     def __str__(self):
         return self.topic

@@ -104,10 +104,20 @@ class MainHomeView(ParticipantMixin, ListView):
     template_name = "main_home.html"
     model = Conversation
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(show_in_list=True)
+        return queryset
+
 
 class HomeView(ParticipantMixin, ListView):
     template_name = "pages/home.html"
     model = Conversation
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(show_in_list=True)
+        return queryset
 
     def get(self, request, *args, **kwargs):
         self.init_participant(request)

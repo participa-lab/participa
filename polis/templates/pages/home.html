@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="xl:col-span-5 xl:col-start-7">
-                    <div class="splide" role="group" data-splide='{"autoHeight":true,"type":"loop","gap":"16px","arrows":true,"pagination":false,"perPage":1,"perMove":1}'>
+                  <div class="splide" role="group" data-splide='{"autoHeight":true,"type":"loop","gap":"16px","arrows":{{ slider_conversaciones|yesno:"true,false" }}, "pagination":false,"perPage":1,"perMove":1}'>
                         <div class="splide__track -mx-3">
                             <ul class="splide__list">
                                 {% for conversation in object_list %}

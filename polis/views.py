@@ -144,6 +144,7 @@ class MainHomeView(ParticipantMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["conversaciones"] = self.get_conversaciones()
+        context["slider_conversaciones"] = len(context["conversaciones"]) > 1
         return context
 
 
@@ -159,6 +160,11 @@ class HomeView(ParticipantMixin, ListView):
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
         return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["slider_conversaciones"] = len(context["object_list"]) > 1
+        return context
 
 
 class ParticipantView(ParticipantMixin, CreateView):

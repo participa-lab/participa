@@ -6,6 +6,33 @@
 
 {% block content %}
 <main id="content" x-data="{showHelp: false}">
+
+     <!-- Full-screen overlay -->
+    <div
+    x-show="showHelp"
+    @click.away="showHelp = false"
+    class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center overflow-y-auto"
+    style="display: none;"
+    >
+    <!-- Overlay content -->
+    <div class="container bg-white p-6 rounded-lg max-w-xl flex flex-col w-full mx-4">
+        <button @click="showHelp = false" class="ml-auto parti-btn">
+        {{_('Close')}}
+        </button>
+        <div class=" min-h-[50vh] max-h-[80vh] w-full p-4 overflow-y-auto">
+        <!-- Scrollable content goes here -->
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('¿Qué es participa?') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/participa_text_1.html" %}</span>
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('¿Por qué Despolarizar el Debate?') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/depolarize_text_1.html" %}</span>
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('¿Qué es Polis y cómo funciona?') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/polis_text_1.html" %}</span>
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('Privacidad y Datos personales') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/privacy_text_1.html" %}</span>
+        <!-- Add more content as needed -->
+        </div>
+    </div>
+    </div>
     
     <section id="conversaciones">
         <div class="container mx-auto px-2 lg:px-6 py-[20px] lg:py-[60px] xl:px-4">
@@ -19,23 +46,7 @@
                             <span class="material-symbols-outlined text-3xl">help_outline</span>
                         </button>  
                     </h3>
-                
-                    
                 </div>
-
-                <!-- overlay about -->
-    
-            <div class="container mx-auto px-6 py-[60px] xl:px-4 bg-teal-50" x-show="false">
-            <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
-                <button @click="showHelp = !showHelp" class="absolute top-0 right-0 text-white focus:outline-none m-4">
-                    <span class="material-symbols-outlined text-2xl">close</span>
-                </button>
-                <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
-                    {% include "components/about_content.html" %}
-                </div>
-                </div>
-            </div>
-
                 
                 <div id="polis-container" class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
                 </div>

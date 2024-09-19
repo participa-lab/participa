@@ -62,9 +62,11 @@
                                 {% endfor %}
                             </ul>
                         </div>
+                        {% if object_list|length > 1 %}
                         <div class="mt-8 flex justify-end">
                             <div class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"></div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="block lg:hidden mb-10">

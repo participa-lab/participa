@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from django.http import HttpResponse
 from django.urls import include, path
+from polis import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,7 +28,7 @@ urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
     path("accounts/", include("allauth.urls")),
     path("healthcheck/", lambda r: HttpResponse()),
-    path("", TemplateView.as_view(template_name="main_home.html"), name="main_home"),
+    path("", views.MainHomeView.as_view(), name="main_home"),
     path(
         "about", TemplateView.as_view(template_name="main_quienes.html"), name="about"
     ),

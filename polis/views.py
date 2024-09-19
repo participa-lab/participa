@@ -100,6 +100,11 @@ class ParticipantMixin(object):
         return context
 
 
+class MainHomeView(ParticipantMixin, ListView):
+    template_name = "main_home.html"
+    model = Conversation
+
+
 class HomeView(ParticipantMixin, ListView):
     template_name = "pages/home.html"
     model = Conversation

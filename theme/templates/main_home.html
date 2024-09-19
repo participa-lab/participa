@@ -735,29 +735,7 @@
     </div>
   </section>
 
-  <section
-    id="polarizacion"
-    class="hero bg-teal-600 bg-contain bg-center bg-no-repeat pb-[72px] pt-[72px] text-white lg:bg-[url('{% static 'img/bg-polarizacion.jpg' %}')] lg:pb-12 lg:pt-5"
-  >
-    <div class="container mx-auto px-8 xl:px-4">
-      <div
-        class="grid grid-cols-1 gap-16 md:gap-16 lg:min-h-[700px] lg:grid-cols-12 lg:items-center"
-      >
-        <div class="lg:col-span-6">
-          <h3 class="mb-12 text-[40px] font-semibold xl:mb-8">
-            Despolarizar el debate
-          </h3>
-          <div class="text-body space-y-7">
-            <p>
-              Participa busca aportar a la despolarización en distintas temáticas de discusión pública. 
-              Para ello, pone a disposición una herramienta que promueve la discusión a partir de diferentes opiniones. 
-              Así, invitamos a descrubrir acuerdos aún en las diferentes posiciones.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section id="conversaciones">
     <div class="container mx-auto px-6 py-[72px] xl:px-4">
@@ -766,7 +744,7 @@
           <h2
             class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl"
           >
-            Conversaciones
+            Despolarización
           </h2>
           <h3
             class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
@@ -782,78 +760,39 @@
           </div>
         </div>
         <div class="xl:col-span-5 xl:col-start-7">
-          <div
-            class="splide"
-            role="group"
-            data-splide='{"autoHeight":true,"type":"loop","gap":"16px","arrows":true,"pagination":false,"perPage":1,"perMove":1}'
-          >
-            <div class="splide__track -mx-3">
-              <ul class="splide__list">
-                <li class="splide__slide p-3">
-                  <div
-                    class="flex flex-col rounded-3xl bg-white px-14 py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]"
-                  >
-                    <div class="mb-[15px]">
-                      <img src="{% static 'img/icon-conversaciones.svg' %}" alt="" />
-                    </div>
-                    <div>
-                      <h3
-                        class="mb-[19px] text-2xl font-medium text-teal-600"
-                      >
-                        Plebiscito de seguridad social
-                      </h3>
-                      <div class="space-y-4 text-base text-teal-600">
-                        <p>El plebiscito nos invita a conversar sobre un tema que nos atraviesa a todas las personas en Uruguay.</p>
- 
-                          <p>Queremos aportar a esta conversación y rescatar acuerdos, desacuerdos y opiniones. ¿Conversamos sobre seguridad social?</p>
-
-                      </div>
-                      <hr class="my-4 border-teal-300" />
-                    </div>
-                    <div
-                      class="mt-auto flex items-center justify-between gap-8"
-                    >
-                    
-                      <!--<div class="flex items-center gap-4">
-                        
-                        <figure
-                          class="relative h-12 w-12 shrink-0 overflow-hidden rounded-full"
-                        >
-                          <img
-                            class="absolute h-full w-full object-cover object-center"
-                            src="{% static 'img/avatar.jpg' %}"
-                            alt="Foto de Juan Pérez"
-                          />
-                        </figure>
-                        <span class="text-teal-600">Juan Pérez</span>
-                        
-                      </div>-->
-                      
-                      <a
-                        href="#"
-                        class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white"
-                        >Abierta</a
-                      >
-                      <a href="#" class="parti-btn">Participar</a>
-                    </div>
-                  </div>
-                  <div class="mt-8 flex justify-end gap-3">
-                    <!--<a href="#" class="parti-btn">Participar</a>
-                     <a href="#" class="parti-btn parti-btn--secondary"
-                      >Ver más</a
-                    >-->
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="mt-8 flex justify-end">
-              <div
-                class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"
-              ></div>
-            </div>
+          <div class="splide" role="group" data-splide='{"autoHeight":true,"type":"loop","gap":"16px","arrows":true,"pagination":false,"perPage":1,"perMove":1}'>
+              <div class="splide__track -mx-3">
+                  <ul class="splide__list">
+                      {% for conversation in object_list %}
+                      <li class="splide__slide p-3">
+                          <div class="flex flex-col rounded-3xl bg-white px-4 lg:px-14 py-3 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
+                              <div class="mb-[15px]">
+                                  <img src="{% static 'img/icon-conversaciones.svg' %}" alt="" />
+                              </div>
+                              <div>
+                                  <h3 class="mb-[19px] text-2xl font-medium text-teal-600">
+                                      {{ conversation.topic }}
+                                  </h3>
+                                  <div class="space-y-4 text-base text-teal-600">
+                                      <p>{{ conversation.description }}</p>
+                                  </div>
+                                  <hr class="my-4 border-teal-300" />
+                              </div>
+                              <div class="mt-auto flex items-center justify-between gap-4 lg:gap-8">
+                                  <a href="#" class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white">Abierta</a>
+                                  <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                              </div>
+                          </div>
+                      </li>
+                      {% endfor %}
+                  </ul>
+              </div>
+              <div class="mt-8 flex justify-end">
+                  <div class="splide__arrows flex justify-end gap-7 xl:gap-[70px]"></div>
+              </div>
           </div>
-        </div>
       </div>
+      
     </div>
   </section>
 </main>

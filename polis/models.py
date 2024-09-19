@@ -27,7 +27,7 @@ class MillisField(models.BigIntegerField):
 
 class Instance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(_("Name"), max_length=200)
+    name = models.CharField(_("Nombre"), max_length=200)
     url = models.CharField(max_length=200)
     site_id = models.CharField(_("Polis Site Id"), max_length=200)
 
@@ -35,20 +35,20 @@ class Instance(models.Model):
         return f"{self.id} {self.name}"
 
     class Meta:
-        verbose_name = _("Instance")
-        verbose_name_plural = _("Instances")
+        verbose_name = _("Instancia")
+        verbose_name_plural = _("Instancias")
 
 
 class Conversation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    topic = models.CharField(_("Topic"), max_length=200)
+    topic = models.CharField(_("Tema"), max_length=200)
     slug = models.SlugField(_("Slug"), default="", null=False)
-    description = models.TextField(_("Description"))
+    description = models.TextField(_("Descripción"))
 
-    start_date = models.DateTimeField(_("Start date"))
-    end_date = models.DateTimeField(_("Start date"))
+    start_date = models.DateTimeField(_("Fecha de inicio"))
+    end_date = models.DateTimeField(_("Fecha de finalización"))
     instance = models.ForeignKey(
-        Instance, on_delete=models.CASCADE, verbose_name=_("Instance")
+        Instance, on_delete=models.CASCADE, verbose_name=_("Instancia")
     )
 
     border = models.CharField(
@@ -185,26 +185,26 @@ class Participant(models.Model):
         on_delete=models.SET_NULL,
     )
     avatar_url = models.CharField(max_length=256, blank=True, null=True)
-    name = models.CharField(_("Name"), max_length=200, blank=True, null=True)
-    nick_name = models.CharField(_("Nick Name"), max_length=200, blank=True, null=True)
+    name = models.CharField(_("Nombre"), max_length=200, blank=True, null=True)
+    nick_name = models.CharField(_("Apodo"), max_length=200, blank=True, null=True)
     email = models.EmailField(_("Email"), blank=True, null=True)
     gender = models.CharField(
         _("Gender"), max_length=2, choices=choices.GENDER_CHOICES, blank=True, null=True
     )
-    year_of_birth = models.IntegerField(_("Year of Birth"), blank=True, null=True)
+    year_of_birth = models.IntegerField(_("Año de nacimiento"), blank=True, null=True)
     territory = models.ForeignKey(
         Territory,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        verbose_name=_("Territory"),
+        verbose_name=_("Territorio"),
     )
     affinity = models.ForeignKey(
         Affinity,
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        verbose_name=_("Affinity"),
+        verbose_name=_("Afiliación"),
     )
 
     def __str__(self):

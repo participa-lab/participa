@@ -5,6 +5,22 @@ from .models import Participant
 
 
 class ParticipantForm(forms.ModelForm):
+    nick_name = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu apodo")})
+    )
+    gender = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu género")})
+    )
+    year_of_birth = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu año de nacimiento")})
+    )
+    territory = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu territorio")})
+    )
+    affinity = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu afiliación")})
+    )
+
     def clean(self):
         if not self.cleaned_data.get("year_of_birth"):
             self.add_error("year_of_birth", _("This field is required"))
@@ -26,6 +42,22 @@ class ParticipantForm(forms.ModelForm):
 
 
 class ParticipantUpdateForm(forms.ModelForm):
+    nick_name = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu apodo")})
+    )
+    gender = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu género")})
+    )
+    year_of_birth = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu año de nacimiento")})
+    )
+    territory = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu territorio")})
+    )
+    affinity = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu afiliación")})
+    )
+
     def clean(self):
         if not self.cleaned_data.get("year_of_birth"):
             self.add_error("year_of_birth", _("This field is required"))

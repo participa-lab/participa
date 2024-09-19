@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-19 14:17-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English <en@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: polis/choices.py:4
+msgid "Mujer"
+msgstr "Woman"
+
+#: polis/choices.py:5
+msgid "Varón"
+msgstr "Man"
+
+#: polis/choices.py:6
+msgid "No binario"
+msgstr "Non-binary"
+
+#: polis/choices.py:7
+msgid "Trans"
+msgstr "Trans"
+
+#: polis/choices.py:8
+msgid "Intersexual"
+msgstr "Intersex"
+
+#: polis/choices.py:9
+msgid "Queer"
+msgstr "Queer"
+
+#: polis/choices.py:10
+msgid "Prefiero no decirlo"
+msgstr "Prefer not to say"
+
+#: polis/choices.py:11
+msgid "Otro"
+msgstr "Other"
+
+#: polis/choices.py:15 polis/models.py:190
+msgid "Email"
+msgstr "Email"
+
+#: polis/forms.py:9 polis/forms.py:46
+msgid "Tu apodo"
+msgstr "Your nickname"
+
+#: polis/forms.py:12 polis/forms.py:49
+msgid "Tu género"
+msgstr "Your gender"
+
+#: polis/forms.py:15 polis/forms.py:52
+msgid "Tu año de nacimiento"
+msgstr "Your year of birth"
+
+#: polis/forms.py:18 polis/forms.py:55
+msgid "Tu territorio"
+msgstr "Your territory"
+
+#: polis/forms.py:21 polis/forms.py:58
+msgid "Tu afiliación"
+msgstr "Your affiliation"
+
+#: polis/forms.py:26 polis/forms.py:28 polis/forms.py:30 polis/forms.py:63
+#: polis/forms.py:65 polis/forms.py:67
+msgid "This field is required"
+msgstr "This field is required"
+
+#: polis/models.py:30 polis/models.py:188
+msgid "Nombre"
+msgstr "Name"
+
+#: polis/models.py:32
+msgid "Polis Site Id"
+msgstr "Polis Site ID"
+
+#: polis/models.py:38 polis/models.py:51
+msgid "Instancia"
+msgstr "Instance"
+
+#: polis/models.py:39
+msgid "Instancias"
+msgstr "Instances"
+
+#: polis/models.py:44
+msgid "Tema"
+msgstr "Topic"
+
+#: polis/models.py:45
+msgid "Slug"
+msgstr "Slug"
+
+#: polis/models.py:46
+msgid "Descripción"
+msgstr "Description"
+
+#: polis/models.py:48
+msgid "Fecha de inicio"
+msgstr "Start date"
+
+#: polis/models.py:49
+msgid "Fecha de finalización"
+msgstr "End date"
+
+#: polis/models.py:55
+msgid "Border"
+msgstr "Border"
+
+#: polis/models.py:61
+msgid "Iframe Padding"
+msgstr "Iframe Padding"
+
+#: polis/models.py:64
+msgid "Iframe Height"
+msgstr "Iframe Height"
+
+#: polis/models.py:67
+msgid "Iframe UI Languaje"
+msgstr "Iframe UI Language"
+
+#: polis/models.py:69
+msgid "Iframe Border"
+msgstr "Iframe Border"
+
+#: polis/models.py:71
+msgid "Show Visualization"
+msgstr "Show Visualization"
+
+#: polis/models.py:72
+msgid "Show Share"
+msgstr "Show Share"
+
+#: polis/models.py:73
+msgid "Background White"
+msgstr "White Background"
+
+#: polis/models.py:76
+msgid "Authentication needed to vote"
+msgstr "Authentication needed to vote"
+
+#: polis/models.py:79
+msgid "Authentication needed to write"
+msgstr "Authentication needed to write"
+
+#: polis/models.py:82
+msgid "Show Facebook Authentication"
+msgstr "Show Facebook Authentication"
+
+#: polis/models.py:83
+msgid "Show Twitter Authentication"
+msgstr "Show Twitter Authentication"
+
+#: polis/models.py:85
+msgid "Show 3rd Party Authentication"
+msgstr "Show 3rd Party Authentication"
+
+#: polis/models.py:88
+msgid "Show footer"
+msgstr "Show footer"
+
+#: polis/models.py:89
+msgid "Show help text"
+msgstr "Show help text"
+
+#: polis/models.py:90
+msgid "Show description"
+msgstr "Show description"
+
+#: polis/models.py:91
+msgid "Show topic"
+msgstr "Show topic"
+
+#: polis/models.py:93
+msgid "Show subscribe type"
+msgstr "Show subscribe type"
+
+#: polis/models.py:101
+msgid "Primary color"
+msgstr "Primary color"
+
+#: polis/models.py:104
+msgid "Secondary color"
+msgstr "Secondary color"
+
+#: polis/models.py:106
+msgid "Show in list"
+msgstr "Show in list"
+
+#: polis/models.py:151
+msgid "Conversation"
+msgstr "Conversation"
+
+#: polis/models.py:152
+msgid "Conversations"
+msgstr "Conversations"
+
+#: polis/models.py:156 polis/models.py:167
+msgid "Name"
+msgstr "Name"
+
+#: polis/models.py:162
+msgid "Territory"
+msgstr "Territory"
+
+#: polis/models.py:163
+msgid "Territories"
+msgstr "Territories"
+
+#: polis/models.py:173
+msgid "Affinity"
+msgstr "Affinity"
+
+#: polis/models.py:174
+msgid "Affinities"
+msgstr "Affinities"
+
+#: polis/models.py:181
+msgid "user"
+msgstr "user"
+
+#: polis/models.py:189
+msgid "Apodo"
+msgstr "Nickname"
+
+#: polis/models.py:192
+msgid "Gender"
+msgstr "Gender"
+
+#: polis/models.py:194
+msgid "Año de nacimiento"
+msgstr "Year of birth"
+
+#: polis/models.py:200
+msgid "Territorio"
+msgstr "Territory"
+
+#: polis/models.py:207
+msgid "Afiliación"
+msgstr "Affiliation"
+
+#: polis/models.py:305
+msgid "Participant"
+msgstr "Participant"
+
+#: polis/models.py:306
+msgid "Participants"
+msgstr "Participants"
+
+#: polis/templates/components/polis_footer.html:31
+msgid "Powered by"
+msgstr "Powered by"
+
+#: polis/templates/components/polis_footer.html:32
+msgid "Polis"
+msgstr "Polis"
+
+#: polis/templates/deprecated/conversation_home.html:96
+msgid "Despolarizar el Plebiscito de la Seguridad Social"
+msgstr "Depolarize the Social Security Plebiscite"
+
+#: polis/templates/deprecated/conversation_home.html:99
+msgid "¿Qué es Participa?"
+msgstr "What is Participa?"
+
+#: polis/templates/deprecated/login_form.html:10
+msgid "Login"
+msgstr "Login"
+
+#: polis/templates/deprecated/login_form.html:45
+msgid "Anonymus"
+msgstr "Anonymous"
+
+#: polis/templates/pages/conversation.html:20
+msgid "Cerrar"
+msgstr "Close"
+
+#: polis/templates/pages/conversation.html:24
+msgid "¿Qué es participa?"
+msgstr "What is Participa?"
+
+#: polis/templates/pages/conversation.html:26
+msgid "¿Por qué Despolarizar el Debate?"
+msgstr "Why Depolarize the Debate?"
+
+#: polis/templates/pages/conversation.html:28
+msgid "¿Qué es Polis y cómo funciona?"
+msgstr "What is Polis and how does it work?"
+
+#: polis/templates/pages/conversation.html:30
+msgid "Privacidad y Datos personales"
+msgstr "Privacy and Personal Data"
+
+#: polis/templates/pages/conversation.html:42
+msgid "Despolarizar"
+msgstr "Depolarize"
+
+#: polis/templates/pages/home.html:16
+#: polis/templates/pages/participant_form.html:18
+msgid "Despolarización"
+msgstr "Depolarization"
+
+#: polis/templates/pages/home.html:19
+msgid "Despolarizar el debate"
+msgstr "Depolarize the debate"
+
+#: polis/templates/pages/home.html:23
+msgid ""
+"Participa busca aportar a la despolarización en distintas temáticas de "
+"discusión pública. Para ello, pone a disposición una herramienta que "
+"promueve la discusión a partir de diferentes opiniones. Así, invitamos a "
+"descrubrir acuerdos aún en las diferentes posiciones."
+msgstr ""
+"Participa aims to contribute to depolarization in various topics of public discussion. To do this, it provides a tool that promotes discussion based on different opinions. Thus, we invite you to discover agreements even among different positions."
+
+#: polis/templates/pages/home.html:28 polis/templates/pages/home.html:72
+msgid "Sobre Participa"
+msgstr "About Participa"
+
+#: polis/templates/pages/home.html:32 polis/templates/pages/home.html:76
+msgid ""
+"El Laboratorio de Participación y Tecnologías de la Universidad de la "
+"República, Participa, impulsa procesos de investigación-acción para la "
+"transformación social, utilizando tecnologías digitales de manera "
+"inteligente. Con un enfoque interdisciplinario, combina saberes de "
+"informática, comunicación, ciencia política y sociología."
+msgstr ""
+"The Participation and Technologies Laboratory of the University of the Republic, Participa, promotes action-research processes for social transformation, using digital technologies intelligently. With an interdisciplinary approach, it combines knowledge from computer science, communication, political science, and sociology."
+
+#: polis/templates/pages/home.html:57
+msgid "Abierta"
+msgstr "Open"
+
+#: polis/templates/pages/home.html:58
+msgid "Participar"
+msgstr "Participate"
+
+#: polis/templates/pages/participant_form.html:23
+msgid "Crear tu perfil"
+msgstr "Create your profile"
+
+#: polis/templates/pages/participant_form.html:86
+msgid "Participar con la foto de"
+msgstr "Participate with the photo of"
+
+#: polis/templates/pages/participant_form.html:95
+msgid "Participar sin foto"
+msgstr "Participate without a photo"
+
+#: polis/templates/pages/participant_update_form.html:23
+msgid "Update your profile"
+msgstr "Update your profile"
+
+#: polis/templates/pages/participant_update_form.html:84
+msgid "Salir"
+msgstr "Logout"
+
+#: polis/templates/pages/participant_update_form.html:86
+msgid "Actualizar"
+msgstr "Update"

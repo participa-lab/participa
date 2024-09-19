@@ -17,7 +17,7 @@
     <!-- Overlay content -->
     <div class="container bg-white p-6 rounded-lg max-w-xl flex flex-col w-full mx-4">
         <button @click="showHelp = false" class="ml-auto parti-btn">
-        {{_('Close')}}
+        {{_('Cerrar')}}
         </button>
         <div class=" min-h-[50vh] max-h-[80vh] w-full p-4 overflow-y-auto">
         <!-- Scrollable content goes here -->
@@ -39,7 +39,7 @@
           <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
             <div class="xl:col-span-12 ">
                 <div class="flex flex-col lg:flex-row lg:items-center px-2 lg:px-0 mb-4 xl:mb-6">
-                    <span class="text-base font-medium uppercase  text-teal-600 lg:text-xl">Despolarizar</span>
+                    <span class="text-base font-medium uppercase  text-teal-600 lg:text-xl">{{_('Despolarizar')}}</span>
                     <h3 class="lg:ml-5 w-full  flex items-center text-3xl lg:text-[40px] font-semibold leading-tight text-teal-600">
                         <span>{{object.topic}}</span>
                         <button @click="showHelp = !showHelp" class="ml-auto">

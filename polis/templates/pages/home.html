@@ -13,28 +13,23 @@
             <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
                 <div class="xl:col-span-4">
                     <h2 class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl">
-                        Despolarización
+                        {{_('Despolarización')}}
                     </h2>
                     <h3 class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8">
-                        Despolarizar el debate
+                        {{_('Despolarizar el debate')}}
                     </h3>
                     <div class="space-y-4 text-teal-600">
                         <p>
-                            Participa busca aportar a la despolarización en distintas temáticas de discusión pública.
-                            Para ello, pone a disposición una herramienta que promueve la discusión a partir de diferentes opiniones.
-                            Así, invitamos a descrubrir acuerdos aún en las diferentes posiciones.
+                            {{_('Participa busca aportar a la despolarización en distintas temáticas de discusión pública. Para ello, pone a disposición una herramienta que promueve la discusión a partir de diferentes opiniones. Así, invitamos a descrubrir acuerdos aún en las diferentes posiciones.')}}
                         </p>
                     </div>
                     <div class="hidden lg:block">
                         <h4 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">
-                            Sobre Participa
+                            {{_('Sobre Participa')}}
                         </h4>
                         <div class="space-y-4 text-teal-600 text-sm">
                             <p>
-                                El Laboratorio de Participación y Tecnologías de la Universidad de la República, Participa,
-                                impulsa procesos de investigación-acción para la transformación social,
-                                utilizando tecnologías digitales de manera inteligente.
-                                Con un enfoque interdisciplinario, combina saberes de informática, comunicación, ciencia política y sociología.
+                                {{_('El Laboratorio de Participación y Tecnologías de la Universidad de la República, Participa, impulsa procesos de investigación-acción para la transformación social, utilizando tecnologías digitales de manera inteligente. Con un enfoque interdisciplinario, combina saberes de informática, comunicación, ciencia política y sociología.')}}
                             </p>
                         </div>
                     </div>
@@ -59,8 +54,8 @@
                                             <hr class="my-4 border-teal-300" />
                                         </div>
                                         <div class="mt-auto flex items-center justify-between gap-4 lg:gap-8">
-                                            <a href="#" class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white">Abierta</a>
-                                            <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                                            <a href="#" class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white">{{_('Abierta')}}</a>
+                                            <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">{{_('Participar')}}<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
                                         </div>
                                     </div>
                                 </li>
@@ -74,14 +69,11 @@
                 </div>
                 <div class="block lg:hidden mb-10">
                     <h4 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">
-                        Sobre Participa
+                        {{_('Sobre Participa')}}
                     </h4>
                     <div class="space-y-4 text-teal-600 text-sm">
                         <p>
-                            El Laboratorio de Participación y Tecnologías de la Universidad de la República, Participa,
-                            impulsa procesos de investigación-acción para la transformación social,
-                            utilizando tecnologías digitales de manera inteligente.
-                            Con un enfoque interdisciplinario, combina saberes de informática, comunicación, ciencia política y sociología.
+                            {{_('El Laboratorio de Participación y Tecnologías de la Universidad de la República, Participa, impulsa procesos de investigación-acción para la transformación social, utilizando tecnologías digitales de manera inteligente. Con un enfoque interdisciplinario, combina saberes de informática, comunicación, ciencia política y sociología.')}}
                         </p>
                     </div>
                 </div>

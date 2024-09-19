@@ -15,12 +15,12 @@
           <h2
             class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl"
           >
-            Despolarizar
+          {{_('Despolarización')}}
           </h2>
           <h3
             class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
           >
-          {{ _('Create your profile') }}
+          {{ _('Crear tu perfil') }}
           </h3>
           <div class="space-y-4 text-teal-600">
             {% include "texts/login_text_1.html" %}
@@ -38,7 +38,7 @@
               {% endif %}
               <div class="mb-6">
                 <span class="mb-2 block text-lg font-medium">{{ form.nick_name.label_tag }}</span>
-                {% render_field form.nick_name class="parti-input" placeholder="Tu apodo" %}
+                {% render_field form.nick_name class="parti-input"%}
                 {% if form.nick_name.errors %}
                 <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.nick_name.errors }}</span>
                 {% endif %}
@@ -47,7 +47,7 @@
               <div class="flex justify-between gap-2">
                 <div class="mb-6 w-1/2">
                   <span class="mb-2 block text-lg font-medium">{{ form.gender.label_tag }}</span>
-                  {% render_field form.gender class="parti-input" placeholder="Tu género" %}
+                  {% render_field form.gender class="parti-input" %}
                   {% if form.gender.errors %}
                   <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.gender.errors }}</span>
                   {% endif %}
@@ -55,7 +55,7 @@
           
                 <div class="mb-6 w-1/2">
                   <span class="mb-2 block text-lg font-medium">{{ form.year_of_birth.label_tag }}</span>
-                  {% render_field form.year_of_birth class="parti-input" placeholder="Tu año de nacimiento" %}
+                  {% render_field form.year_of_birth class="parti-input" %}
                   {% if form.year_of_birth.errors %}
                   <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.year_of_birth.errors }}</span>
                   {% endif %}
@@ -64,7 +64,7 @@
              
               <div class="mb-6">
                 <span class="mb-2 block text-lg font-medium">{{ form.territory.label_tag }}</span>
-                {% render_field form.territory class="parti-input" placeholder="Tu territorio" %}
+                {% render_field form.territory class="parti-input"%}
                 {% if form.territory.errors %}
                 <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.territory.errors }}</span>
                 {% endif %}
@@ -72,7 +72,7 @@
         
               <div class="mb-6">
                 <span class="mb-2 block text-lg font-medium">{{ form.affinity.label_tag }}</span>
-                {% render_field form.affinity class="parti-input" placeholder="Tu afinidad" %}
+                {% render_field form.affinity class="parti-input"%}
                 {% if form.affinity.errors %}
                 <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.affinity.errors }}</span>
                 {% endif %}
@@ -83,7 +83,7 @@
              
             <!-- Buttons -->
             {% if socialaccount_providers %}
-            <h3 class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-lg text-center">{{_('Participate with photo of')}}</h3>
+            <h3 class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-lg text-center">{{_('Participar con la foto de')}}</h3>
             <div class="flex items-center justify-around">
                   {% for provider in socialaccount_providers %}
                   <input  class="parti-btn parti-btn--secondary" type="submit" name="login"  value="{{provider.name}}"/>
@@ -92,7 +92,7 @@
             {% endif %}
             <hr class="my-4 border-teal-300" />
             <div class="flex items-center justify-around">
-              <input  class="parti-btn" type="submit" name="login" value="{{_('Participate without photo')}}"/>
+              <input  class="parti-btn" type="submit" name="login" value="{{_('Participar sin foto')}}"/>
             </div>
           </form>  
         </div>

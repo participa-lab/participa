@@ -38,7 +38,7 @@
               {% endif %}
               <div class="mb-6">
                 <span class="mb-2 block text-lg font-medium">{{ form.nick_name.label_tag }}</span>
-                {% render_field form.nick_name class="parti-input" placeholder="Tu apodo" %}
+                {% render_field form.nick_name class="parti-input" %}
                 {% if form.nick_name.errors %}
                 <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.nick_name.errors }}</span>
                 {% endif %}
@@ -47,7 +47,7 @@
               <div class="flex justify-between gap-2">
                 <div class="mb-6 w-1/2">
                   <span class="mb-2 block text-lg font-medium">{{ form.gender.label_tag }}</span>
-                  {% render_field form.gender class="parti-input" placeholder="Tu género" %}
+                  {% render_field form.gender class="parti-input" %}
                   {% if form.gender.errors %}
                   <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.gender.errors }}</span>
                   {% endif %}
@@ -55,7 +55,7 @@
           
                 <div class="mb-6 w-1/2">
                   <span class="mb-2 block text-lg font-medium">{{ form.year_of_birth.label_tag }}</span>
-                  {% render_field form.year_of_birth class="parti-input" placeholder="Tu año de nacimiento" %}
+                    {% render_field form.year_of_birth class="parti-input" %}
                   {% if form.year_of_birth.errors %}
                   <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.year_of_birth.errors }}</span>
                   {% endif %}
@@ -64,7 +64,7 @@
              
               <div class="mb-6">
                 <span class="mb-2 block text-lg font-medium">{{ form.territory.label_tag }}</span>
-                {% render_field form.territory class="parti-input" placeholder="Tu territorio" %}
+                  {% render_field form.territory class="parti-input" %}
                 {% if form.territory.errors %}
                 <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.territory.errors }}</span>
                 {% endif %}
@@ -72,7 +72,7 @@
         
               <div class="mb-6">
                 <span class="mb-2 block text-lg font-medium">{{ form.affinity.label_tag }}</span>
-                {% render_field form.affinity class="parti-input" placeholder="Tu afinidad" %}
+                {% render_field form.affinity class="parti-input" %}
                 {% if form.affinity.errors %}
                 <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.affinity.errors }}</span>
                 {% endif %}
@@ -81,9 +81,9 @@
           
             <div class="flex items-center justify-around">
               {% if participant %}
-              <a class="parti-btn parti-btn--secondary" href="{% url 'participant_logout' %}">{{ _('Sign Out') }}</a> 
+              <a class="parti-btn parti-btn--secondary" href="{% url 'participant_logout' %}">{{ _('Salir') }}</a> 
               {% endif %}
-              <input  class="parti-btn" type="submit" name="login" value="{{_('Update')}}"/>
+              <input  class="parti-btn" type="submit" name="login" value="{{_('Actualizar')}}"/>
               
             </div>
           </form>  

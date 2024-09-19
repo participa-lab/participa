@@ -3,6 +3,9 @@ import logging
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.conf import settings
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 from django.views.generic import (
     CreateView,
@@ -10,11 +13,14 @@ from django.views.generic import (
     ListView,
     TemplateView,
     UpdateView,
+    FormView,
 )
 
-from .forms import ParticipantForm, ParticipantUpdateForm
+from .forms import ParticipantForm, ParticipantUpdateForm, ContactForm
 from .models import Conversation, Participant
 from allauth.socialaccount.adapter import get_adapter
+from django.core.mail import send_mail
+
 
 logger = logging.getLogger(__name__)
 
@@ -100,14 +106,45 @@ class ParticipantMixin(object):
         return context
 
 
-class MainHomeView(ParticipantMixin, ListView):
+class MainHomeView(ParticipantMixin, FormView):
     template_name = "main_home.html"
-    model = Conversation
+    form_class = ContactForm
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(show_in_list=True)
+    def get_conversaciones(self):
+        queryset = Conversation.objects.filter(show_in_list=True)
         return queryset
+
+    def get_success_url(self):
+        return reverse("main_home") + "#contacto"
+
+    def form_valid(self, form):
+        name = form.cleaned_data.get("name")
+        email = form.cleaned_data.get("email")
+        subject = form.cleaned_data.get("subject")
+        message = form.cleaned_data.get("message")
+
+        full_message = f"""
+            Received message below from {name} {email}
+            ________________________
+            Asunto: {subject}
+
+            {message}
+            """
+        send_mail(
+            subject="Received contact form submission",
+            message=full_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.NOTIFY_EMAIL],
+        )
+        # success message
+        messages.success(self.request, _("Mensaje enviado correctamente"))
+
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["conversaciones"] = self.get_conversaciones()
+        return context
 
 
 class HomeView(ParticipantMixin, ListView):

@@ -763,7 +763,7 @@
           <div class="splide" role="group" data-splide='{"autoHeight":true,"type":"loop","gap":"16px","arrows":true,"pagination":false,"perPage":1,"perMove":1}'>
               <div class="splide__track -mx-3">
                   <ul class="splide__list">
-                      {% for conversation in object_list %}
+                      {% for conversation in conversaciones %}
                       <li class="splide__slide p-3">
                           <div class="flex flex-col rounded-3xl bg-white px-4 lg:px-14 py-3 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
                               <div class="mb-[15px]">
@@ -808,69 +808,13 @@
 
     <div class="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:items-center">
       <div class="lg:order-2 lg:col-span-4">
-        <form action="">
-          <div class="mb-6">
-            <label for="name" class="mb-2 block text-lg font-medium"
-              >Nombre y apellido</label
-            >
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Nombre y apellido"
-              class="parti-input"
-            />
-          </div>
-          <div class="mb-6">
-            <label for="name" class="mb-2 block text-lg font-medium"
-              >Correo electrónico</label
-            >
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="Correo electrónico"
-              class="parti-input error"
-              required
-            />
-            <span class="text-danger-400 mt-1 inline-block font-semibold"
-              >Acá un error opcional</span
-            >
-          </div>
-          <div class="mb-6">
-            <label for="name" class="mb-2 block text-lg font-medium"
-              >Asunto</label
-            >
-            <textarea
-              name="asunto"
-              id="asunto"
-              class="parti-input"
-              placeholder="Por favor, escriba su asunto aquí"
-              rows="3"
-            ></textarea>
-            <span class="text-lg font-medium">Máximo 150 caracteres</span>
-          </div>
-          <div class="mb-6">
-            <label for="name" class="mb-2 block text-lg font-medium"
-              >Mensaje</label
-            >
-            <textarea
-              name="asunto"
-              id="message"
-              class="parti-input"
-              placeholder="Por favor, escriba su mensaje aquí"
-              rows="3"
-            ></textarea>
-            <span class="text-lg font-medium">Máximo 150 caracteres</span>
-          </div>
-          <button type="submit" class="parti-btn">Enviar</button>
-        </form>
+        {% include 'components/contact_form.html' %}
       </div>
       <div class="lg:order-1 lg:col-span-8">
         <div class="mb-2">Montevideo, Uruguay</div>
         <div class="embed-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.8656041784725!2d-56.166493587678005!3d-34.909822073617214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f81a69a5e9493%3A0x3e14212c3c5e8b2d!2sFacultad%20de%20Arquitectura%2C%20Dise%C3%B1o%20y%20Urbanismo%20%7C%20FADU-UDELAR!5e0!3m2!1sen!2suy!4v1726496621030!5m2!1sen!2suy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.809671739171!2d-56.175626223274456!3d-34.91122557284554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f81227ade5dff%3A0x10fb4aa92a0f545b!2sFacultad%20de%20Informacion%20y%20Comunicacion%20%7C%20FIC-UDELAR!5e0!3m2!1ses-419!2suy!4v1726778456673!5m2!1ses-419!2suy"
             height="280"
             style="border: 0"
             allowfullscreen=""

@@ -1,0 +1,48 @@
+{% load widget_tweaks %}
+
+<form method="post" action=".">
+    {% if form.non_field_errors %}
+    <div class="text-danger-400 mt-1 inline-block font-semibold">
+    {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+    {% csrf_token %}
+    <div class="mb-6">
+      <label for="name" class="mb-2 block text-lg font-medium">{{ form.name.label_tag }}</label>
+      {% render_field form.name class="parti-input" %}
+      {% if form.name.errors %}
+      <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.name.errors }}</span>
+      {% endif %}
+    </div>
+    <div class="mb-6">
+      <label for="email" class="mb-2 block text-lg font-medium">{{ form.email.label_tag }}</label>
+      {% render_field form.email class="parti-input" %}
+      {% if form.email.errors %}
+      <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.email.errors }}</span>
+      {% endif %}
+    </div>
+    <div class="mb-6">
+      <label for="asunto" class="mb-2 block text-lg font-medium">{{ form.subject.label_tag }}</label>
+      {% render_field form.subject class="parti-input" %}
+      {% if form.subject.errors %}
+      <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.subject.errors }}</span>
+      {% endif %}
+      <span class="text-sm font-medium">{{ _('Máximo 150 caracteres') }}</span>
+    </div>
+    <div class="mb-6">
+      <label for="message" class="mb-2 block text-lg font-medium">{{ form.message.label_tag }}</label>
+      {% render_field form.message class="parti-input" %}
+      {% if form.message.errors %}
+      <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.message.errors }}</span>
+      {% endif %}
+      <span class="text-sm font-medium">{{ _('Máximo 300 caracteres') }}</span>
+    </div>
+    <button type="submit" class="parti-btn">{{ _('Enviar') }}</button>
+    {% if messages %}
+    <div class="text-success-400 mt-1 inline-block font-semibold">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </form>

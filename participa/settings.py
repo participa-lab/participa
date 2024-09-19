@@ -235,3 +235,8 @@ LOGGING = {
         "level": "INFO",
     },
 }
+
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+DEFAULT_FROM_EMAIL = "participa@fic.edu.uy"
+NOTIFY_EMAIL = "participa@fic.edu.uy"

@@ -92,3 +92,12 @@ class ParticipantUpdateForm(forms.ModelForm):
             "territory",
             "affinity",
         ]
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(label=_("Tu nombre y apellido"))
+    email = forms.EmailField(label=_("Email"))
+    subject = forms.CharField(label=_("Aasunto"), max_length=150)
+    message = forms.CharField(
+        label=_("Tu mensaje"), widget=forms.Textarea, max_length=300
+    )

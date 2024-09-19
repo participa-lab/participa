@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-19 14:17-0300\n"
+"POT-Creation-Date: 2024-09-19 14:55-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: English <en@li.org>\n"
@@ -54,28 +54,32 @@ msgstr "Other"
 msgid "Email"
 msgstr "Email"
 
-#: polis/forms.py:9 polis/forms.py:46
+#: polis/forms.py:9 polis/forms.py:10 polis/forms.py:54 polis/forms.py:55
 msgid "Tu apodo"
 msgstr "Your nickname"
 
-#: polis/forms.py:12 polis/forms.py:49
+#: polis/forms.py:13 polis/forms.py:15 polis/forms.py:58 polis/forms.py:60
 msgid "Tu género"
 msgstr "Your gender"
 
-#: polis/forms.py:15 polis/forms.py:52
+#: polis/forms.py:18 polis/forms.py:19 polis/forms.py:63 polis/forms.py:64
 msgid "Tu año de nacimiento"
 msgstr "Your year of birth"
 
-#: polis/forms.py:18 polis/forms.py:55
+#: polis/forms.py:23 polis/forms.py:24 polis/forms.py:68 polis/forms.py:69
 msgid "Tu territorio"
 msgstr "Your territory"
 
-#: polis/forms.py:21 polis/forms.py:58
+#: polis/forms.py:28 polis/forms.py:29 polis/forms.py:73 polis/forms.py:74
 msgid "Tu afiliación"
 msgstr "Your affiliation"
 
-#: polis/forms.py:26 polis/forms.py:28 polis/forms.py:30 polis/forms.py:63
-#: polis/forms.py:65 polis/forms.py:67
+#: polis/forms.py:34 polis/forms.py:36 polis/forms.py:79 polis/forms.py:81
+#: polis/forms.py:83
+msgid "Este campo es requerido"
+msgstr ""
+
+#: polis/forms.py:38
 msgid "This field is required"
 msgstr "This field is required"
 
@@ -323,7 +327,10 @@ msgid ""
 "promueve la discusión a partir de diferentes opiniones. Así, invitamos a "
 "descrubrir acuerdos aún en las diferentes posiciones."
 msgstr ""
-"Participa aims to contribute to depolarization in various topics of public discussion. To do this, it provides a tool that promotes discussion based on different opinions. Thus, we invite you to discover agreements even among different positions."
+"Participa aims to contribute to depolarization in various topics of public "
+"discussion. To do this, it provides a tool that promotes discussion based on "
+"different opinions. Thus, we invite you to discover agreements even among "
+"different positions."
 
 #: polis/templates/pages/home.html:28 polis/templates/pages/home.html:72
 msgid "Sobre Participa"
@@ -337,7 +344,11 @@ msgid ""
 "inteligente. Con un enfoque interdisciplinario, combina saberes de "
 "informática, comunicación, ciencia política y sociología."
 msgstr ""
-"The Participation and Technologies Laboratory of the University of the Republic, Participa, promotes action-research processes for social transformation, using digital technologies intelligently. With an interdisciplinary approach, it combines knowledge from computer science, communication, political science, and sociology."
+"The Participation and Technologies Laboratory of the University of the "
+"Republic, Participa, promotes action-research processes for social "
+"transformation, using digital technologies intelligently. With an "
+"interdisciplinary approach, it combines knowledge from computer science, "
+"communication, political science, and sociology."
 
 #: polis/templates/pages/home.html:57
 msgid "Abierta"

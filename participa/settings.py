@@ -189,7 +189,7 @@ LOCALE_PATHS = (
     os.path.join(os.path.join(settings.BASE_DIR, "polis"), "locale"),
 )
 
-LANGUAGES = [("en", "English"), ("es", "Spanish")]
+LANGUAGES = [("es", "Spanish"), ("en", "English")]
 
 LANGUAGE_CODE = "es"
 

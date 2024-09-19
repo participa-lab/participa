@@ -7,8 +7,8 @@
 
 {% block content %}
 <div class="max-w-7xl mx-auto">
-  <h1 class="text-2xl lg:text-3xl font-bold text-center p-3">{{ _('Login') }}</h1>
-  <p class="mx-auto max-w-3xl p-5">{{ _('Podés participar de forma anónima o usango alguna red social.') }}</p>
+  <h1 class="page-title">{{ _('Login') }}</h1>
+  <div class="mx-auto max-w-3xl p-5">{% include "texts/login_text_1.html" %}</div>
   <div class="flex flex-col my-4 items-center justify-between w-full">
       {% get_providers as socialaccount_providers %}
       {% if socialaccount_providers %}
@@ -50,9 +50,7 @@
 </section>
 {% endblock %}
 
-{% block footer %}
-{% include "footer.html" %}
-{% endblock footer %}
+
 
 
 

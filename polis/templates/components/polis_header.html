@@ -1,41 +1,18 @@
-{% load static %}
+{% extends "header.html" %}
+{% load account %}
+{% load socialaccount %}
+{% block user_profile %}
+<div class="lg:ml-auto items-center flex">
+  {% if participant %}
+  <a href="{% url 'participant_update' participant.pk %}"  class="flex items-center justify-between">
+    <span class="p-2 whitespace-nowrap">{{ participant.some_name }}</span>
+    {% if participant.avatar_url %}
+      <img class="w-10 h-10 p-0 rounded-full ring-2 ring-orange-400 dark:ring-orange-400" src="{{ participant.avatar_url }}" alt="Avatar" />
+    {% else %}
+        {% include "components/person.html" %}    
+    {% endif %}
+  </a>
+  {% endif %}
 
-<header id="header" class="w-full bg-naranja text-white z-10 transition-all duration-300 sticky top-0" style="background-color: {{conversation.color_primary}}">
-    <nav x-data="{ open: false, showHelp: false }" class=" text-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20 items-center">
-          <!-- Logo and title -->
-          <div class="hidden lg:flex w-1/6">
-            <span><a href="{% url 'main_home' %}"><img class="h-12 lg:h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
-          </div>
-          
-
-           <!-- Conversation Title -->
-           <div class="flex w-2/3 lg:w-4/6 ">
-            {% if not conversation.show_topic %}
-            <h1 class="w-full text-xl lg:text-3xl font-bold p-2 text-left lg:text-center">{{conversation.topic}}</h1>
-            {% endif %}
-          </div>
-          
-          <!-- Hamburger Icon -->
-          <div class="flex w-1/3 lg:w-1/6">
-            <div class="ml-auto flex items-center">
-            {% include 'components/user_profile.html' %}
-            <button @click="showHelp = !showHelp" class="text-white focus:outline-none ml-2">
-              <i class="text-xl fa-regular fa-circle-question"></i>
-            </button>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Dropdown Menu for Mobile -->
-        <div x-show="open" @click.away="open = false" class="flex flex-col lg:flex-row items-center mx-auto max-w-3xl justify-between my-3">
-          <a href="{% url 'about_polis' %}" class="block px-4 py-2">{{_("What is this?")}}</a>
-          <a href="{% url 'about_polis' %}" class="block px-4 py-2">{{_("Privacy & Data")}}</a>
-          <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Participa') }}</a>
-          <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Other Polls') }}</a>
-        </div>
-      </div>
-      {% include "components/overlay_about.html" %}
-    </nav>
-  </header>
+  </div>
+{% endblock user_profile %}

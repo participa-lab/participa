@@ -5,24 +5,29 @@ from .models import Participant
 
 
 class ParticipantForm(forms.ModelForm):
-    CHOICES = [
-        ("1", _("Participate anonymusly")),
-        ("2", _("Login to Add Photo")),
-    ]
-    login = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=CHOICES,
-        required=True,
+    nick_name = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu apodo")})
+    )
+    gender = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu género")})
+    )
+    year_of_birth = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu año de nacimiento")})
+    )
+    territory = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu territorio")})
+    )
+    affinity = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu afiliación")})
     )
 
     def clean(self):
-        if self.cleaned_data.get("login") == "1":
-            if not self.cleaned_data.get("nick_name"):
-                self.add_error("nick_name", _("This field is required"))
-
         if not self.cleaned_data.get("year_of_birth"):
             self.add_error("year_of_birth", _("This field is required"))
-
+        if not self.cleaned_data.get("nick_name"):
+            self.add_error("nick_name", _("This field is required"))
+        if not self.cleaned_data.get("gender"):
+            self.add_error("gender", _("This field is required"))
         return super().clean()
 
     class Meta:
@@ -37,11 +42,30 @@ class ParticipantForm(forms.ModelForm):
 
 
 class ParticipantUpdateForm(forms.ModelForm):
+    nick_name = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu apodo")})
+    )
+    gender = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu género")})
+    )
+    year_of_birth = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu año de nacimiento")})
+    )
+    territory = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu territorio")})
+    )
+    affinity = forms.CharField(
+        widget=forms.TextInput(attrs={"placeholder": _("Tu afiliación")})
+    )
+
     def clean(self):
         if not self.cleaned_data.get("year_of_birth"):
             self.add_error("year_of_birth", _("This field is required"))
         if not self.cleaned_data.get("nick_name"):
             self.add_error("nick_name", _("This field is required"))
+        if not self.cleaned_data.get("gender"):
+            self.add_error("gender", _("This field is required"))
+        return super().clean()
 
     class Meta:
         model = Participant

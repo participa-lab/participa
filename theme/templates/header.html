@@ -1,39 +1,67 @@
 {% load static %}
 
-<header id="header" class="w-full bg-naranja text-white z-10 transition-all duration-300 sticky top-0 select-none">
-    <nav x-data="{ open: false }" class="bg-naranja text-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20 items-center">
-          <!-- Logo and title -->
-          <div class="flex">
-            <span><a href="{% url 'main_home' %}"><img class="h-16" src="{% static 'H-DIAPO.svg' %}"/></a></span>
-          </div>
-          
-          <!-- Hamburger Icon -->
-          <div class="flex items-center lg:hidden">
-            <button @click="open = !open" class="text-white focus:outline-none">
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
-          
-          <!-- Navigation links -->
-          <div class="hidden lg:flex items-center w-3/4">
-            <a href="{% url 'about' %}" class="ml-4 px-4">{{ _('About Us') }}</a>
-            <a href="{% url 'home' %}" class="ml-4 px-4">{{ _('Polarization') }}</a>
-          </div>
+<header
+  class="container mx-auto flex h-[80px] flex-wrap content-between items-center gap-4 bg-[#f0f0f0] px-6 py-4 xl:px-4"
+>
+  <span class="sr-only">Participa</span>
 
-          <!-- User Profile -->
-          <div class="hidden lg:flex">
-            {% include 'components/user_profile.html' %}
-          </div>
-        </div>
-        
-        <!-- Dropdown Menu for Mobile -->
-        <div x-show="open" @click.away="open = false" class="lg:hidden bg-naranja">
-          <a href="{% url 'about' %}" class="block px-4 py-2">{{ _('About Us') }}</a>
-          <a href="{% url 'home' %}" class="block px-4 py-2">{{ _('Polarization') }}</a>
-          {% include 'components/user_profile.html' %}
-        </div>
-      </div>
-    </nav>
-  </header>
+  <div class="flex w-full content-between items-center lg:w-auto">
+    <a href="{% url 'main_home' %}" class="logo__link w-[59px] xl:w-[81px]">
+      <img src="{% static 'img/logo.svg' %}" alt="Participa" class="w-full" />
+    </a>
+
+    <button
+      id="menu-toggle"
+      class="ms-auto block lg:hidden"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Menú</span>
+    </button>
+  </div>
+
+  <nav
+    class="hidden px-6 py-8 lg:ms-auto lg:block lg:px-0 lg:py-0"
+    id="nav"
+  >
+    <ul class="flex flex-col gap-5 lg:flex-row lg:gap-[30px]">
+      <li>
+        <a
+          href="{% url 'main_home' %}#quienes-somos"
+          class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+          >Quiénes somos</a
+        >
+      </li>
+      <li>
+        <a
+          href="{% url 'main_home' %}#publicaciones"
+          class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+          >Publicaciones</a
+        >
+      </li>
+      <li>
+        <a
+          href="{% url 'main_home' %}#actividades"
+          class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+          >Actividades</a
+        >
+      </li>
+      <li>
+        <a
+          href="{% url 'main_home' %}#polarizacion"
+          class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+          >Despolarización</a
+        >
+      </li>
+      <li>
+        <a
+          href="{% url 'main_home' %}#contacto"
+          class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
+          >Contacto</a
+        >
+      </li>
+      {% block user_profile %}{% endblock user_profile %}
+    </ul>
+  </nav>
+
+</header>
+

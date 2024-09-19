@@ -5,6 +5,11 @@ from django.views.generic.base import TemplateView
 urlpatterns = [
     path(
         "c/<str:slug>",
+        views.PolisConversationHomeView.as_view(),
+        name="conversation_home",
+    ),
+    path(
+        "c/p/<str:slug>",
         views.PolisConversationView.as_view(),
         name="conversation",
     ),
@@ -20,7 +25,7 @@ urlpatterns = [
     ),
     path(
         "p/update/<uuid:pk>",
-        views.PerticipantUpdateView.as_view(),
+        views.ParticipantUpdateView.as_view(),
         name="participant_update",
     ),
     path(

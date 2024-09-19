@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block header %}
+{% include "header.html" %}
+{% endblock header %}
+
+{% block content %}
+
+
+<main id="content">
+  <section id="conversaciones">
+    <div class="container mx-auto px-6 py-[72px] xl:px-4">
+      <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
+        <div class="xl:col-span-4">
+          <h2
+            class="mb-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-xl"
+          >
+            Despolarizar
+          </h2>
+          <h3
+            class="mb-6 text-[40px] font-semibold leading-tight text-teal-600 xl:mb-8"
+          >
+          {{_('Update your profile')}}
+          </h3>
+          <div class="space-y-4 text-teal-600">
+            {% include "texts/login_text_1.html" %}
+          </div>
+         
+        </div>
+        <div class="xl:col-span-5 xl:col-start-7">
+          <form method="post" action="">
+            {% csrf_token %}
+            <div class="flex flex-col my-5 w-full">
+              {% if form.non_field_errors %}
+              <div class="text-danger-400 mt-1 inline-block font-semibold">
+                {{ form.non_field_errors }}
+              </div>
+              {% endif %}
+              <div class="mb-6">
+                <span class="mb-2 block text-lg font-medium">{{ form.nick_name.label_tag }}</span>
+                {% render_field form.nick_name class="parti-input" %}
+                {% if form.nick_name.errors %}
+                <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.nick_name.errors }}</span>
+                {% endif %}
+              </div>
+        
+              <div class="flex justify-between gap-2">
+                <div class="mb-6 w-1/2">
+                  <span class="mb-2 block text-lg font-medium">{{ form.gender.label_tag }}</span>
+                  {% render_field form.gender class="parti-input" %}
+                  {% if form.gender.errors %}
+                  <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.gender.errors }}</span>
+                  {% endif %}
+                </div>
+          
+                <div class="mb-6 w-1/2">
+                  <span class="mb-2 block text-lg font-medium">{{ form.year_of_birth.label_tag }}</span>
+                    {% render_field form.year_of_birth class="parti-input" %}
+                  {% if form.year_of_birth.errors %}
+                  <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.year_of_birth.errors }}</span>
+                  {% endif %}
+                </div>
+              </div>
+             
+              <div class="mb-6">
+                <span class="mb-2 block text-lg font-medium">{{ form.territory.label_tag }}</span>
+                  {% render_field form.territory class="parti-input" %}
+                {% if form.territory.errors %}
+                <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.territory.errors }}</span>
+                {% endif %}
+              </div>
+        
+              <div class="mb-6">
+                <span class="mb-2 block text-lg font-medium">{{ form.affinity.label_tag }}</span>
+                {% render_field form.affinity class="parti-input" %}
+                {% if form.affinity.errors %}
+                <span class="text-danger-400 mt-1 inline-block font-semibold">{{ form.affinity.errors }}</span>
+                {% endif %}
+              </div>
+        
+          
+            <div class="flex items-center justify-around">
+              {% if participant %}
+              <a class="parti-btn parti-btn--secondary" href="{% url 'participant_logout' %}">{{ _('Salir') }}</a> 
+              {% endif %}
+              <input  class="parti-btn" type="submit" name="login" value="{{_('Actualizar')}}"/>
+              
+            </div>
+          </form>  
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+{% endblock %}
+
+
+{% block footer %}
+{% include "components/polis_footer.html" %}
+{% endblock footer %}

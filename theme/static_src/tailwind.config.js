@@ -31,9 +31,9 @@ module.exports = {
          * patterns match your project structure.
          */
         /* JS 1: Ignore any JavaScript in node_modules folder. */
-        // '!../../**/node_modules',
+        '!../../**/node_modules',
         /* JS 2: Process all JavaScript files in the project. */
-        // '../../**/*.js',
+        '../../**/*.js',
 
         /**
          * Python: If you use Tailwind CSS classes in Python, uncomment the following line
@@ -43,12 +43,30 @@ module.exports = {
     ],
     theme: {
         extend: {
-            colors: {
-                naranja: '#e25622',
-                turquesa: '#00808c',
-            }
+          colors: {
+            transparent: "transparent",
+            current: "currentColor",
+            white: "#ffffff",
+            black: "#000000",
+            teal: {
+              300: "#CADFE1",
+              400: "#008B93",
+              600: "#004146",
+            },
+            orange: {
+              400: "#E25622",
+            },
+            danger: {
+              300: "#ff9e9e",
+              400: "#e31818",
+              500: "#a90000",
+            },
+          },
         },
-    },
+        backgroundImage: {
+          'quienes': "url('/static/img/bg-quienes.jpg')",
+        },
+      },
     plugins: [
         /**
          * '@tailwindcss/forms' is the forms plugin that provides a minimal styling

@@ -1,5 +1,5 @@
 {% load i18n %}
-<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+<form action="{% url 'set_language' %}" method="post" class="text-black">{% csrf_token %}
     <input name="next" type="hidden" value="{{ redirect_to }}">
     <select name="language" onchange="this.form.submit()" class="rounded-md text-xs border-0 !border-white w-16 lg:w-full">
         {% get_current_language as LANGUAGE_CODE %}

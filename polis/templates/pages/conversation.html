@@ -5,65 +5,101 @@
 {% endblock header %}
 
 {% block content %}
-<section>
-    <div class="flex flex-col justify-center items-center mt-5 lg:mt-10">
-        <div class="max-w-4xl flex flex-col items-center justify-center w-full">
-            {% if not object.show_description %}
-            <p class="px-5 lg:p-0 text-sm lg:text-base text-center">{{object.description}}</p>
-            {% endif %}
-            {% if show_report %}
-            <a class="p-1 m-1 rounded-md bg-turquesa text-white text-sm text-center" href="{% url "conversation_report" object.slug %}" target="_blank" class="text-blue-500">{{_("See results")}}</a>
-            {% endif %}
+<main id="content" x-data="{showHelp: false}">
+
+     <!-- Full-screen overlay -->
+    <div
+    x-show="showHelp"
+    @click.away="showHelp = false"
+    class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center overflow-y-auto"
+    style="display: none;"
+    >
+    <!-- Overlay content -->
+    <div class="container bg-white p-6 rounded-lg max-w-xl flex flex-col w-full mx-4">
+        <button @click="showHelp = false" class="ml-auto parti-btn">
+        {{_('Cerrar')}}
+        </button>
+        <div class=" min-h-[50vh] max-h-[80vh] w-full p-4 overflow-y-auto">
+        <!-- Scrollable content goes here -->
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('¿Qué es participa?') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/participa_text_1.html" %}</span>
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('¿Por qué Despolarizar el Debate?') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/depolarize_text_1.html" %}</span>
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('¿Qué es Polis y cómo funciona?') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/polis_text_1.html" %}</span>
+        <h2 class="mt-10 mb-6 text-[20px] font-semibold leading-tight text-teal-600 xl:mb-8">{{ _('Privacidad y Datos personales') }}</h2>
+        <span class="space-y-4 text-teal-600 text-sm">{% include "texts/privacy_text_1.html" %}</span>
+        <!-- Add more content as needed -->
         </div>
-        <div class="max-w-4xl w-full aspect-w-16 aspect-h-9">
-            <div id="polis-container">
-            </div>
-        </div>
-        <script type="text/javascript">
-            function buildEmbedDiv(dataAttributes) {
-                var dataAttributesString = '';
-                for (var key in dataAttributes) {
-                    if (dataAttributes.hasOwnProperty(key)) {
-                        dataAttributesString += "data-" + key + "='" + dataAttributes[key] + "' ";
-                    }
-                }
-                return "<div class='polis' " + dataAttributesString + "></div>";
-            }
-        
-            var embedScript = document.createElement("script");
-            embedScript.setAttribute("src", "{{object.instance.url}}/embed.js");
-        
-            var polisContainer = document.getElementById('polis-container');
-            {% load i18n %}
-            {% get_current_language as LANGUAGE_CODE %}
-            var dataAttributes = {
-                "site_id": "{{object.instance.site_id}}",
-                "page_id": "{{object.slug}}",
-                "topic": "{{object.topic}}",
-                "parent_url": "{{ request.path }}",
-                "xid": "{{participant.id}}",
-                "x_name": "{{participant.nick_name|default_if_none:''}}",
-                "x_email": "{{participant.email|default_if_none:''}}",
-                "x_profile_image_url": "{{participant.avatar_url|default_if_none:''}}",
-                "border": "{{object.border}}",
-                "border_radius": "{{object.border_radius}}",
-                "padding": "{{object.padding}}",
-                "height": "{{object.height|default_if_none:'930'}}",
-                "ucsf": "{{object.show_footer|yesno:'true,false'}}",
-                "ucsh": "{{object.show_help|yesno:'true,false'}}",
-                "ucsd": "{{object.show_description|yesno:'true,false'}}",
-                "ucst": "{{object.show_topic|yesno:'true,false'}}",
-                "bg_white": "{{object.bg_white|yesno:'true,false'}}",
-                "ui_lang": "{{LANGUAGE_CODE}}",
-                "style_btn": "{{object.color_primary|default_if_none:'#e25666'}}",
-                // Add other data attributes here as needed
-            };
-            polisContainer.innerHTML = buildEmbedDiv(dataAttributes);
-            polisContainer.appendChild(embedScript);
-        </script>   
+    </div>
     </div>
     
-</section>
+    <section id="conversaciones">
+        <div class="container mx-auto px-2 lg:px-6 py-[20px] lg:py-[60px] xl:px-4">
+          <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
+            <div class="xl:col-span-12 ">
+                <div class="flex flex-col lg:flex-row lg:items-center px-2 lg:px-0 mb-4 xl:mb-6">
+                    <span class="text-base font-medium uppercase  text-teal-600 lg:text-xl">{{_('Despolarizar')}}</span>
+                    <h3 class="lg:ml-5 w-full  flex items-center text-3xl lg:text-[40px] font-semibold leading-tight text-teal-600">
+                        <span>{{object.topic}}</span>
+                        <button @click="showHelp = !showHelp" class="ml-auto">
+                            <span class="material-symbols-outlined text-3xl">help_outline</span>
+                        </button>  
+                    </h3>
+                </div>
+                
+                <div id="polis-container" class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
+                </div>
+        
+                <script type="text/javascript">
+                    function buildEmbedDiv(dataAttributes) {
+                        var dataAttributesString = '';
+                        for (var key in dataAttributes) {
+                            if (dataAttributes.hasOwnProperty(key)) {
+                                dataAttributesString += "data-" + key + "='" + dataAttributes[key] + "' ";
+                            }
+                        }
+                        return "<div class='polis' " + dataAttributesString + "></div>";
+                    }
+                
+                    var embedScript = document.createElement("script");
+                    embedScript.setAttribute("src", "{{object.instance.url}}/embed.js");
+                
+                    var polisContainer = document.getElementById('polis-container');
+                    {% load i18n %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    var dataAttributes = {
+                        "site_id": "{{object.instance.site_id}}",
+                        "page_id": "{{object.slug}}",
+                        "topic": "{{object.topic}}",
+                        "parent_url": "{{ request.path }}",
+                        "xid": "{{participant.id}}",
+                        "x_name": "{{participant.nick_name|default_if_none:''}}",
+                        "x_email": "{{participant.email|default_if_none:''}}",
+                        "x_profile_image_url": "{{participant.avatar_url|default_if_none:''}}",
+                        "border": "{{object.border}}",
+                        "border_radius": "{{object.border_radius}}",
+                        "padding": "{{object.padding}}",
+                        "height": "{{object.height|default_if_none:'930'}}",
+                        "ucsf": "{{object.show_footer|yesno:'true,false'}}",
+                        "ucsh": "{{object.show_help|yesno:'true,false'}}",
+                        "ucsd": "{{object.show_description|yesno:'true,false'}}",
+                        "ucst": "{{object.show_topic|yesno:'true,false'}}",
+                        "bg_white": "{{object.bg_white|yesno:'true,false'}}",
+                        "ui_lang": "{{LANGUAGE_CODE}}",
+                        "style_btn": "{{object.color_primary|default_if_none:'#e25666'}}",
+                        // Add other data attributes here as needed
+                    };
+                    polisContainer.innerHTML = buildEmbedDiv(dataAttributes);
+                    polisContainer.appendChild(embedScript);
+                </script>   
+            </div>
+        </div>
+    </section>
+    
+    
+   
+</main>
 {% endblock content%}
 
 {% block footer %}

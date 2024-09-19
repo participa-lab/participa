@@ -8,18 +8,19 @@
 <main id="content" x-data="{showHelp: false}">
     
     <section id="conversaciones">
-        <div class="container mx-auto px-2 lg:px-6 py-[30px] lg:py-[60px] xl:px-4">
+        <div class="container mx-auto px-2 lg:px-6 py-[20px] lg:py-[60px] xl:px-4">
           <div class="grid grid-cols-1 gap-8 xl:grid-cols-12">
             <div class="xl:col-span-12 ">
-                <div class="flex flex-col lg:flex-row lg:items-center px-1 lg:px-0 mb-4 xl:mb-6">
+                <div class="flex flex-col lg:flex-row lg:items-center px-2 lg:px-0 mb-4 xl:mb-6">
                     <span class="text-base font-medium uppercase  text-teal-600 lg:text-xl">Despolarizar</span>
-                    <h3 class="ml-5 flex items-center text-3xl lg:text-[40px] font-semibold leading-tight text-teal-600">
+                    <h3 class="lg:ml-5 w-full  flex items-center text-3xl lg:text-[40px] font-semibold leading-tight text-teal-600">
                         <span>{{object.topic}}</span>
+                        <button @click="showHelp = !showHelp" class="ml-auto">
+                            <span class="material-symbols-outlined text-3xl">help_outline</span>
+                        </button>  
                     </h3>
                 
-                    <button @click="showHelp = !showHelp" class="ml-auto">
-                        <span class="material-symbols-outlined text-3xl">help_outline</span>
-                    </button>  
+                    
                 </div>
 
                 <!-- overlay about -->
@@ -36,7 +37,7 @@
             </div>
 
                 
-                <div id="polis-container" class="rounded-3xl bg-white px-4 lg:px-14 py-3 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
+                <div id="polis-container" class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
                 </div>
         
                 <script type="text/javascript">

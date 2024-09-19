@@ -6,7 +6,7 @@
   <span class="sr-only">Participa</span>
 
   <div class="flex w-full content-between items-center lg:w-auto">
-    <a href="#" class="logo__link w-[59px] xl:w-[81px]">
+    <a href="{% url 'main_home' %}" class="logo__link w-[59px] xl:w-[81px]">
       <img src="{% static 'img/logo.svg' %}" alt="Participa" class="w-full" />
     </a>
 
@@ -26,35 +26,35 @@
     <ul class="flex flex-col gap-5 lg:flex-row lg:gap-[30px]">
       <li>
         <a
-          href="#quienes-somos"
+          href="{% url 'main_home' %}#quienes-somos"
           class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
           >Quiénes somos</a
         >
       </li>
       <li>
         <a
-          href="#publicaciones"
+          href="{% url 'main_home' %}#publicaciones"
           class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
           >Publicaciones</a
         >
       </li>
       <li>
         <a
-          href="#actividades"
+          href="{% url 'main_home' %}#actividades"
           class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
           >Actividades</a
         >
       </li>
       <li>
         <a
-          href="#polarizacion"
+          href="{% url 'main_home' %}#polarizacion"
           class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
           >Despolarización</a
         >
       </li>
       <li>
         <a
-          href="#contacto"
+          href="{% url 'main_home' %}#contacto"
           class="block py-4 text-base font-semibold uppercase tracking-[0.1em] text-teal-600 transition hover:text-orange-400"
           >Contacto</a
         >

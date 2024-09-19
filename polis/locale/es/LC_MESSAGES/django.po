@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-18 19:18-0300\n"
+"POT-Creation-Date: 2024-09-19 10:17-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr "Prefiero no decirlo"
 msgid "Other"
 msgstr "Otro"
 
-#: polis/choices.py:15 polis/models.py:189
+#: polis/choices.py:15 polis/models.py:190
 msgid "Email"
 msgstr "Correo electrónico"
 
@@ -59,8 +59,8 @@ msgstr "Correo electrónico"
 msgid "This field is required"
 msgstr "Este campo es requerido"
 
-#: polis/models.py:30 polis/models.py:155 polis/models.py:166
-#: polis/models.py:187
+#: polis/models.py:30 polis/models.py:156 polis/models.py:167
+#: polis/models.py:188
 msgid "Name"
 msgstr "Nombre"
 
@@ -172,57 +172,59 @@ msgstr "Color primario"
 msgid "Secondary color"
 msgstr "Color secundario"
 
-#: polis/models.py:150
+#: polis/models.py:106
+msgid "Show in list"
+msgstr "Mostrar en la lista"
+
+#: polis/models.py:151
 msgid "Conversation"
 msgstr "Conversación"
 
-#: polis/models.py:151
+#: polis/models.py:152
 msgid "Conversations"
 msgstr "Conversaciones"
 
-#: polis/models.py:161 polis/models.py:199
+#: polis/models.py:162 polis/models.py:200
 msgid "Territory"
 msgstr "Territorio"
 
-#: polis/models.py:162
+#: polis/models.py:163
 msgid "Territories"
 msgstr "Territorios"
 
-#: polis/models.py:172 polis/models.py:206
+#: polis/models.py:173 polis/models.py:207
 msgid "Affinity"
 msgstr "Afiliación"
 
-#: polis/models.py:173
+#: polis/models.py:174
 msgid "Affinities"
 msgstr "Afiliaciones"
 
-#: polis/models.py:180
+#: polis/models.py:181
 msgid "user"
 msgstr "Usuario"
 
-#: polis/models.py:188
+#: polis/models.py:189
 msgid "Nick Name"
 msgstr "Apodo"
 
-#: polis/models.py:191
+#: polis/models.py:192
 msgid "Gender"
 msgstr "Género"
 
-#: polis/models.py:193
+#: polis/models.py:194
 msgid "Year of Birth"
 msgstr "Año de nacimiento"
 
-#: polis/models.py:304
+#: polis/models.py:305
 msgid "Participant"
 msgstr "Paritcipante"
 
-#: polis/models.py:305
+#: polis/models.py:306
 msgid "Participants"
 msgstr "Participantes"
 
 #: polis/templates/components/about_content.html:2
-#, fuzzy
-#| msgid "About Participa"
 msgid "¿Qué es participa?"
 msgstr "Sobre Participa"
 
@@ -233,30 +235,28 @@ msgid "¿Por qué Despolarizar el Debate?"
 msgstr "Despolarizar el debate"
 
 #: polis/templates/components/about_content.html:6
-#, fuzzy
-#| msgid "About Participa"
 msgid "¿Qué es Polis y cómo funciona?"
-msgstr "Sobre Participa"
+msgstr "¿Qué es Polis y cómo funciona?"
 
 #: polis/templates/components/about_content.html:8
-#, fuzzy
-#| msgid "Privacy and Personal Data"
 msgid "Privacidad y Datos personales"
-msgstr "Privacidad y Datos"
+msgstr "Privacidad y Datos personales"
 
-#: polis/templates/components/polis_footer.html:37
-msgid "Powered by Polis"
-msgstr "Powered by Polis"
+#: polis/templates/components/polis_footer.html:31
+msgid "Powered by"
+msgstr "Powered by"
+
+#: polis/templates/components/polis_footer.html:32
+msgid "Polis"
+msgstr "Polis"
 
 #: polis/templates/pages/conversation_home.html:96
 msgid "Despolarizar el Plebiscito de la Seguridad Social"
 msgstr "Despolarizar el Plebiscito de la Seguridad Social"
 
 #: polis/templates/pages/conversation_home.html:99
-#, fuzzy
-#| msgid "About Participa"
 msgid "¿Qué es Participa?"
-msgstr "Sobre Participa"
+msgstr "¿Qué es Participa?"
 
 #: polis/templates/pages/login_form.html:10
 msgid "Login"
@@ -267,26 +267,18 @@ msgid "Anonymus"
 msgstr "Anónimo"
 
 #: polis/templates/pages/participant_form.html:23
-#, fuzzy
-#| msgid "Your profile"
 msgid "Create your profile"
 msgstr "Crear tu perfil"
 
 #: polis/templates/pages/participant_form.html:86
-#, fuzzy
-#| msgid "Create without photo"
 msgid "Participate with photo of"
-msgstr "Crear sin foto"
+msgstr "Participar con foto de"
 
 #: polis/templates/pages/participant_form.html:95
-#, fuzzy
-#| msgid "Create without photo"
 msgid "Participate without photo"
-msgstr "Crear sin foto"
+msgstr "Participar sin foto"
 
 #: polis/templates/pages/participant_update_form.html:23
-#, fuzzy
-#| msgid "Your profile"
 msgid "Update your profile"
 msgstr "Actualizar tu perfil"
 

@@ -63,6 +63,9 @@ module.exports = {
             },
           },
         },
+        backgroundImage: {
+          'quienes': "url('/static/img/bg-quienes.jpg')",
+        },
       },
     plugins: [
         /**

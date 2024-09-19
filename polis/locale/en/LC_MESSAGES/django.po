@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-19 17:24-0300\n"
+"POT-Creation-Date: 2024-09-19 18:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: English <en@li.org>\n"
@@ -50,7 +50,7 @@ msgstr "Prefer not to say"
 msgid "Otro"
 msgstr "Other"
 
-#: polis/choices.py:15 polis/models.py:190
+#: polis/choices.py:15 polis/forms.py:99 polis/models.py:190
 msgid "Email"
 msgstr "Email"
 
@@ -82,6 +82,18 @@ msgstr ""
 #: polis/forms.py:38
 msgid "This field is required"
 msgstr "This field is required"
+
+#: polis/forms.py:98
+msgid "Tu nombre y apellido"
+msgstr "Your name and surname"
+
+#: polis/forms.py:100
+msgid "Aasunto"
+msgstr "Subject"
+
+#: polis/forms.py:102
+msgid "Tu mensaje"
+msgstr "Your message"
 
 #: polis/models.py:30 polis/models.py:188
 msgid "Nombre"
@@ -263,6 +275,18 @@ msgstr "Participant"
 msgid "Participants"
 msgstr "Participants"
 
+#: polis/templates/components/contact_form.html:30
+msgid "Máximo 150 caracteres"
+msgstr "Maximum 150 characters"
+
+#: polis/templates/components/contact_form.html:38
+msgid "Máximo 300 caracteres"
+msgstr "Maximum 300 characters"
+
+#: polis/templates/components/contact_form.html:40
+msgid "Enviar"
+msgstr "Send"
+
 #: polis/templates/components/polis_footer.html:31
 msgid "Powered by"
 msgstr "Powered by"
@@ -332,11 +356,11 @@ msgstr ""
 "different opinions. Thus, we invite you to discover agreements even among "
 "different positions."
 
-#: polis/templates/pages/home.html:28 polis/templates/pages/home.html:72
+#: polis/templates/pages/home.html:28 polis/templates/pages/home.html:74
 msgid "Sobre Participa"
 msgstr "About Participa"
 
-#: polis/templates/pages/home.html:32 polis/templates/pages/home.html:76
+#: polis/templates/pages/home.html:32 polis/templates/pages/home.html:78
 #: polis/templates/texts/participa_text_1.html:1
 msgid ""
 "El Laboratorio de Participación y Tecnologías de la Universidad de la "
@@ -389,7 +413,9 @@ msgid ""
 "nos invita a conversar sobre un tema que, de una forma u otra, nos atraviesa "
 "a todas las personas en Uruguay."
 msgstr ""
-"The plebiscite on social security is a democratic opportunity that invites us to discuss a topic that, in one way or another, affects everyone in Uruguay."
+"The plebiscite on social security is a democratic opportunity that invites "
+"us to discuss a topic that, in one way or another, affects everyone in "
+"Uruguay."
 
 #: polis/templates/texts/depolarize_ss_text_1.html:2
 msgid ""
@@ -397,24 +423,42 @@ msgid ""
 "desacuerdos y opiniones. ¿Conversamos sobre seguridad social? Esa es la "
 "invitación."
 msgstr ""
-"At Participa, we aim to contribute to this conversation by identifying agreements, disagreements, and opinions. Shall we discuss social security? That's the invitation."
+"At Participa, we aim to contribute to this conversation by identifying "
+"agreements, disagreements, and opinions. Shall we discuss social security? "
+"That's the invitation."
+
+#: polis/templates/texts/depolarize_text_1.html:1
+#, fuzzy
+#| msgid ""
+#| "Participa busca aportar a la despolarización en distintas temáticas de "
+#| "discusión pública. Para ello, pone a disposición una herramienta que "
+#| "promueve la discusión a partir de diferentes opiniones. Así, invitamos a "
+#| "descrubrir acuerdos aún en las diferentes posiciones."
+msgid ""
+"Participa busca aportar a la despolarización en distintas temáticas de "
+"discusión pública. Para ello, pone a disposición una herramienta que "
+"promueve la discusión a partir de diferentes opiniones. Así, invitamos a"
+msgstr ""
+"Participa aims to contribute to depolarization in various topics of public "
+"discussion. To do this, it provides a tool that promotes discussion based on "
+"different opinions. Thus, we invite you to discover agreements even among "
+"different positions."
 
 #: polis/templates/texts/depolarize_text_1.html:1
 msgid "descubrir acuerdos"
-msgstr ""
-"discover agreements"
+msgstr "discover agreements"
 
 #: polis/templates/texts/depolarize_text_1.html:1
 msgid "aún en las diferentes posiciones."
-msgstr ""
-"even among different positions."
+msgstr "even among different positions."
 
 #: polis/templates/texts/login_text_1.html:1
 msgid ""
 "Tu edad, género y el territorio de dónde sos nos permiten entender como se "
 "diferencian los acuerdos y desacuerdos esas características."
 msgstr ""
-"Your age, gender, and the territory you are from allow us to understand how agreements and disagreements differ based on those characteristics."
+"Your age, gender, and the territory you are from allow us to understand how "
+"agreements and disagreements differ based on those characteristics."
 
 #: polis/templates/texts/login_text_1.html:2
 msgid ""
@@ -422,7 +466,9 @@ msgid ""
 "el mapa de opiniones logueate con redes sociales, mostrandole a los demás "
 "dónde te ubicás en la conversación."
 msgstr ""
-"Participate anonymously with a nickname. If you want your photo to appear on the opinions map, log in with social networks, showing others where you are located in the conversation."
+"Participate anonymously with a nickname. If you want your photo to appear on "
+"the opinions map, log in with social networks, showing others where you are "
+"located in the conversation."
 
 #: polis/templates/texts/polis_text_1.html:1
 msgid ""
@@ -431,7 +477,9 @@ msgid ""
 "declaraciones de otros participantes con \"De acuerdo\", \"En desacuerdo\" o "
 "\"Pasar\"."
 msgstr ""
-"Polis works as follows: dozens or thousands of participants send brief opinions on a controversial topic and respond to other participants' statements with \"Agree\", \"Disagree\", or \"Pass\"."
+"Polis works as follows: dozens or thousands of participants send brief "
+"opinions on a controversial topic and respond to other participants' "
+"statements with \"Agree\", \"Disagree\", or \"Pass\"."
 
 #: polis/templates/texts/polis_text_1.html:2
 msgid ""
@@ -440,14 +488,17 @@ msgid ""
 "similares e identifica las opiniones de consenso dentro de cada grupo pero "
 "también entre grupos diferentes."
 msgstr ""
-"As hundreds of these opinions and responses accumulate, a background algorithm groups participants with similar opinions and identifies consensus opinions within each group as well as between different groups."
+"As hundreds of these opinions and responses accumulate, a background "
+"algorithm groups participants with similar opinions and identifies consensus "
+"opinions within each group as well as between different groups."
 
 #: polis/templates/texts/polis_text_1.html:3
 msgid ""
 "Los participantes pueden visualizar en todo momento un “mapa” que revela el "
 "espacio de opiniones a medida que evoluciona."
 msgstr ""
-"Participants can visualize at any time a \"map\" that reveals the space of opinions as it evolves."
+"Participants can visualize at any time a \"map\" that reveals the space of "
+"opinions as it evolves."
 
 #: polis/templates/texts/polis_text_1.html:4
 msgid ""
@@ -456,7 +507,9 @@ msgid ""
 "colaborar en el diálogo entre diversos actores, ciudadanos o tomadores de "
 "decisiones."
 msgstr ""
-"After a few days or weeks, the results – both consensus and divisive opinions – will be available as open data to collaborate in the dialogue among various actors, citizens, or decision-makers."
+"After a few days or weeks, the results – both consensus and divisive "
+"opinions – will be available as open data to collaborate in the dialogue "
+"among various actors, citizens, or decision-makers."
 
 #: polis/templates/texts/polis_text_1.html:5
 msgid ""
@@ -464,14 +517,17 @@ msgid ""
 "personas. Es ideal para descubrir perspectivas no evidentes en situaciones "
 "complejas y conflictivas, aportando -ojalá- a una discusión menos polarizada."
 msgstr ""
-"Pol.is has been used with populations ranging from 40 to 40,000 people. It is ideal for uncovering non-evident perspectives in complex and conflictive situations, contributing – hopefully – to a less polarized discussion."
+"Pol.is has been used with populations ranging from 40 to 40,000 people. It "
+"is ideal for uncovering non-evident perspectives in complex and conflictive "
+"situations, contributing – hopefully – to a less polarized discussion."
 
 #: polis/templates/texts/privacy_text_1.html:1
 msgid ""
 "Los cuestionarios pueden responderse de forma anónima o logueandose con "
 "redes sociales."
 msgstr ""
-"Questionnaires can be answered anonymously or by logging in with social networks."
+"Questionnaires can be answered anonymously or by logging in with social "
+"networks."
 
 #: polis/templates/texts/privacy_text_1.html:2
 msgid ""
@@ -481,7 +537,11 @@ msgid ""
 "los datos provistos en el formulario. Se guardan además en la sesión del "
 "navegador las respuestas ya contestadas."
 msgstr ""
-"When a person logs in with social networks, we store some data such as email, name, and a link to a profile picture. When users respond anonymously, the chosen nickname and the data provided in the form are saved. Additionally, the answers already provided are stored in the browser session."
+"When a person logs in with social networks, we store some data such as "
+"email, name, and a link to a profile picture. When users respond "
+"anonymously, the chosen nickname and the data provided in the form are "
+"saved. Additionally, the answers already provided are stored in the browser "
+"session."
 
 #: polis/templates/texts/privacy_text_1.html:4
 msgid ""
@@ -489,7 +549,9 @@ msgid ""
 "una mejor experiencia de usuario. Contestar este cuestionario en una ventana "
 "de incógnito maximiza la privacidad de las personas."
 msgstr ""
-"Under no circumstances will this data be used for any purpose other than providing a better user experience. Answering this questionnaire in an incognito window maximizes people's privacy."
+"Under no circumstances will this data be used for any purpose other than "
+"providing a better user experience. Answering this questionnaire in an "
+"incognito window maximizes people's privacy."
 
 #: polis/templates/texts/privacy_text_1.html:6
 msgid ""
@@ -500,5 +562,12 @@ msgid ""
 "anomimato de los y las participantes, aún si usaron redes sociales para "
 "responder."
 msgstr ""
-"One of the objectives of this project is to make the opinion matrix available as open data to allow interested parties to access it. In all cases, any information made public, whether visualizations, analyses, or raw data, will maintain the anonymity of the participants, even if they used social networks to respond."
+"One of the objectives of this project is to make the opinion matrix "
+"available as open data to allow interested parties to access it. In all "
+"cases, any information made public, whether visualizations, analyses, or raw "
+"data, will maintain the anonymity of the participants, even if they used "
+"social networks to respond."
 
+#: polis/views.py:140
+msgid "Mensaje enviado correctamente"
+msgstr "Message sent successfully"

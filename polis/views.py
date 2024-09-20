@@ -239,7 +239,7 @@ class ParticipantView(ParticipantMixin, CreateView):
         return context
 
 
-class ParticipantUpdateView(UpdateView):
+class ParticipantUpdateView(ParticipantMixin, UpdateView):
     model = Participant
     form_class = ParticipantUpdateForm
     template_name = "pages/participant_update_form.html"

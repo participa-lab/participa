@@ -301,6 +301,8 @@ class Participant(models.Model):
         self.year_of_birth = participant.year_of_birth
         self.territory = participant.territory
         self.affinity = participant.affinity
+        self.email = participant.email
+        self.avatar_url = participant.avatar_url
         self.save()
 
     class Meta:

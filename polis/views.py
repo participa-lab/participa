@@ -246,6 +246,11 @@ class ParticipantUpdateView(ParticipantMixin, UpdateView):
 
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
+        if not self.participant or self.get_object() != self.participant:
+            logger.info(
+                f"[Session: {self.get_session_id(request)}] Participant not found or mismatch, redirecting to home"
+            )
+            return redirect("home")
         return super().get(request, *args, **kwargs)
 
     def get_success_url(self):

@@ -233,6 +233,7 @@ class Participant(models.Model):
         with transaction.atomic():
             preferred_avatar_size_pixels = 256
 
+            email = user.email
             picture_url = "http://www.gravatar.com/avatar/{0}?s={1}".format(
                 hashlib.md5(user.email.encode("UTF-8")).hexdigest(),
                 preferred_avatar_size_pixels,
@@ -246,6 +247,7 @@ class Participant(models.Model):
                     name = social_account.extra_data["name"]
                     user.first_name = name.split()[0]
                     user.last_name = name.split()[1]
+                    picture_url = social_account.extra_data["profile_image_url"]
 
                 if social_account.provider == "facebook":
                     f_name = social_account.extra_data["first_name"]
@@ -267,6 +269,7 @@ class Participant(models.Model):
                     if l_name:
                         user.last_name = l_name
                     picture_url = social_account.extra_data["picture"]
+                    email = social_account.extra_data["email"]
 
                 if social_account.provider == "telegram":
                     f_name = social_account.extra_data["first_name"]
@@ -283,7 +286,7 @@ class Participant(models.Model):
             self.user = user
             self.avatar_url = picture_url
             self.name = user.get_full_name()
-            self.email = user.email
+            self.email = email
             self.save()
 
             user.save()

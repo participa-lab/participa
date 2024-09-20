@@ -244,6 +244,10 @@ class ParticipantUpdateView(ParticipantMixin, UpdateView):
     form_class = ParticipantUpdateForm
     template_name = "pages/participant_update_form.html"
 
+    def get(self, request, *args, **kwargs):
+        self.init_participant(request)
+        return super().get(request, *args, **kwargs)
+
     def get_success_url(self):
         return reverse("home")
 

@@ -250,6 +250,9 @@ class Participant(models.Model):
                     user.first_name = name.split()[0]
                     user.last_name = name.split()[1]
                     picture_url = social_account.extra_data["profile_image_url"]
+                    logger.info(
+                        f"assign_user: Twitter user name {name}, picture_url {picture_url}"
+                    )
 
                 if social_account.provider == "facebook":
                     f_name = social_account.extra_data["first_name"]
@@ -262,6 +265,9 @@ class Participant(models.Model):
                     picture_url = "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
                         social_account.uid, preferred_avatar_size_pixels
                     )
+                    logger.info(
+                        f"assign_user: Facebook user name {f_name} {l_name}, picture_url {picture_url}"
+                    )
 
                 if social_account.provider == "google":
                     f_name = social_account.extra_data["given_name"]
@@ -272,6 +278,9 @@ class Participant(models.Model):
                         user.last_name = l_name
                     picture_url = social_account.extra_data["picture"]
                     email = social_account.extra_data["email"]
+                    logger.info(
+                        f"assign_user: Google user name {f_name} {l_name}, picture_url {picture_url}, email {email}"
+                    )
 
                 if social_account.provider == "telegram":
                     f_name = social_account.extra_data["first_name"]
@@ -281,6 +290,9 @@ class Participant(models.Model):
                     if l_name:
                         user.last_name = l_name
                     picture_url = social_account.extra_data["photo_url"]
+                    logger.info(
+                        f"assign_user: Telegram user name {f_name} {l_name}, picture_url {picture_url}, email {email}"
+                    )
 
             except Exception as e:
                 logger.error(f"assign_user: Error assigning user: {e}")

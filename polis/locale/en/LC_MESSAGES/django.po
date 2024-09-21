@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-19 18:25-0300\n"
+"POT-Creation-Date: 2024-09-21 17:54-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: English <en@li.org>\n"
@@ -50,48 +50,43 @@ msgstr "Prefer not to say"
 msgid "Otro"
 msgstr "Other"
 
-#: polis/choices.py:15 polis/forms.py:99 polis/models.py:190
+#: polis/choices.py:15 polis/forms.py:50 polis/models.py:190
 msgid "Email"
 msgstr "Email"
 
-#: polis/forms.py:9 polis/forms.py:10 polis/forms.py:54 polis/forms.py:55
+#: polis/forms.py:9 polis/forms.py:10
 msgid "Tu apodo"
 msgstr "Your nickname"
 
-#: polis/forms.py:13 polis/forms.py:15 polis/forms.py:58 polis/forms.py:60
+#: polis/forms.py:13 polis/forms.py:15
 msgid "Tu género"
 msgstr "Your gender"
 
-#: polis/forms.py:18 polis/forms.py:19 polis/forms.py:63 polis/forms.py:64
+#: polis/forms.py:14 polis/forms.py:24
+msgid "Select one"
+msgstr ""
+
+#: polis/forms.py:18 polis/forms.py:19
 msgid "Tu año de nacimiento"
 msgstr "Your year of birth"
 
-#: polis/forms.py:23 polis/forms.py:24 polis/forms.py:68 polis/forms.py:69
+#: polis/forms.py:23 polis/forms.py:25
 msgid "Tu territorio"
 msgstr "Your territory"
 
-#: polis/forms.py:28 polis/forms.py:29 polis/forms.py:73 polis/forms.py:74
-msgid "Tu afiliación"
-msgstr "Your affiliation"
-
-#: polis/forms.py:34 polis/forms.py:36 polis/forms.py:79 polis/forms.py:81
-#: polis/forms.py:83
+#: polis/forms.py:31 polis/forms.py:33 polis/forms.py:35
 msgid "Este campo es requerido"
 msgstr ""
 
-#: polis/forms.py:38
-msgid "This field is required"
-msgstr "This field is required"
-
-#: polis/forms.py:98
+#: polis/forms.py:49
 msgid "Tu nombre y apellido"
 msgstr "Your name and surname"
 
-#: polis/forms.py:100
+#: polis/forms.py:51
 msgid "Aasunto"
 msgstr "Subject"
 
-#: polis/forms.py:102
+#: polis/forms.py:53
 msgid "Tu mensaje"
 msgstr "Your message"
 
@@ -267,11 +262,11 @@ msgstr "Territory"
 msgid "Afiliación"
 msgstr "Affiliation"
 
-#: polis/models.py:305
+#: polis/models.py:331
 msgid "Participant"
 msgstr "Participant"
 
-#: polis/models.py:306
+#: polis/models.py:332
 msgid "Participants"
 msgstr "Participants"
 
@@ -395,17 +390,21 @@ msgstr "Participate with the photo of"
 msgid "Participar sin foto"
 msgstr "Participate without a photo"
 
-#: polis/templates/pages/participant_update_form.html:23
+#: polis/templates/pages/participant_update_form.html:25
 msgid "Actualizar tu perfil"
 msgstr "Update your profile"
 
-#: polis/templates/pages/participant_update_form.html:84
+#: polis/templates/pages/participant_update_form.html:86
 msgid "Salir"
 msgstr "Logout"
 
-#: polis/templates/pages/participant_update_form.html:86
+#: polis/templates/pages/participant_update_form.html:88
 msgid "Actualizar"
 msgstr "Update"
+
+#: polis/templates/pages/participant_update_form.html:96
+msgid "Agregar la foto de"
+msgstr "Add photo from"
 
 #: polis/templates/texts/depolarize_ss_text_1.html:1
 msgid ""
@@ -568,6 +567,12 @@ msgstr ""
 "data, will maintain the anonymity of the participants, even if they used "
 "social networks to respond."
 
-#: polis/views.py:140
+#: polis/views.py:142
 msgid "Mensaje enviado correctamente"
 msgstr "Message sent successfully"
+
+#~ msgid "Tu afiliación"
+#~ msgstr "Your affiliation"
+
+#~ msgid "This field is required"
+#~ msgstr "This field is required"

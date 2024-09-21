@@ -108,7 +108,7 @@
             shareButton.addEventListener('click', async () => {
               // Construct the URL with the additional parameter
               const currentUrl = window.location.href;
-              const urlWithParam = `${currentUrl}?ref={{object.slug}}`; // Add your parameter here
+              const urlWithParam = `{% url 'home' %}?ref={{object.slug}}`; // Add your parameter here
         
               try {
                 await navigator.share({

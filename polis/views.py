@@ -68,7 +68,7 @@ class ParticipantMixin(object):
 
         if self.authenticated_user and user_participant and cookie_participant:
             logger.info(
-                f"[Session: {session_id}] User is authenticated and has a participant_id cookie"
+                f"[Session: {session_id}] User is authenticated, is returning, and has a participant_id cookie"
             )
             if user_participant != cookie_participant:
                 logger.info(
@@ -82,7 +82,7 @@ class ParticipantMixin(object):
             self.participant.assign_user(self.authenticated_user)
         elif self.authenticated_user and cookie_participant:
             logger.info(
-                f"[Session: {session_id}] User is authenticated and has a participant_id cookie"
+                f"[Session: {session_id}] User is authenticated, is new, and has a participant_id cookie"
             )
             # The participant started the conversation without being logged in and now logs in
             self.participant = cookie_participant

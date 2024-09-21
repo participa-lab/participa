@@ -243,25 +243,37 @@ class ParticipantUpdateView(ParticipantMixin, UpdateView):
     model = Participant
     form_class = ParticipantForm
     template_name = "pages/participant_update_form.html"
+    next = None
 
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
+        self.next = request.GET.get("next")
         if not self.participant or self.get_object() != self.participant:
             logger.info(
                 f"[Session: {self.get_session_id(request)}] Participant not found or mismatch, redirecting to home"
             )
-            return redirect("home")
+            if self.next:
+                return redirect(self.next)
+            else:
+                return redirect("home")
         return super().get(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse("home")
+
+    def post(self, request, *args, **kwargs):
+        self.next = request.GET.get("next")
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         session_id = self.get_session_id(self.request)
         form.save()
         self.get_object().refresh_xid_metadata()
         logger.info(f"[Session: {session_id}] Participant updated: {self.get_object()}")
+
         response = HttpResponseRedirect(reverse("home"))  # Change to your success URL
+        if self.next:
+            response = redirect(self.next)
 
         # get name login
         name_login = form.data.get("login")

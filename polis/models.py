@@ -227,6 +227,7 @@ class Participant(models.Model):
 
     def assign_user(self, user):
         if not user or not user.is_authenticated:
+            logger.error(f"assign_user: User {user} is not authenticated")
             return None
 
         user = User.objects.get(pk=user.pk)
@@ -282,9 +283,9 @@ class Participant(models.Model):
                     picture_url = social_account.extra_data["photo_url"]
 
             except Exception as e:
-                logger.error(f"Error assigning user: {e}")
+                logger.error(f"assign_user: Error assigning user: {e}")
 
-            logger.info(f"Updating participant {self} with user {user}")
+            logger.info(f"assign_user: Updating participant {self} with user {user}")
             self.user = user
             self.avatar_url = picture_url
             self.name = user.get_full_name()

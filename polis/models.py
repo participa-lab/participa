@@ -242,6 +242,7 @@ class Participant(models.Model):
             )
 
             social_account = SocialAccount.objects.filter(user=user).first()
+            logger.info(f"assign_user: social_account {social_account.provider}")
 
             try:
                 # Extract first / last names from social nets and store on User record

@@ -216,10 +216,11 @@ class Participant(models.Model):
 
     def refresh_xid_metadata(self):
         id_str = "{}".format(self.id)
-        logger.info(f"Assigning participant {self} to PolisXid metadata {id_str}")
         polis_xid = PolisXid.objects.filter(xid=id_str).first()
-        logger.info(f"PolisXid: {polis_xid}")
         if polis_xid:
+            logger.info(
+                f"Assigning participant {self} to PolisXid metadata {polis_xid}"
+            )
             polis_xid.update_with_participant(self)
         else:
             logger.error(f"PolisXid not found for participant {self.id}")
@@ -283,6 +284,7 @@ class Participant(models.Model):
             except Exception as e:
                 logger.error(f"Error assigning user: {e}")
 
+            logger.info(f"Updating participant {self} with user {user}")
             self.user = user
             self.avatar_url = picture_url
             self.name = user.get_full_name()

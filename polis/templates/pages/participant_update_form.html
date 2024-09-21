@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+{% load socialaccount %}
+
 {% block header %}
 {% include "header.html" %}
 {% endblock header %}
@@ -86,6 +88,18 @@
               <input  class="parti-btn" type="submit" name="login" value="{{_('Actualizar')}}"/>
               
             </div>
+            {% get_providers as socialaccount_providers %}
+              
+             
+            <!-- Buttons -->
+            {% if socialaccount_providers %}
+            <h3 class="my-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-lg text-center">{{_('Agregar la foto de')}}</h3>
+            <div class="flex items-center justify-around">
+                  {% for provider in socialaccount_providers %}
+                  <input  class="parti-btn parti-btn--secondary" type="submit" name="login"  value="{{provider.name}}"/>
+                  {% endfor %}
+            </div>
+            {% endif %}
           </form>  
         </div>
       </div>

@@ -16,7 +16,7 @@ from django.views.generic import (
     FormView,
 )
 
-from .forms import ParticipantForm, ParticipantUpdateForm, ContactForm
+from .forms import ParticipantForm, ContactForm
 from .models import Conversation, Participant
 from allauth.socialaccount.adapter import get_adapter
 from django.core.mail import send_mail
@@ -241,7 +241,7 @@ class ParticipantView(ParticipantMixin, CreateView):
 
 class ParticipantUpdateView(ParticipantMixin, UpdateView):
     model = Participant
-    form_class = ParticipantUpdateForm
+    form_class = ParticipantForm
     template_name = "pages/participant_update_form.html"
 
     def get(self, request, *args, **kwargs):
@@ -261,7 +261,23 @@ class ParticipantUpdateView(ParticipantMixin, UpdateView):
         form.save()
         self.get_object().refresh_xid_metadata()
         logger.info(f"[Session: {session_id}] Participant updated: {self.get_object()}")
-        return super().form_valid(form)
+        response = HttpResponseRedirect(reverse("home"))  # Change to your success URL
+
+        # get name login
+        name_login = form.data.get("login")
+        # name_login has the name of the provider
+        # find the provider in the registry
+        adapter = get_adapter()
+        providers = adapter.list_providers(self.request)
+
+        for provider in providers:
+            if provider.name == name_login:
+                logger.info(f"[Session: {session_id}] Provider: {provider}")
+                redirect_url = provider.get_login_url(self.request, next=self.next)
+                response = redirect(redirect_url)
+
+        self.set_cookie(response)  # Set a cookie for one year
+        return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

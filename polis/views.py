@@ -44,9 +44,10 @@ class ParticipantMixin(object):
         return None
 
     def set_cookie(self, response):
-        response.set_cookie(
-            "participant_id", self.participant.id, max_age=31536000
-        )  # Set a cookie for one year
+        if self.participant:
+            response.set_cookie(
+                "participant_id", self.participant.id, max_age=31536000
+            )  # Set a cookie for one year
         return response
 
     def get_from_user(self, user):

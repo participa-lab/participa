@@ -246,7 +246,7 @@ class Participant(models.Model):
 
             try:
                 # Extract first / last names from social nets and store on User record
-                if social_account.provider == "twitter":
+                if social_account.provider.lower() == "twitter":
                     name = social_account.extra_data["name"]
                     user.first_name = name.split()[0]
                     user.last_name = name.split()[1]
@@ -255,7 +255,7 @@ class Participant(models.Model):
                         f"assign_user: Twitter user name {name}, picture_url {picture_url}"
                     )
 
-                if social_account.provider == "facebook":
+                if social_account.provider.lower() == "facebook":
                     f_name = social_account.extra_data["first_name"]
                     l_name = social_account.extra_data["last_name"]
                     if f_name:
@@ -270,7 +270,7 @@ class Participant(models.Model):
                         f"assign_user: Facebook user name {f_name} {l_name}, picture_url {picture_url}"
                     )
 
-                if social_account.provider == "google":
+                if social_account.provider.lower() == "google":
                     f_name = social_account.extra_data["given_name"]
                     l_name = social_account.extra_data["family_name"]
                     if f_name:
@@ -283,7 +283,7 @@ class Participant(models.Model):
                         f"assign_user: Google user name {f_name} {l_name}, picture_url {picture_url}, email {email}"
                     )
 
-                if social_account.provider == "telegram":
+                if social_account.provider.lower() == "telegram":
                     f_name = social_account.extra_data["first_name"]
                     l_name = social_account.extra_data.get("last_name", "")
                     if f_name:

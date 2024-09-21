@@ -79,6 +79,7 @@ class ParticipantMixin(object):
                 cookie_participant.delete()
 
             self.participant = user_participant
+            self.participant.assign_user(self.authenticated_user)
         elif self.authenticated_user and cookie_participant:
             logger.info(
                 f"[Session: {session_id}] User is authenticated and has a participant_id cookie"

@@ -100,7 +100,33 @@
             </div>
         </div>
     </section>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const shareButton = document.getElementById('share-button');
+        
+          if (navigator.share) {
+            shareButton.addEventListener('click', async () => {
+              // Construct the URL with the additional parameter
+              const currentUrl = window.location.href;
+              const urlWithParam = `${currentUrl}?ref={{object.slug}}`; // Add your parameter here
+        
+              try {
+                await navigator.share({
+                  title: document.title, // Title of the page
+                  text: 'Check out this page!', // Optional message
+                  url: urlWithParam // URL with the additional parameter
+                });
+                console.log('Page shared successfully with parameter!');
+              } catch (err) {
+                console.error('Error sharing the page:', err);
+              }
+            });
+          } else {
+            shareButton.style.display = 'none'; // Hide the button if not supported
+            console.warn('Share API not supported in this browser.');
+          }
+        });
+    </script>
     
    
 </main>

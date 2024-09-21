@@ -92,7 +92,7 @@
               
              
             <!-- Buttons -->
-            {% if socialaccount_providers %}
+            {% if socialaccount_providers and not participant.user %}
             <h3 class="my-4 text-base font-medium uppercase tracking-widest text-teal-600 lg:text-lg text-center">{{_('Agregar la foto de')}}</h3>
             <div class="flex items-center justify-around">
                   {% for provider in socialaccount_providers %}

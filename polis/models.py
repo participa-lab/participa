@@ -301,8 +301,10 @@ class Participant(models.Model):
         self.year_of_birth = participant.year_of_birth
         self.territory = participant.territory
         self.affinity = participant.affinity
-        self.email = participant.email
-        self.avatar_url = participant.avatar_url
+        self.email = participant.email if participant.email else self.email
+        self.avatar_url = (
+            participant.avatar_url if participant.avatar_url else self.avatar_url
+        )
         self.save()
 
     class Meta:
@@ -419,7 +421,7 @@ class PolisXid(models.Model):
     modified = MillisField()
 
     def update_with_participant(self, participant):
-        self.x_name = participant.name
+        self.x_name = participant.some_name
         self.x_email = participant.email
         self.x_profile_image_url = participant.avatar_url
         self.save()

@@ -112,8 +112,8 @@
         
               try {
                 await navigator.share({
-                  title: document.title, // Title of the page
-                  text: 'Check out this page!', // Optional message
+                  title: '{{object.topic}}', // Title of the page
+                  text: 'Despolarizá el debate sobre {{object.topic}}', // Optional message
                   url: urlWithParam // URL with the additional parameter
                 });
                 console.log('Page shared successfully with parameter!');

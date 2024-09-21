@@ -4,7 +4,7 @@
 {% block user_profile %}
 <div class="lg:ml-auto items-center flex">
   {% if participant %}
-  <a href="{% url 'participant_update' participant.pk %}"  class="flex items-center justify-between">
+  <a href="{% url 'participant_update' participant.pk %}?next={{ request.path }}"  class="flex items-center justify-between">
     <span class="p-2 whitespace-nowrap">{{ participant.some_name }}</span>
     {% if participant.avatar_url %}
       <img class="w-10 h-10 p-0 rounded-full ring-2 ring-orange-400 dark:ring-orange-400" src="{{ participant.avatar_url }}" alt="Avatar" />

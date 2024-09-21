@@ -248,8 +248,11 @@ class Participant(models.Model):
                 # Extract first / last names from social nets and store on User record
                 if social_account.provider.lower() == "twitter":
                     name = social_account.extra_data["name"]
-                    user.first_name = name.split()[0]
-                    user.last_name = name.split()[1]
+                    name_parts = name.split()
+                    if len(name_parts) > 0:
+                        user.first_name = name_parts[0]
+                    if len(name_parts) > 1:
+                        user.last_name = name_parts[1]
                     picture_url = social_account.extra_data["profile_image_url"]
                     logger.info(
                         f"assign_user: Twitter user name {name}, picture_url {picture_url}"

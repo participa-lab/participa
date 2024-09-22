@@ -137,6 +137,7 @@ class MainHomeView(ParticipantMixin, FormView):
             message=full_message,
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[settings.NOTIFY_EMAIL],
+            fail_silently=False,
         )
         # success message
         messages.success(self.request, _("Mensaje enviado correctamente"))

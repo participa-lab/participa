@@ -73,6 +73,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "participa.middleware.SessionIDMiddleware",
 ]
 
 ROOT_URLCONF = "participa.urls"
@@ -224,14 +225,27 @@ INTERNAL_IPS = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    "filters": {
+        "session_id_filter": {
+            "()": "participa.logging_filters.SessionIDFilter",
+        },
+    },
+    "formatters": {
+        "verbose": {
+            "format": "[%(session_id)s] %(levelname)s %(asctime)s %(module)s %(message)s"
+        },
+    },
     "handlers": {
         "console": {
+            "level": "DEBUG",
             "class": "logging.StreamHandler",
+            "filters": ["session_id_filter"],
+            "formatter": "verbose",
         },
     },
     "root": {
         "handlers": ["console"],
-        "level": "INFO",
+        "level": "DEBUG",
     },
 }
 

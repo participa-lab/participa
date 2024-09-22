@@ -126,7 +126,7 @@ class MainHomeView(ParticipantMixin, FormView):
         message = form.cleaned_data.get("message")
 
         full_message = f"""
-            Received message below from {name} {email}
+            Mensaje recibido de {name} {email}
             ________________________
             Asunto: {subject}
 
@@ -134,7 +134,7 @@ class MainHomeView(ParticipantMixin, FormView):
             """
         try:
             send_mail(
-                subject="Received contact form submission",
+                subject=f"Mensaje desde el sitio web: {subject}",
                 message=full_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.NOTIFY_EMAIL],
@@ -142,10 +142,15 @@ class MainHomeView(ParticipantMixin, FormView):
             )
         except Exception as e:
             logger.error(f"Error sending email: {e}")
-            messages.error(self.request, _("Error enviando el mensaje"))
+            messages.error(
+                self.request,
+                _(
+                    f"No se pudo enviar el mensaje, escríbenos a {settings.NOTIFY_EMAIL} "
+                ),
+            )
             return super().form_invalid(form)
         # success message
-        messages.success(self.request, _("Mensaje enviado correctamente"))
+        messages.success(self.request, _("Gracias por contactarnos"))
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -158,14 +163,24 @@ class MainHomeView(ParticipantMixin, FormView):
 class HomeView(ParticipantMixin, ListView):
     template_name = "pages/home.html"
     model = Conversation
+    ref = None
 
     def get_queryset(self):
+        """
+        If ref is provided, try to get the conversation by slug, if not found, get a random conversation that is set to show_in_list=True
+        """
         queryset = super().get_queryset()
-        queryset = queryset.filter(show_in_list=True)
+        if self.ref:
+            queryset = queryset.filter(slug=self.ref)
+            if len(queryset) == 0:
+                queryset = super().get_queryset().filter(show_in_list=True)
+        else:
+            queryset = queryset.filter(show_in_list=True)
         return queryset
 
     def get(self, request, *args, **kwargs):
         self.init_participant(request)
+        self.ref = request.GET.get("ref")
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):

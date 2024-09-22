@@ -132,16 +132,20 @@ class MainHomeView(ParticipantMixin, FormView):
 
             {message}
             """
-        send_mail(
-            subject="Received contact form submission",
-            message=full_message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.NOTIFY_EMAIL],
-            fail_silently=False,
-        )
+        try:
+            send_mail(
+                subject="Received contact form submission",
+                message=full_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.NOTIFY_EMAIL],
+                fail_silently=False,
+            )
+        except Exception as e:
+            logger.error(f"Error sending email: {e}")
+            messages.error(self.request, _("Error enviando el mensaje"))
+            return super().form_invalid(form)
         # success message
         messages.success(self.request, _("Mensaje enviado correctamente"))
-
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

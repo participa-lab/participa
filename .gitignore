@@ -144,3 +144,5 @@ package-lock.json
 package.json
 
 staticfiles/*
+
+.env

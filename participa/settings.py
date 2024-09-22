@@ -99,15 +99,14 @@ WSGI_APPLICATION = "participa.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "HOST": env("DB_HOST"),
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PORT": env("DB_PORT"),
-        "PASSWORD": env("DB_PASSWORD"),
+        "HOST": env("DB_HOST", default="localhost"),
+        "NAME": env("DB_NAME", default="polis-dev"),
+        "USER": env("DB_USER", default="postgres"),
+        "PORT": env("DB_PORT", default="54000"),
+        "PASSWORD": env("DB_PASSWORD", default="oiPorg3Nrz0yqDLE"),
     }
 }
 
@@ -242,7 +241,7 @@ DEFAULT_FROM_EMAIL = "contacto@participalab.uy"  # "participa@fic.edu.uy"
 NOTIFY_EMAIL = "contacto@participalab.uy"  # "participa@fic.edu.uy"
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_HOST_USER = "apikey"  # this is exactly the value 'apikey'
-EMAIL_HOST_PASSWORD = env("SENDGRID_API_KEY")
+EMAIL_HOST_PASSWORD = env("SENDGRID_API_KEY", default="")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

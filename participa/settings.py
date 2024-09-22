@@ -238,10 +238,9 @@ LOGGING = {
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "contacto@participalab.uy"  # "
-NOTIFY_EMAIL = "participa@fic.edu.uy"
+NOTIFY_EMAIL = "contacto@participalab.uy"
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_HOST_USER = "apikey"  # this is exactly the value 'apikey'
-print(env("SENDGRID_API_KEY", default="NO SENDGRID_API_KEY"))
 EMAIL_HOST_PASSWORD = env("SENDGRID_API_KEY", default="")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

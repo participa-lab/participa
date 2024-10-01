@@ -20,7 +20,7 @@
   </div>
 
   <nav
-    class="hidden px-6 py-8 lg:ms-auto lg:block lg:px-0 lg:py-0"
+    class="hidden px-6 py-8 lg:ms-auto lg:flex lg:px-0 lg:py-0"
     id="nav"
   >
     <ul class="flex flex-col gap-5 lg:flex-row lg:gap-[30px]">
@@ -61,6 +61,22 @@
       </li>
       {% block user_profile %}{% endblock user_profile %}
     </ul>
+    <div id="social" class="absolute bottom-0 left-0 mt-auto w-full bg-teal-600 p-8 lg:hidden">
+          <div class="flex grid-cols-1 flex-wrap items-center gap-8">
+            <a href="https://www.facebook.com/profile.php?id=61565964459885" target="_blank">
+              <img class="h-6" src="{% static 'img/logo-fb.svg' %}" alt="Facebook" />
+            </a>
+            <!--<a href="#">
+              <img class="h-6" src="{% static 'img/logo-x.svg' %}" alt="Twitter" />
+            </a>-->
+            <a href="https://www.instagram.com/participa.uy/" target="_blank">
+              <img class="h-6" src="{% static 'img/logo-ig.svg' %}" alt="Instagram" />
+            </a>
+            <a href="https://www.linkedin.com/company/participalab" target="_blank">
+              <img class="h-6" src="{% static 'img/logo-ln.svg' %}" alt="Linkedin" />
+            </a>
+          </div>
+    </div>
   </nav>
 
 </header>

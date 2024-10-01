@@ -617,15 +617,29 @@
         </div>
       </div>
     </div>
-    <div
-      class="mt-16 flex grid-cols-1 flex-wrap items-center justify-center lg:justify-start gap-8 pt-9 lg:gap-12 lg:border-t lg:border-t-white"
-    >
+    <div class="mt-16 flex grid-cols-1 flex-wrap items-center justify-center lg:justify-start gap-8 pt-9 lg:gap-12 lg:border-t lg:border-t-white">
       <img
         src="{% static 'CH-DIAPO.svg' %}"
         alt="Participa | Udelar"
-        class="h-12 md:h-16 lg:h-20 flex-1 lg:flex-initial"
+        class="h-12 lg:h-16 flex-1 lg:flex-initial"
       />
       {% include 'components/locale_switcher_form.html' %} 
+    </div>
+    <div id="social" class="mt-12">
+      <div class="flex grid-cols-1 flex-wrap items-center gap-8">
+        <a href="https://www.facebook.com/profile.php?id=61565964459885" target="_blank">
+          <img class="h-6" src="{% static 'img/logo-fb.svg' %}" alt="Facebook" />
+        </a>
+        <!--<a href="#">
+          <img class="h-6" src="{% static 'img/logo-x.svg' %}" alt="Twitter" />
+        </a>-->
+        <a href="https://www.instagram.com/participa.uy/" target="_blank">
+          <img class="h-6" src="{% static 'img/logo-ig.svg' %}" alt="Instagram" />
+        </a>
+        <a href="https://www.linkedin.com/company/participalab" target="_blank">
+          <img class="h-6" src="{% static 'img/logo-ln.svg' %}" alt="Linkedin" />
+        </a>
+      </div>
     </div>
   </div>
 </footer>

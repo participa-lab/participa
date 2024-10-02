@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-21 17:54-0300\n"
+"POT-Creation-Date: 2024-10-02 08:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: English <en@li.org>\n"
@@ -63,10 +63,16 @@ msgid "Tu género"
 msgstr "Your gender"
 
 #: polis/forms.py:14 polis/forms.py:24
-msgid "Select one"
-msgstr ""
+msgid "Seleccionar"
+msgstr "Select one"
 
-#: polis/forms.py:18 polis/forms.py:19
+#: polis/forms.py:18
+#, fuzzy
+#| msgid "Año de nacimiento"
+msgid "Año Nacimiento"
+msgstr "Year of birth"
+
+#: polis/forms.py:19
 msgid "Tu año de nacimiento"
 msgstr "Your year of birth"
 
@@ -262,11 +268,11 @@ msgstr "Territory"
 msgid "Afiliación"
 msgstr "Affiliation"
 
-#: polis/models.py:331
+#: polis/models.py:335
 msgid "Participant"
 msgstr "Participant"
 
-#: polis/models.py:332
+#: polis/models.py:336
 msgid "Participants"
 msgstr "Participants"
 
@@ -282,13 +288,13 @@ msgstr "Maximum 300 characters"
 msgid "Enviar"
 msgstr "Send"
 
-#: polis/templates/components/polis_footer.html:31
-msgid "Powered by"
-msgstr "Powered by"
+#: polis/templates/components/polis_footer.html:17
+msgid "Hecho con Polis"
+msgstr "Powered by Polis"
 
-#: polis/templates/components/polis_footer.html:32
-msgid "Polis"
-msgstr "Polis"
+#: polis/templates/components/polis_footer.html:25
+msgid "Apoya"
+msgstr "Supports"
 
 #: polis/templates/deprecated/conversation_home.html:96
 msgid "Despolarizar el Plebiscito de la Seguridad Social"
@@ -567,9 +573,23 @@ msgstr ""
 "data, will maintain the anonymity of the participants, even if they used "
 "social networks to respond."
 
-#: polis/views.py:142
-msgid "Mensaje enviado correctamente"
-msgstr "Message sent successfully"
+#: polis/views.py:143
+#, python-brace-format
+msgid "No se pudo enviar el mensaje, escríbenos a {settings.NOTIFY_EMAIL} "
+msgstr "We couldn't send the message, write to {settings.NOTIFY_EMAIL} "
+
+#: polis/views.py:148
+msgid "Gracias por contactarnos"
+msgstr "Thanks for writing"
+
+#~ msgid "Powered by"
+#~ msgstr "Powered by"
+
+#~ msgid "Polis"
+#~ msgstr "Polis"
+
+#~ msgid "Mensaje enviado correctamente"
+#~ msgstr "Message sent successfully"
 
 #~ msgid "Tu afiliación"
 #~ msgstr "Your affiliation"

@@ -29,11 +29,6 @@ urlpatterns = [
         name="participant_update",
     ),
     path(
-        "p/login",
-        views.LoginView.as_view(),
-        name="participant_login",
-    ),
-    path(
         "p/logout",
         views.LogoutView.as_view(),
         name="participant_logout",

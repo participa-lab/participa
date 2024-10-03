@@ -48,7 +48,7 @@ html {
 }
 
 #nav.open {
-  @media (max-width: 48rem) {
+  @media (max-width: 64rem) {
     display: block;
     position: absolute;
     width: 100%;
@@ -312,4 +312,27 @@ a.party-btn.parti-btn--secondary {
   'wght' 400,
   'GRAD' 0,
   'opsz' 24
+}
+
+
+.parti-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: auto;
+  max-width: auto;
+  padding: 0.75rem 1rem;
+  padding-inline-end: 3rem;
+  border-radius: 24px;
+  border-width: 1px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  background-color: #ffffff;
+  color: var(--color-primary-600);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.29994 6.30004L0.466602 1.46671C0.399935 1.40004 0.349935 1.32782 0.316602 1.25004C0.283268 1.17226 0.266602 1.08893 0.266602 1.00004C0.266602 0.822263 0.327713 0.666707 0.449935 0.533374C0.572157 0.400041 0.733268 0.333374 0.933268 0.333374H11.0666C11.2666 0.333374 11.4277 0.400041 11.5499 0.533374C11.6722 0.666707 11.7333 0.822263 11.7333 1.00004C11.7333 1.04449 11.6666 1.20004 11.5333 1.46671L6.69994 6.30004C6.58882 6.41115 6.47771 6.48893 6.3666 6.53337C6.25549 6.57782 6.13327 6.60004 5.99994 6.60004C5.8666 6.60004 5.74438 6.57782 5.63327 6.53337C5.52216 6.48893 5.41105 6.41115 5.29994 6.30004Z' fill='%23004146'/%3E%3C/svg%3E%0A");
+  background-position: center right 1rem;
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1.3rem);
+  cursor: pointer;
 }

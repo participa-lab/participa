@@ -1,13 +1,13 @@
 {% load i18n %}
 <form action="{% url 'set_language' %}" method="post" class="text-black">{% csrf_token %}
     <input name="next" type="hidden" value="{{ redirect_to }}">
-    <select name="language" onchange="this.form.submit()" class="rounded-md text-xs border-0 !border-white">
+    <select name="language" onchange="this.form.submit()" class="parti-select w-auto max-w-[auto] pr-12 !text-sm">
         {% get_current_language as LANGUAGE_CODE %}
         {% get_available_languages as LANGUAGES %}
         {% get_language_info_list for LANGUAGES as languages %}
         {% for language in languages %}
             <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                {{ language.name_local }} ({{ language.code }})
+                {{ language.name_local }}
             </option>
         {% endfor %}
     </select>

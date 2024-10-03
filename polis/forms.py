@@ -11,17 +11,17 @@ class ParticipantForm(forms.ModelForm):
     )
     gender = forms.ChoiceField(
         label=_("Tu género"),
-        choices=[("", _("Select one"))] + GENDER_CHOICES,
+        choices=[("", _("Seleccionar"))] + GENDER_CHOICES,
         widget=forms.Select(attrs={"placeholder": _("Tu género")}),
     )
     year_of_birth = forms.CharField(
-        label=_("Tu año de nacimiento"),
+        label=_("Año Nacimiento"),
         widget=forms.TextInput(attrs={"placeholder": _("Tu año de nacimiento")}),
     )
     territory = forms.ModelChoiceField(
         queryset=Territory.objects.all(),
         label=_("Tu territorio"),
-        empty_label=_("Select one"),
+        empty_label=_("Seleccionar"),
         widget=forms.Select(attrs={"placeholder": _("Tu territorio")}),
         required=False,
     )

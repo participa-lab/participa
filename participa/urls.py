@@ -17,7 +17,6 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.views.generic.base import TemplateView
 from django.http import HttpResponse
 from django.urls import include, path
 from polis import views
@@ -29,8 +28,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("healthcheck/", lambda r: HttpResponse()),
     path("", views.MainHomeView.as_view(), name="main_home"),
-    path(
-        "about", TemplateView.as_view(template_name="main_quienes.html"), name="about"
-    ),
     path("__reload__/", include("django_browser_reload.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

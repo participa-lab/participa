@@ -2,6 +2,18 @@
 {% load socialaccount %}
 {% load static %}
 
+{% block meta_tags %}
+<title>Laboratorio Participa | Udelar | Despolarizar el debate</title>
+<meta name="title" content="Laboratorio Participa | Udelar | Despolarizar el debate" />
+<meta name="description" content="El Laboratorio Participa busca aportar a la despolarización en distintas temáticas de discusión pública" />
+<meta property="og:title" content="Laboratorio Participa | Udelar | Despolarizar el debate" />
+<meta property="og:description" content="El Laboratorio Participa busca aportar a la despolarización en distintas temáticas de discusión pública" />
+<meta property="og:image" content="https://participalab.uy/static/img/despolarizar.jpeg"/>
+<meta property="twitter:title" content="Laboratorio Participa | Udelar | Despolarizar el debate" />
+<meta property="twitter:description" content="El Laboratorio Participa busca aportar a la despolarización en distintas temáticas de discusión pública" />
+<meta property="twitter:image" content="https://participalab.uy/static/img/despolarizar.jpeg" />
+{% endblock meta_tags %}
+
 {% block header %}
 {% include "header.html" %}
 {% endblock header %}

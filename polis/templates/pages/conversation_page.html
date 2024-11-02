@@ -68,13 +68,41 @@
                 </div>
                 
                 <div class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
-                    <div class="prose">{{ page.render_content|safe }}</div>
+                    <div class="prose lg:prose-lg px-16 py-10">{{ page.render_content|safe }}</div>
                 </div>
         
                 
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const shareButton = document.getElementById('share-button');
+        
+          if (navigator.share) {
+            shareButton.addEventListener('click', async () => {
+              // Construct the URL with the additional parameter
+              const currentUrl = window.location.href;
+              const urlWithParam = `{% url 'conversation_page' page.pk %}`; // Add your parameter here
+        
+              try {
+                await navigator.share({
+                  title: '{{page.title}}', // Title of the page
+                  text: '{{page.title}}', // Optional message
+                  url: urlWithParam // URL with the additional parameter
+                });
+                console.log('Page shared successfully with parameter!');
+              } catch (err) {
+                console.error('Error sharing the page:', err);
+              }
+            });
+          } else {
+            shareButton.style.display = 'none'; // Hide the button if not supported
+            console.warn('Share API not supported in this browser.');
+          }
+        });
+    </script>
    
     
    

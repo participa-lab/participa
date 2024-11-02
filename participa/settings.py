@@ -266,3 +266,11 @@ EMAIL_HOST_PASSWORD = env("SENDGRID_API_KEY", default="")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    "markdown.extensions.extra",
+    "markdown.extensions.codehilite",
+    "markdown.extensions.toc",
+    # Add other extensions as needed
+]

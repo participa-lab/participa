@@ -146,6 +146,23 @@ class Conversation(models.Model):
         return ConversationPage.objects.filter(conversation=self).order_by("link_order")
 
     @property
+    def is_open(self):
+        is_polis_conversation_active = True
+        try:
+            polis_conversation = PolisConversation.objects.filter(
+                zid=self.get_polis_conversation_zid()
+            ).first()
+            if polis_conversation:
+                is_polis_conversation_active = polis_conversation.is_active
+        except Exception as e:
+            logger.error(f"Error getting polis conversation: {e}", exc_info=True)
+        return (
+            is_polis_conversation_active
+            and self.start_date < datetime.datetime.now().astimezone()
+            and self.end_date > datetime.datetime.now().astimezone()
+        )
+
+    @property
     def participant_count(self):
         return PolisConversation.objects.get(
             zid=self.get_polis_conversation_zid()

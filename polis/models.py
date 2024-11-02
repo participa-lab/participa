@@ -143,7 +143,9 @@ class Conversation(models.Model):
         return url
 
     def get_conversation_pages(self):
-        return ConversationPage.objects.filter(conversation=self).order_by("link_order")
+        return ConversationPage.objects.filter(
+            conversation=self, is_active=True
+        ).order_by("link_order")
 
     @property
     def is_open(self):
@@ -524,6 +526,7 @@ class ConversationPage(models.Model):
     page = models.ForeignKey(Page, on_delete=models.CASCADE)
     link_order = models.IntegerField()
     link_text = models.CharField(max_length=200)
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.conversation} {self.page}"

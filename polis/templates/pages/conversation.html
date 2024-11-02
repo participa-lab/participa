@@ -65,6 +65,14 @@
                     </h3>
                 </div>
                 
+                {% if object.get_conversation_pages %}
+                <div class="flex flex-col lg:flex-row lg:items-center justify-center px-2 lg:px-0 mb-4 xl:mb-6">
+                 {% for page in object.get_conversation_pages %}
+                    <a href="{% url 'conversation_page' page.pk %}" class="parti-btn">{{ page.link_text }}</a>
+                 {% endfor %}
+                </div>
+                {% endif %}
+                
                 <div id="polis-container" class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
                 </div>
         

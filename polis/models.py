@@ -142,6 +142,9 @@ class Conversation(models.Model):
 
         return url
 
+    def get_conversation_pages(self):
+        return ConversationPage.objects.filter(conversation=self).order_by("link_order")
+
     @property
     def participant_count(self):
         return PolisConversation.objects.get(
@@ -497,3 +500,13 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ConversationPage(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE)
+    link_order = models.IntegerField()
+    link_text = models.CharField(max_length=200)
+
+    def __str__(self):
+        return f"{self.conversation} {self.page}"

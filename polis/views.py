@@ -17,7 +17,7 @@ from django.views.generic import (
 )
 
 from .forms import ParticipantForm, ContactForm
-from .models import Conversation, Participant
+from .models import Conversation, Participant, ConversationPage
 from allauth.socialaccount.adapter import get_adapter
 from django.core.mail import send_mail
 
@@ -361,4 +361,14 @@ class PolisConversationReportView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["report_url"] = self.get_object().get_report_url()
+        return context
+
+
+class ConversationPageView(DetailView):
+    template_name = "pages/conversation_page.html"
+    model = ConversationPage
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page"] = self.get_object().page
         return context

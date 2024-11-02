@@ -19,6 +19,11 @@ urlpatterns = [
         name="conversation_report",
     ),
     path(
+        "c/page/<int:pk>",
+        views.ConversationPageView.as_view(),
+        name="conversation_page",
+    ),
+    path(
         "p",
         views.ParticipantView.as_view(),
         name="participant_create",

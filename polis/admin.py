@@ -11,6 +11,7 @@ from .models import (
     PolisXid,
     Territory,
     Page,
+    ConversationPage,
 )
 
 
@@ -54,3 +55,4 @@ admin.site.register(PolisUser, NotManagedAdmin)
 admin.site.register(PolisParticipant, NotManagedAdmin)
 admin.site.register(PolisXid, NotManagedAdmin)
 admin.site.register(Page, PageAdmin)
+admin.site.register(ConversationPage, GenericAdmin)

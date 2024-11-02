@@ -371,4 +371,5 @@ class ConversationPageView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page"] = self.get_object().page
+        context["conversation"] = self.get_object().conversation
         return context

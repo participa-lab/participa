@@ -29,4 +29,5 @@ urlpatterns = [
     path("healthcheck/", lambda r: HttpResponse()),
     path("", views.MainHomeView.as_view(), name="main_home"),
     path("__reload__/", include("django_browser_reload.urls")),
+    path("markdownx/", include("markdownx.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

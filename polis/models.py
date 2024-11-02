@@ -7,7 +7,8 @@ from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import User
 from django.db import models, transaction
 from django.utils.translation import gettext_lazy as _
-
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 from polis import choices
 
 logger = logging.getLogger(__name__)
@@ -140,6 +141,28 @@ class Conversation(models.Model):
             pass
 
         return url
+
+    def get_conversation_pages(self):
+        return ConversationPage.objects.filter(
+            conversation=self, is_active=True
+        ).order_by("link_order")
+
+    @property
+    def is_open(self):
+        is_polis_conversation_active = True
+        try:
+            polis_conversation = PolisConversation.objects.filter(
+                zid=self.get_polis_conversation_zid()
+            ).first()
+            if polis_conversation:
+                is_polis_conversation_active = polis_conversation.is_active
+        except Exception as e:
+            logger.error(f"Error getting polis conversation: {e}", exc_info=True)
+        return (
+            is_polis_conversation_active
+            and self.start_date < datetime.datetime.now().astimezone()
+            and self.end_date > datetime.datetime.now().astimezone()
+        )
 
     @property
     def participant_count(self):
@@ -483,3 +506,27 @@ class PolisReport(models.Model):
 
     def __str__(self):
         return f"{self.zid}"
+
+
+class Page(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    content = MarkdownxField(help_text="Write content in Markdown with HTML support")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def render_content(self):
+        return markdownify(self.content)
+
+    def __str__(self):
+        return self.title
+
+
+class ConversationPage(models.Model):
+    conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)
+    page = models.ForeignKey(Page, on_delete=models.CASCADE)
+    link_order = models.IntegerField()
+    link_text = models.CharField(max_length=200)
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.conversation} {self.page}"

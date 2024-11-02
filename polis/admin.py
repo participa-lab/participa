@@ -10,6 +10,8 @@ from .models import (
     PolisUser,
     PolisXid,
     Territory,
+    Page,
+    ConversationPage,
 )
 
 
@@ -38,6 +40,11 @@ class NotManagedAdmin(admin.ModelAdmin):
         return True
 
 
+class PageAdmin(admin.ModelAdmin):
+    list_display = ("title", "created_at")
+    prepopulated_fields = {"slug": ("title",)}
+
+
 admin.site.register(Instance, GenericAdmin)
 admin.site.register(Conversation, ConversationAdmin)
 admin.site.register(Territory, GenericAdmin)
@@ -47,3 +54,5 @@ admin.site.register(PolisConversation, NotManagedAdmin)
 admin.site.register(PolisUser, NotManagedAdmin)
 admin.site.register(PolisParticipant, NotManagedAdmin)
 admin.site.register(PolisXid, NotManagedAdmin)
+admin.site.register(Page, PageAdmin)
+admin.site.register(ConversationPage, GenericAdmin)

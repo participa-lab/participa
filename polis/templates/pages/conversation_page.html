@@ -1,3 +1,5 @@
+
+
 {% extends "base.html" %}
 {% load static %}
 
@@ -54,7 +56,7 @@
                 <div class="flex flex-col lg:flex-row lg:items-center px-2 lg:px-0 mb-4 xl:mb-6">
                     <span class="text-base font-medium uppercase  text-teal-600 lg:text-xl">{{_('Despolarizar')}}</span>
                     <h3 class="lg:ml-5 w-full  flex items-center text-3xl lg:text-[40px] font-semibold leading-tight text-teal-600">
-                        <span>{{object.topic}}</span>
+                        <span>{{page.title}}</span>
                         <button @click="showHelp = !showHelp" class="ml-auto">
                             <span class="material-symbols-outlined text-xl lg:text-3xl">help_outline</span>
                         </button> 
@@ -65,62 +67,15 @@
                     </h3>
                 </div>
                 
-                {% if object.get_conversation_pages %}
-                <div class="flex flex-col lg:flex-row lg:items-center justify-center px-2 lg:px-0 mb-4 xl:mb-6">
-                 {% for page in object.get_conversation_pages %}
-                    <a href="{% url 'conversation_page' page.pk %}" class="parti-btn">{{ page.link_text }}</a>
-                 {% endfor %}
-                </div>
-                {% endif %}
-                
-                <div id="polis-container" class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
+                <div class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
+                    <div class="prose lg:prose-lg px-16 py-10">{{ page.render_content|safe }}</div>
                 </div>
         
-                <script type="text/javascript">
-                    function buildEmbedDiv(dataAttributes) {
-                        var dataAttributesString = '';
-                        for (var key in dataAttributes) {
-                            if (dataAttributes.hasOwnProperty(key)) {
-                                dataAttributesString += "data-" + key + "='" + dataAttributes[key] + "' ";
-                            }
-                        }
-                        return "<div class='polis' " + dataAttributesString + "></div>";
-                    }
                 
-                    var embedScript = document.createElement("script");
-                    embedScript.setAttribute("src", "{{object.instance.url}}/embed.js");
-                
-                    var polisContainer = document.getElementById('polis-container');
-                    {% load i18n %}
-                    {% get_current_language as LANGUAGE_CODE %}
-                    var dataAttributes = {
-                        "site_id": "{{object.instance.site_id}}",
-                        "page_id": "{{object.slug}}",
-                        "topic": "{{object.topic}}",
-                        "parent_url": "{{ request.path }}",
-                        "xid": "{{participant.id}}",
-                        "x_name": "{{participant.nick_name|default_if_none:''}}",
-                        "x_email": "{{participant.email|default_if_none:''}}",
-                        "x_profile_image_url": "{{participant.avatar_url|default_if_none:''}}",
-                        "border": "{{object.border}}",
-                        "border_radius": "{{object.border_radius}}",
-                        "padding": "{{object.padding}}",
-                        "height": "{{object.height|default_if_none:'930'}}",
-                        "ucsf": "{{object.show_footer|yesno:'true,false'}}",
-                        "ucsh": "{{object.show_help|yesno:'true,false'}}",
-                        "ucsd": "{{object.show_description|yesno:'true,false'}}",
-                        "ucst": "{{object.show_topic|yesno:'true,false'}}",
-                        "bg_white": "{{object.bg_white|yesno:'true,false'}}",
-                        "ui_lang": "{{LANGUAGE_CODE}}",
-                        "style_btn": "{{object.color_primary|default_if_none:'#e25666'}}",
-                        // Add other data attributes here as needed
-                    };
-                    polisContainer.innerHTML = buildEmbedDiv(dataAttributes);
-                    polisContainer.appendChild(embedScript);
-                </script>   
             </div>
         </div>
     </section>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const shareButton = document.getElementById('share-button');
@@ -129,12 +84,12 @@
             shareButton.addEventListener('click', async () => {
               // Construct the URL with the additional parameter
               const currentUrl = window.location.href;
-              const urlWithParam = `{% url 'home' %}?ref={{object.slug}}`; // Add your parameter here
+              const urlWithParam = `{% url 'conversation_page' page.pk %}`; // Add your parameter here
         
               try {
                 await navigator.share({
-                  title: '{{object.topic}}', // Title of the page
-                  text: 'Despolarizá el debate sobre {{object.topic}}', // Optional message
+                  title: '{{page.title}}', // Title of the page
+                  text: '{{page.title}}', // Optional message
                   url: urlWithParam // URL with the additional parameter
                 });
                 console.log('Page shared successfully with parameter!');
@@ -148,6 +103,7 @@
           }
         });
     </script>
+   
     
    
 </main>

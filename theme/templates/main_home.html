@@ -574,8 +574,14 @@
                                   <hr class="my-4 border-teal-300" />
                               </div>
                               <div class="mt-auto flex items-center justify-between gap-4 lg:gap-8">
+                                {% if conversation.is_open %}
                                   <a href="#" class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white">Abierta</a>
                                   <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                                {% else %}
+                                  <a href="#" class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white">Cerrada</a>
+                                  <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">Ver<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                                {% endif %}
+                                  
                               </div>
                           </div>
                       </li>

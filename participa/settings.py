@@ -34,7 +34,13 @@ SECRET_KEY = "django-insecure-^03ui)u)q#2eeo2l3_d!7e+oei7935+ihtjfjkv@$ieg+rij(f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default="True") == "True"
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "app.raul", "participalab.uy", "test.participalab.uy"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "app.raul",
+    "participalab.uy",
+    "test.participalab.uy",
+]
 CSRF_TRUSTED_ORIGINS = ["https://*.participalab.uy"]
 
 
@@ -60,6 +66,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.telegram",
     "allauth.socialaccount.providers.twitter_oauth2",
     "allauth.socialaccount.providers.google",
+    "markdownx",
 ]
 
 MIDDLEWARE = [

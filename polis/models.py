@@ -7,7 +7,8 @@ from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import User
 from django.db import models, transaction
 from django.utils.translation import gettext_lazy as _
-
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 from polis import choices
 
 logger = logging.getLogger(__name__)
@@ -483,3 +484,16 @@ class PolisReport(models.Model):
 
     def __str__(self):
         return f"{self.zid}"
+
+
+class Page(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    content = MarkdownxField(help_text="Write content in Markdown with HTML support")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def render_content(self):
+        return markdownify(self.content)
+
+    def __str__(self):
+        return self.title

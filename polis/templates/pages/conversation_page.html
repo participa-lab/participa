@@ -56,7 +56,7 @@
                 <div class="flex flex-col lg:flex-row lg:items-center px-2 lg:px-0 mb-4 xl:mb-6">
                     <span class="text-base font-medium uppercase  text-teal-600 lg:text-xl">{{_('Despolarizar')}}</span>
                     <h3 class="lg:ml-5 w-full  flex items-center text-3xl lg:text-[40px] font-semibold leading-tight text-teal-600">
-                        <span>{{page.title}}</span>
+                        <span>{{conversation.topic}}</span>
                         <button @click="showHelp = !showHelp" class="ml-auto">
                             <span class="material-symbols-outlined text-xl lg:text-3xl">help_outline</span>
                         </button> 
@@ -68,7 +68,7 @@
                 </div>
                 
                 <div class="rounded-3xl bg-white p-2 lg:px-14 lg:py-6 shadow-[6px_6px_14px_rgba(0,0,0,0.05)]">
-                    <div class="prose lg:prose-lg px-16 py-10">{{ page.render_content|safe }}</div>
+                    <div class="prose lg:prose-lg px-1 lg:px-16 py-2 lg:py-10">{{ page.render_content|safe }}</div>
                 </div>
         
                 

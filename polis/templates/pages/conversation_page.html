@@ -84,7 +84,7 @@
             shareButton.addEventListener('click', async () => {
               // Construct the URL with the additional parameter
               const currentUrl = window.location.href;
-              const urlWithParam = `{% url 'conversation_page' page.pk %}`; // Add your parameter here
+              const urlWithParam = `{% url 'conversation_page' page.slug %}`; // Add your parameter here
         
               try {
                 await navigator.share({

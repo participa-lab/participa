@@ -368,6 +368,18 @@ class ConversationPageView(DetailView):
     template_name = "pages/conversation_page.html"
     model = ConversationPage
 
+    def get(self, request, *args, **kwargs):
+        # Find pk using slug
+        if "slug" in kwargs:
+            conversation_page = ConversationPage.objects.filter(
+                page__slug=kwargs["slug"]
+            ).first()
+            if conversation_page:
+                self.kwargs["pk"] = conversation_page.pk
+            else:
+                return redirect("home")
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["page"] = self.get_object().page

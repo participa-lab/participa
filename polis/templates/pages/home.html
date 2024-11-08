@@ -71,7 +71,11 @@
                                         <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">Participar<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
                                         {% else %}
                                         <a href="#" class="rounded-full bg-teal-400 px-4 py-2 text-sm font-medium uppercase text-white">Cerrada</a>
-                                        <a href="{% url 'conversation' conversation.slug %}" class="parti-btn">Ver<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                                        {% if object.get_conversation_pages %}
+                                        {% for page in object.get_conversation_pages %}
+                                            <a href="{% url 'conversation_page' page.pk %}" class="parti-btn">{{ page.link_text }}<span class="material-symbols-outlined">group</span> {{ conversation.participant_count }}</a>
+                                        {% endfor %}
+                                        {% endif %}
                                         {% endif %}
                                         </div>
                                     </div>
